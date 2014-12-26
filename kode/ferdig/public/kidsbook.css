@@ -1,0 +1,11 @@
+body {
+  background-color: #bde7ee;
+}
+
+p.innlegg-tekst {
+  margin-top: 50px;
+}
+
+p.avsender {
+  color: #999;
+}
