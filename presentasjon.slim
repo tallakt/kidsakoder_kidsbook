@@ -1,0 +1,602 @@
+section
+  section
+    h1 Kidsbook
+    h2 Dag 1 - Ruby
+
+    p
+        | Laget av Tallak Tveide /
+        a<> href='http://twitter.com/tallakt' @tallakt
+
+
+  section
+    h2 Hva er Ruby?
+    p
+      | Ruby er et 20 år gammelt programmeringsspråk som ble laget av japaneren 
+      | Matz (Yukihiro Matsumoto).
+    img src="http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg" alt="Matz"/
+    p Språket var fokusert på 'programmer happiness'
+
+
+  section
+    h2 Ruby script
+    p
+      | Et Ruby script er en samling Ruby kommandoer i en tekstfil. Ruby er et 
+      | interpretert språk, det betyr at den leser tekstfilen og utfører 
+      | kommandoene fortløpende. 
+    p 
+      | For å kjøre et script i filen 
+      code <> hello.rb 
+      | kan man kjøre kommandoen:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          $ ruby hello.rb
+          Hello World!
+
+  section
+    h2 Mitt første Ruby program
+    p
+      | Vi skal forsøke å lage dette programmet. Start med å lage en tekstfil som 
+      | inneholder teksten: 
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts "Hello World!"
+
+    p Etter å ha lagret filen kan den kjøres
+
+  section
+    h2 Variabler
+    p Variable brukes til å lagre verdier
+
+    pre
+      code (data-trim class="ruby")
+        |
+          a = 1
+          b = a + 2
+          puts b     # Skriver ut 3
+          b = 10
+          puts b     # Skriver ut 10
+
+    p Alt som kommer etter `#` tegnet er kommentarer som Ruby ser bort fra.
+
+    p
+      | Variable må begynne med liten bokstav, og ikke inneholde spesielle tegn
+      | (tegnet 
+      code <> _ 
+      | er lov). Noen lovlige variabelnavn er 
+      code <> a 
+      | , 
+      code <> tallet 
+      | eller
+      code <> et_viktig_tall 
+
+    p Unngå norske bokstaver i variabelnavn (selv om de strengt tatt er lovlige)
+
+
+  section
+    h2 Verdier 
+    p Verdier kan ha forskjellige typer, de vanligste er:
+
+    ul
+      li
+        code <> Fixnum
+        | - Hele tall som 1 eller -100
+      li
+        code <> Float
+        | - Desimaltall som 1.5 og 100.0
+      li
+        code <> String
+        | - En tekstbit, som f.eks. 
+        code <> "Ruby er topp!"
+      li
+        code <> Symbol
+        | - Symboler brukes internt i programmet, 
+        code <> :ruby
+      li
+        code <> true
+        | eller 
+        code <> false
+        | - angir sannhet
+      li
+        code <> nil
+        | - for mangel på verdi
+
+
+  section
+    h2 Strenger
+    p 
+      | Ruby er et veldig godt språk for å behandle tekst strenger (strenger), noen
+      | eksempler:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts "Ruby"      # Skriver Ruby
+          puts 'Ruby'      # Skriver også ut Ruby
+          a = "Yukihiro"
+          b = "Matsumoto"
+          puts "#\{a} #\{b}" # Skriver Yukihiro Matsumoto
+
+    p 
+      | Den siste linjen bruker strenginterpolering. Dette er en god måte å sette
+      | sammen verdier til noe man skal skrive ut på skjermen. Men en annen (mindre
+      | elegant) metode ville vært:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          a = "Yukihiro"
+          b = "Matsumoto"
+          puts a + " " + b # Skriver Yukihiro Matsumoto
+
+
+  section
+    h2 Symboler
+    p 
+      | Symboler brukes mye i Ruby fordi de er raske og enkle å bruke. Et symbol er
+      | som en streng, men er ikke godt egnet til å sette sammen eller endres på. Vi
+      | bruker de til å beskrive til i programmet som ikke endrer seg
+
+    pre
+      code (data-trim class="ruby")
+        |
+          valg = :ruby
+          puts "Hei Java" if valg == :java
+          puts "Hei Ruby" if valg == :ruby
+
+    p Koden over vil skrive ut `Hei Ruby`
+
+
+  section
+    h2 Konstanter
+    p Konstanter er som variable, men de skal skrives i store bokstaver.
+
+    p 
+      | Når man først har skrevet til en konstant er det ikke mulig å gi den en ny
+      | verdi senere.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          VIKTIG_VERDI = 49
+
+      p Konstanter brukes for å øke lesbarheten
+
+
+
+  section
+    h2 Konvertere verdier
+    p 
+      | Men hvis vi bruker `+` må vi passe på at begge verdiene vi skal sette
+      | sammen passer sammen.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts 1 + "10"    # TypeError: String cant be coerced into Fixnum
+
+    p 
+      | Man kan gjøre en streng om til et heltall ved å bruke metoden `to_i`. Koden
+      | over skal skrives på en av disse måtene:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts "#\{1}10"       # Skriver ut 110
+          puts 1 + "10".to_i  # Skriver ut 11
+
+    p Tilsvarende kan man bruke `to_f` for å konvertere en streng til et desimaltall:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts 1 + "10.5".to_f  # Skriver ut 11.5
+
+
+  section
+    h2 Kommunisere med omverdenen
+    p
+      | En enkel måte som vi har sett at Ruby scriptet kan kommunisere med omverdenen
+      | er å lese og skrive strenger til skjermen. Vi har sett bruk av `puts`, men det
+      | finnes også en `gets` som leser fra tastaturet.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          puts "Skriv noe"
+          svar = gets
+          puts "Du skrev #\{svar}"
+
+
+  section
+    h2 IRB
+    p
+      | Et nyttig verktøy som følger med Ruby er `irb`. Her kan du prøve ut Ruby kode
+      | og få umiddelbare svar uten å lagre i tekstfil og så kjøre Ruby.
+
+    p
+      | Jeg bruker å ha oppe et vindu med `irb` mens jeg programmerer Ruby og kjører
+      | ting der først hvis jeg er i tvil
+
+    pre
+      code (data-trim)
+        |
+          $ irb
+          irb(main):001:0> r = "Ruby"
+          => "Ruby"
+          irb(main):002:0> r.upcase
+          => "RUBY"
+        
+    p `irb` skriver ut svaret fra forrige linje etter `=>`
+
+
+  section
+    h2 Noen oppgaver
+
+    ul
+      li
+        | Lag et script som spør om navnet og hilser tilbake (Hva heter du? Mats. Hei
+        | Matz!). Kall det `hilsing.rb`
+      li
+        | Lag et skript som spør om tre tall og regner ut gjennomsnittet av dem. Kall
+        | det `snitt.rb`
+
+  section
+    h2 Metoder
+    p 
+      | Alle verdiene i Ruby har metoder. For eksempel på har verdien "Ruby" en
+      | metode `length` som angir hvor mange tegn den har.
+
+    p
+      | Vi kaller opp metoden ved å sette sammen verdier og metodenavn med et punktum
+      | `.`
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tekst = "Ruby"
+          puts tekst.length    # Skriver ut 4
+          puts "Ruby".length   # ditto
+
+    p
+      | En verdi vil ha forskjellige metoder utfra hvilken type verdi det er. For
+      | eksempel fil et heltall ha en metode `even?` som sier om det er et partall,
+      | mens en streng kan ha en `strip` metode som fjerner blanke tegn.
+
+
+
+  section
+    h2 Metoder med parametre
+    
+    p
+      | Noen metoder vil trenge ekstra parametre. Du kan da sette disse etter
+      | metodenavnet på denne måten:
+
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tall = 16
+          tall.div(5)    # Divisjon med hele tall
+          => 3
+
+    p 
+      | I Ruby er det ikke nødvendig å ha parenteser rundt parametrene. Så linjen
+      | over kunne like gjerne vært skrevet slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tall.div 5
+          => 3
+
+    p Flere parametre listes opp adskilt av komma
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tekst = "Ruby"
+          tekst.center(30, "_")
+          => "_____________Ruby_____________"
+
+  section
+    h2 Betingelser
+    p Vi bruker `if` til å kjøre en kode på en gitt betingelse
+
+    pre
+      code (data-trim class="ruby")
+        |
+          if 1 > 10
+            puts "En er større en ti???!?"
+          end
+
+    p
+      | Når vi har en `if` blokk rykker vi teksten inn med to mellomrom, så det blir
+      | lettere å se hva som passer under `if` setningen. Hvis vi må ha en plan B,
+      | kan vi bruke `if` og `else`:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          if 1 > 10
+            puts "En er større en ti???!?"
+          else
+            puts "En er selvsagt ikke større en ti"
+          end
+
+    p I Ruby er det bare `false` og `nil` som ikke slår til i en `if` setning.
+
+  section
+    img src="http://jc00ke.com/speaking/cascadia-ruby-2012-maglev/lib/assets/tenderlove.jpg" alt="@tenderlove"
+    p
+      | (Vi tar et avbrekk for å hylle Ruby kjendisen Tenderlove)
+
+  section
+    h2 Looping
+    p For å gjenta en oppgave kan vi bruke looping. Noen eksempler på dette er:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          10.times do
+            puts "Dette skriver jeg ut ti ganger"
+          end
+
+    pre
+      code (data-trim class="ruby")
+        |
+          while 1 > 10 do
+            puts "Dette skriver jeg ut til jeg går tom for strøm"
+          end
+
+    p Den siste kan gjerne skrives slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          loop do
+            puts "Dette skriver jeg ut til jeg går tom for strøm"
+          end
+
+
+  section
+    h2 Oppgave: Gjett det hemmelige tallet
+
+    ul
+      li
+        | Skriv et program som lager et tilfeldig tall mellom 0 og 9. Spør brukeren
+        | hvilket tall det er helt til tallet er gjettet. Avslutt med en gratulasjon.
+
+    p For å lage tilfeldige tall kan man bruke:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tilfeldig_tall = rand(10)
+
+
+  section
+    h2 Lister
+
+    pre
+      code (data-trim class="ruby")
+        |
+          liste = [1, 2, 3, 4]
+          dobbel = liste + liste
+          => [1, 2, 3, 4, 1, 2, 3, 4]
+          liste.push(5)                # Obs! listen er forandret
+          => [1, 2, 3, 4, 5]
+          liste
+          => [1, 2, 3, 4, 5]
+          en_tom_liste = []
+
+    p
+      | En liste inneholder en rekke verdier. Den første verdien har indeks 0. Du kan
+      | bruke indeksen til å hente ut en eller flere verdier
+
+    pre
+      code (data-trim class="ruby")
+        |
+          liste = [1, 2, 3, 4]
+          begynnelsen = liste[0]
+          => 1
+          de_tre_forste = liste[0..2]
+          => [1, 2, 3]
+
+
+  section
+    h2 Each
+
+    p
+      | En grei måte å gjøre noe med alle verdiene i en liste er å bruke `each`
+      | metoden.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          noen_tall = [4, 6, 8, 10]
+          sum = 0
+
+          noen_tall.each do |tall|
+            sum = sum + tall
+          end
+
+          # Når vi kommer hit er sum lik 28
+
+  section
+    h2 Oppgave: Vi sorterer tall
+
+    p Skriv inn denne (eller improviser litt underveis) og kjør
+
+
+    pre
+      code (data-trim class="ruby")
+        |
+          inntastet = nil
+          liste = []
+
+          while inntastet != -1
+            puts "Skriv et positivt heltall og avslutt med -1"
+            inntastet = gets.to_i
+            if inntastet >= 0
+              liste.push(inntastet)
+            end
+          end
+
+          sortert = []
+          while liste.any?
+            minste = liste.min
+            liste.delete(minste)
+            sortert.push(minste)
+          end
+
+          sortert.each do |tall|
+            puts tall
+          end
+
+      p Det fins selvsagt også en `sort` metode for lister `:)`
+
+  section
+    h2 Hash
+
+    p
+      | I Ruby er en Hash en tabell hvor man slår opp en verdi utfra en nøkkel. Noen
+      | eksempler hvor man ville brukt en hash er:
+
+    ul
+      li Slå opp et navn utfra et telefonnummer
+      li Slå opp et telefonnummer utfra et navn
+      li Representere noe med faste verdier, f.eks. en bok med tittel, forfatter og antall sider
+
+    p
+      | Hvert oppslag i en Hash vil ha en nøkkel og en verdi. For hver nøkkel finnes
+      | bare en verdi (dvs i eksempel nummer to over kan et navn bare knyttes til et
+      | telefonnummer.
+
+    p
+      | Nøklene er i Ruby verden ofte symboler.
+
+  section
+    h2 Hash - telefonlisten
+
+    p
+      | La oss tenke at vi skal lage en søketjeneste som gir telefonnummeret til en
+      | person utfra oppgitt navn.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          katalog = {}     # start med en tom hash
+          katalog["Matz"] = "555-555-5555"
+          katalog["Tenderlove"] = "888-888-8888"
+
+    p
+      | Etter å ha bygd opp en litt mer omfattende katalog kan vi nå slå opp nummer
+
+    pre
+      code (data-trim class="ruby")
+        |
+          katalog["Matz"]
+          => "555-555-5555"
+          katalog["Yukihiro Matsumoto"]  # finnes ikke
+          => nil
+
+  section
+    h2 Hash - boka
+
+    p
+      | Vi kan bygge boka opp slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          bok = {}     # start med en tom hash
+          bok[:tittel] = "Pride And Prejudice"
+          bok[:forfatter] = "Jane Austen"
+          bok[:sideantall] = 397
+
+    p
+      | Og så kan vi bruke bok variabelen slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          beskrivelse =  "#\{bok[:tittel]} av #\{bok[:forfatter]}, #\{bok[:sideantall]} sider"
+          => "Pride And Prejudice av Jane Austen, 397 sider"
+
+
+
+  section
+    h2 Hash - litt andre skrivemåter
+
+    p
+      | Siden hash blir mye brukt i Ruby, finnes noen forenklede varianter å skrive
+      | disse inn på. Bok eksempelet kan da gjøres slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          bok = {
+            :tittel => "Pride And Prejudice",
+            :forfatter => "Jane Austen",
+            :sideantall => 397
+          }
+
+    p Eller også 
+
+    pre
+      code (data-trim class="ruby")
+        |
+          bok = {
+            tittel: "Pride And Prejudice",
+            forfatter: "Jane Austen",
+            sideantall: 397
+          }
+
+    p Den siste varianten fungerer bare når nøklene er symboler.
+
+
+    p Og så kan vi bruke bok variabelen slik
+
+    pre
+      code (data-trim class="ruby")
+        |
+          beskrivelse =  "#\{bok[:tittel]} av #\{bok[:forfatter]}, #\{bok[:sideantall]} sider"
+          => "Pride And Prejudice av Jane Austen, 397 sider"
+
+
+  section
+    h2 Noen fler oppgaver
+
+    ul
+      li 
+        | Lag en Yatzy som kaster fem terninger og sjekker for hus (tips: bruk
+        | `sort` på listen) li Lag en Yatsy hvor tre spillere kan skrive inn navn
+        | og kaste sjanse. Avslutt med å skrive ut hva alle fikk (tips: legg
+        | navnene i en liste, og bruk navnet som nøkkel i en tabell med resultater)
+      li 
+        | Lag en evig løkke som skriver ut "Matz" som en sinus (tips: Ctrl+C
+        | avbryter programmet, bruk koden under for kodebiter) li Lag kortspillet
+        | 21. Spilleren satser en krone og får dobbelt tilbake ved seier. Først
+        | skal spilleren velge om han vil ha fler kort. Når han stopper, skal
+        | banken legge ut kort til han har fler poeng en spilleren, eller over 21
+        | poeng. Hvis banken går over 21 har spilleren vunnet. For å gjøre det
+        | enkelt har kortstokken vår bare kort i en farge med verdier 1 til 10.
+        | Spiller fortsetter til spilleren har spilt bort pengene sine.
+        | (vanskelig). Bonus: Støtte for fler spillere. Etter at alle spillerene
+        | har trekt kort, trekker banken mot alle og stopper på 16 poeng.
+
+
+    pre
+      code (data-trim class="ruby")
+        |
+          s = Math.sin(0.3)   # Sinus til et tall
+
+          desimaltall = 55.5
+          heltall = desimaltall.to_i # runder av til et heltall
+
+          innrykk = 10 * " "
+          puts "#\{innrykk}Matz"

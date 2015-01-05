@@ -1,11 +1,11 @@
 desc 'Generer presentasjon som filer'
 task :slides do
-  sh "reveal-ck generate -d slides/ -f presentasjon.md"
+  sh "reveal-ck generate -d slides/ -f presentasjon.slim"
 end
 
 desc 'Start web server med presentasjonen som er oppdatert'
 task :server do
-  sh "reveal-ck server -d slides/ -f presentasjon.md"
+  sh "reveal-ck server -d slides/ -f presentasjon.slim"
 end
 
 
