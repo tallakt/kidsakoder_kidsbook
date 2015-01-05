@@ -1,4 +1,10 @@
 ---
+- :tekst: halla
+  :avsender: Mille
+- :tekst: dsgdfgdfg
+  :avsender: Tallak
+- :tekst: Dette er en test
+  :avsender: Tveide
 - :tekst: JUHU
   :avsender: Tveide
 - :tekst: "Enda et innlegg\r\n"
@@ -14,10 +20,4 @@
 - :tekst: ssadfsdf
   :avsender: 
 - :tekst: sdasdsdfa
-  :avsender: Tallak
-- :tekst: sfdgdfgsdfgsdfgf sdfg df gsdfgsdf fsd gs
-  :avsender: Tallak
-- :tekst: sdfsdfgsdfgsdfg
-  :avsender: Tallak
-- :tekst: dfsdfgsdfgs
   :avsender: Tallak

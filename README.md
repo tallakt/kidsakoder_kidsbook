@@ -13,7 +13,7 @@ Kurset er fordelt over fem kvelder med følgende fokus:
 
 1. Grunnleggende programmering i Ruby
 2. Vi skriver til og leser fra filer
-3. HTML og skjemaer
+3. HTML og skjemaer, enkle dynamiske hjemmesider
 4. Dynamiske hjemmesider, redirect
 5. Fullføre prosjektet
 
@@ -39,6 +39,7 @@ Bruk `restart` på Windows eller `rerun` på OSX eller Linux.
 ## Dette må vi kunne
 
 ### Dag 1
+
   - strenger, symboler, enkle og doble anførselstegn
   - streng interpolering
   - kalle metoder på et objekt, også uten parenteser
@@ -50,13 +51,13 @@ Bruk `restart` på Windows eller `rerun` på OSX eller Linux.
   - legge til elementer til en array
   - hente ut deler av en array med [..]
   - hash, lage tomme, etc
-  - definere og bruke funksjoner
   - starte IRB of laste inn en fil for testing
 
 Vi har installert Ruby på alle maskinene og laget litt basic kode.
 
 ### Dag 2
 
+  - definere og bruke funksjoner
   - require og require_relative
   - File.exist?
   - Åpne en fil for skriving
@@ -74,6 +75,9 @@ Vi er mer fortrolige med Ruby og har laget en biblioteksfil som vi kan bruke sen
 - HTML, struktur, <head>, <title>, <body>, <link>, <a>, <p>, <img>, <h1>, <h2>, <h3>
 - CSS
 - HTML forms: <form>, <textarea>, <input/text>, <input/submit>
+- sinatra
+- forskjellen på å lese fra fil og web server
+- forskjellen på å ha html i public katalogen og views/
 - blande html og kode i ERB fil
 
 Etter denne dagen har vi en side med CSS og statiske innlegg. Vi har også laget noen forms for pålogging og skriving av innlegg som ikke har noen funksjoner.
