@@ -5,6 +5,8 @@ Av Tallak Tveide
 
 *Dette er et arbeid under oppføring, ikke klart til bruk*
 
+Presentasjon finnes på siden https://tallakt.github.io/kidsakoder_kidsbook/
+
 Dette er et kursopplegg for barn som ønsker å lære litt om web, html og Ruby.
 Målet for kurset er å lage sin egen web side hvor man kan poste innlegg. 
 Det er også mulig å dele innlegg med de andre barna sine web sider.
