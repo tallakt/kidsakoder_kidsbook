@@ -1,10 +1,10 @@
 desc 'Generer presentasjon som filer'
-task :presentasjon_filer do
+task :slides do
   sh "reveal-ck generate -d slides/ -f presentasjon.md"
 end
 
 desc 'Start web server med presentasjonen som er oppdatert'
-task :presentasjon_server do
+task :server do
   sh "reveal-ck server -d slides/ -f presentasjon.md"
 end
 
@@ -22,4 +22,5 @@ task :gh do
   sh "if [ -d slides ]; then rm -r slides; fi"
   sh "if [ -d gh-pages ]; then rm -r gh-pages; fi"
   sh "git reset --hard"
+  puts "Now run git push origin gh-pages"
 end
