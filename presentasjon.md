@@ -14,7 +14,7 @@ Ruby er et 20 år gammelt programmeringsspråk som ble laget av en japaner kalt 
 
 ![Matz](http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg)
 
-Språket var fokusert på å gjøre utvikleren mest mulig lykkelig.
+Språket var fokusert på 'programmer happiness'
 
 ---
 
