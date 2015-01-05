@@ -1,3 +1,6 @@
+
+<div class="slides">
+
 # Kidsbook
 ## Dag 1 - Ruby
 
@@ -473,3 +476,5 @@ heltall = desimaltall.to_i # runder av til et heltall
 innrykk = 10 * " "
 puts "#{innrykk}Matz"
 ```
+
+</div>
