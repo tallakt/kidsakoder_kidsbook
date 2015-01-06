@@ -12,7 +12,7 @@ end
 desc "Update github pages"
 task :gh do
   sh "stat=$(git status 2> /dev/null | tail -n1); if [ \"nothing to commit (working directory clean)\" != \"$stat\" ]; then echo \"Unclean - please commit before docs\"; exit 2; fi"
-  Rake::Task["presentasjon_filer"].execute
+  Rake::Task["slides"].execute
   sh "git rm -f -r ."
   mkdir_p "gh-pages"
   sh "cp -r slides/* gh-pages/"
