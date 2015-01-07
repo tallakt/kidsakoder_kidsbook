@@ -603,6 +603,12 @@ liste.push twitter: "@tenderlove", land: "USA"</code></pre>
     </p>
   </section>
   <section>
+    <p>
+      På de neste sidene finner du noen oppgaver. Her kan du velge noe som
+      passer
+    </p>
+  </section>
+  <section>
     <h2>
       Oppgave: Yatzy
     </h2>
@@ -637,6 +643,36 @@ heltall = desimaltall.to_i # runder av til et heltall
 
 innrykk = 10 * " "
 puts "#\{innrykk}Matz"</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Caesar Cipher (vanskelig)
+    </h2>
+    <p>
+      Dette er en gammel form for kryptering hvor alle bokstavene blir
+      forskjøvet. Man angir nøkkelen, og hver bokstav forskyves så mange
+      bokstaver videre. Hvis nøkkelen er 2 vil "A" byttes ut med "C", "B"
+      blir til "D", "Y" blir til "A" etc. For å gjøre det enklere støttes
+      bare A-Z, tilsammen 26 bokstaver. Dekryptering gjøres ved å kjøre ny
+      kryptering med nøkkel 26 - (forrige nøkkel). Programflyt:
+    </p>
+    <ul>
+      <li>
+        Spør om nøkkelen (tall fra 1 til 25)
+      </li>
+      <li>
+        Spør om teksten som skal krypteres
+      </li>
+      <li>
+        Skriv ut den krypterte teksten
+      </li>
+    </ul>
+    <pre><code class="ruby" data-trim="">"MATZ".chars
+ =&gt; ["M", "A", "T", "Z"] 
+["M", "A", "T", "Z"].join
+ =&gt; "MATZ"
+"A".next
+ =&gt; "B"</code></pre>
   </section>
   <section>
     <h2>
