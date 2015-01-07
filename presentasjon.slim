@@ -656,6 +656,12 @@ section
     p De to kodene er helt tilsvarende
 
   section
+    p
+      |
+        På de neste sidene finner du noen oppgaver. Her kan du velge noe som
+        passer
+
+  section
     h2 Oppgave: Yatzy
     p a)
     p
@@ -695,6 +701,32 @@ section
           puts "#\{innrykk}Matz"
 
   section
+    h2 Oppgave: Caesar Cipher (vanskelig)
+
+    p
+      |
+        Dette er en gammel form for kryptering hvor alle bokstavene blir
+        forskjøvet. Man angir nøkkelen, og hver bokstav forskyves så mange
+        bokstaver videre. Hvis nøkkelen er 2 vil "A" byttes ut med "C", "B"
+        blir til "D", "Y" blir til "A" etc. For å gjøre det enklere støttes
+        bare A-Z, tilsammen 26 bokstaver. Dekryptering gjøres ved å kjøre ny
+        kryptering med nøkkel 26 - (forrige nøkkel). Programflyt:
+    ul
+      li Spør om nøkkelen (tall fra 1 til 25)
+      li Spør om teksten som skal krypteres
+      li Skriv ut den krypterte teksten
+
+    pre
+      code (data-trim class="ruby")
+        |
+          "MATZ".chars
+           => ["M", "A", "T", "Z"] 
+          ["M", "A", "T", "Z"].join
+           => "MATZ"
+          "A".next
+           => "B"
+
+  section
     h2 Oppgave: Kortspillet Tjue-ett (vanskelig)
     p 
       |
@@ -719,3 +751,9 @@ section
     p
       a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29"
         | http://en.wikipedia.org/wiki/Mastermind_(board_game)
+
+
+    
+
+
+
