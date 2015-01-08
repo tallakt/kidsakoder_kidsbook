@@ -410,8 +410,10 @@ end</code></pre>
     <p>
       For å gjenta en kodeblokk til noe blir sant bruker man `while`
     </p>
-    <pre><code class="ruby" data-trim="">while true do
-  puts "Dette skriver jeg ut til jeg går tom for strøm"
+    <pre><code class="ruby" data-trim="">inntastet = 0
+while inntastet != 5 do
+  puts "Skriv et tall, 5 for å avslutte"
+  inntastet = gets.to_i
 end</code></pre>
   </section>
   <section>
@@ -463,9 +465,7 @@ en_tom_liste = []</code></pre>
 den_forste = liste[0]
  =&gt; 1
 de_tre_forste = liste[0..2]
- =&gt; [1, 2, 3]
-den_siste = liste[-1]        # negative indeks telles bakfra
- =&gt; 4</code></pre>
+ =&gt; [1, 2, 3]</code></pre>
   </section>
   <section>
     <h2>
@@ -683,7 +683,7 @@ desimaltall = 55.5
 heltall = desimaltall.to_i # runder av til et heltall
 
 innrykk = 10 * " "
-puts "#\{innrykk}Matz"</code></pre>
+puts "#{innrykk}Matz"</code></pre>
   </section>
   <section>
     <h2>
@@ -695,7 +695,8 @@ puts "#\{innrykk}Matz"</code></pre>
       bokstaver videre. Hvis nøkkelen er 2 vil "A" byttes ut med "C", "B"
       blir til "D", "Y" blir til "A" etc. For å gjøre det enklere støttes
       bare A-Z, tilsammen 26 bokstaver. Dekryptering gjøres ved å kjøre ny
-      kryptering med nøkkel 26 - (forrige nøkkel). Programflyt:
+      kryptering med nøkkel 26 - (forrige nøkkel). (Hjelpekode på neste side)
+      Programflyt:
     </p>
     <ul>
       <li>
@@ -708,6 +709,8 @@ puts "#\{innrykk}Matz"</code></pre>
         Skriv ut den krypterte teksten
       </li>
     </ul>
+  </section>
+  <section>
     <pre><code class="ruby" data-trim="">"MATZ".chars
  =&gt; ["M", "A", "T", "Z"] 
 ["M", "A", "T", "Z"].join
@@ -739,7 +742,7 @@ puts "#\{innrykk}Matz"</code></pre>
       løsningen.
     </p>
     <p>
-      <a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29">http://en.wikipedia.org/wiki/Mastermind_(board_game)</a>
+      <a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29" target="_top">http://en.wikipedia.org/wiki/Mastermind_(board_game)</a>
     </p>
   </section>
 </section>
@@ -753,6 +756,317 @@ puts "#\{innrykk}Matz"</code></pre>
       Vi skal lage et bibliotek som skal brukes som en komponent i den
       endelige Kidsbook siden
     </p>
+  </section>
+  <section>
+    <h2>
+      Filer
+    </h2>
+    <pre><code class="ruby" data-trim=""># Åpne en fil for skriving
+File.open("min_fil.txt", "w") do |fil|
+  fil.puts "A"
+  fil.puts "B"
+end
+
+# Åpne samme fil for å lese tilbake
+File.open("min_fil.txt") do |fil|
+  while not fil.eof?               # `eof?` angir end-of-file
+    puts fil.gets
+  end
+end</code></pre>
+    <div class="fragment">
+      <p>
+        Slik ser det omtrent ut hvis vi kjører scriptet
+      </p>
+      <pre>$ ruby lese_og_skrive_til_fil.rb
+A
+B</pre>
+    </div>
+  </section>
+  <section>
+    <p>
+      Filer er den måten en datamaskin kan lagre data mellom hver gang den
+      startes på nytt. Filen legger seg på datamaskinens harddisk. Slike
+      filer kan man åpne og lese i teksteditoren din.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: lagre data man skriver inn
+    </h2>
+    <p>
+      a) Lag et script som henter inn tre tall med `gets` og skriver dem
+      ut til en fil
+    </p>
+    <p>
+      b) Lag et script for å lese tallene i filen og skriv ut summen
+    </p>
+    <p>
+      c) Hent filen opp i en tekst editor
+    </p>
+  </section>
+  <section>
+    <p>
+      En tekstfil inneholder alle bokstaver adskilt av linjeskift tegnet.
+      Dette tegnet vises som strengen<code> "\n"</code>
+    </p>
+    <p>
+      Når vi leser linjer i en fil får vi tilbake disse tegnene også. Det
+      er vår jobb å fjerne dem fra strengene
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">innhold = File.read("min_fil.txt") # leser alt i et jafs
+linjer = innhold.each_line         # splitter opp linjene
+forste_linje = linjer.first
+ =&gt; "A\n"
+forste_linje.strip
+ =&gt; "A"</code></pre>
+  </section>
+  <section>
+    <p>
+      Noen ganger må vi ha en plan B om filen ikke finnes
+    </p>
+    <pre><code class="ruby" data-trim="">filnavn = "min_fil.txt"
+verdi = nil
+if File.exist?(filnavn)
+  verdi = File.read(filnavn)
+else
+  verdi = "HELT TOMT"
+end</code></pre>
+  </section>
+  <section>
+    <h2>
+      YAML
+    </h2>
+    <p>
+      Å lese filer linje for linje er ganske slitsomt. YAML er en måte å
+      gjøre variable i Ruby om til tekst og tilbake. Denne teksten kan
+      vi skrive til en fil.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">require 'yaml'
+
+yaml1 = 5.to_yaml 
+yaml2 = [1, 2, 3].to_yaml </code></pre>
+    <p>
+      yaml1 inneholder
+    </p>
+    <pre>--- 5
+...</pre>
+    <p>
+      yaml2 inneholder
+    </p>
+    <pre>---
+- 1
+- 2
+- 3</pre>
+  </section>
+  <section>
+    <p>
+      Setter vi sammen filer og YAML får vi da
+    </p>
+    <pre><code class="ruby" data-trim="">require 'yaml'
+data = [ {navn: "Matz", land: "Japan"}, 
+         {navn: "Tenderlove", land: "USA"} ]
+
+# Skriv data til fil
+File.open("mine_data.yml", "w") do |fil|
+  fil.write data.to_yaml
+end
+
+# Les tilbake fra filen
+data_som_tekst = File.read("mine_data.yml")
+leste_data = YAML.load(data_som_tekst)
+ =&gt; [ {navn: "Matz", land: "Japan"}, 
+      {navn: "Tenderlove", land: "USA"} ]</code></pre>
+    <p class="fragment">
+      Uansett hvor komplekse data vi har kommer de likt tilbake
+    </p>
+  </section>
+  <section>
+    <p>
+      En fordel med YAML er at man kan redigere den for hånd om det trengs
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: YAML
+    </h2>
+    <p>
+      Skriv om forrige oppgave til å lagre dataene som YAML fil
+    </p>
+    <p>
+      Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
+      lesescriptet på nytt
+    </p>
+  </section>
+  <section>
+    <p>
+      Til nå har vi laget script som kjører fra A til Å. Større programmer
+      krever litt mer organisering. Dette skal vi nå kikke litt på.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Funkjoner
+    </h2>
+    <p>
+      La oss definere en funksjon som dobler parameteret sitt
+    </p>
+    <pre><code class="ruby" data-trim="">def dobbelt_av(x)
+  x + x
+end
+
+dobbelt_av(10)
+ =&gt; 20
+dobbelt_av(3)
+ =&gt; 6
+dobbelt_av("Matz")
+ =&gt; "MatzMatz"</code></pre>
+  </section>
+  <section>
+    <p>
+      Funksjonen gir tilbake resultatet fra siste linje som ble kjørt
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">def er_tallet_stort(tall)
+  if tall &gt; 1000
+    true
+  else
+    false
+  end
+end
+
+er_tallet_stort(50)
+ =&gt; false
+er_tallet_stort(50000)
+ =&gt; true</code></pre>
+  </section>
+  <section>
+    <p>
+      Funksjoner er en fin måte å dele scriptet opp i logiske deler. I større
+      programmer vil gjerne funksjoner kalle andre funksjoner, som igjen
+      kaller andre funksjoner
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">def dobbel(x)
+  x + x
+end
+
+def lag_dobbel_liste(a, b, c)
+  [dobbel(a), dobbel(b), dobbel(c)]
+end
+
+lag_dobbel_liste(1, 2, 3)
+ =&gt; [2, 4, 6]</code></pre>
+  </section>
+  <section>
+    <p>
+      Vi skal nå lage et litt større script som vi skal ta med oss videre til
+      den endelige websiden
+    </p>
+  </section>
+  <section>
+    <p>
+      Scriptet skal ha ansvar for å lagre en liste med innlegg til en fil, og
+      lese den tilbake. 
+    </p>
+  </section>
+  <section>
+    <p>
+      Når vi starter scriptet skal vi spørre brukeren om å skrive inn navnet
+      sitt og teksten til et nytt innlegg. Dette legger vi til en liste
+      sammen med de gamle innleggene fra fil.
+    </p>
+  </section>
+  <section>
+    <p>
+      Til slutt skal vi skrive ut alle innleggene
+    </p>
+  </section>
+  <section>
+    <p>
+      Scriptet skal ha to funksjoner, en for å lese og en for å skrive.
+    </p>
+    <p class="fragment">
+      Se hvor langt du kommer på egenhånd før du kikker på <a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top">løsningsforslaget</a>
+    </p>
+  </section>
+  <section>
+    <h2>
+      Splitte scriptet i filer
+    </h2>
+    <p>
+      På et tidspunkt blir script filen så stor at vi begynner å miste
+      oversikten. Da er det på tide å splitte den i flere filer. For å bruke
+      en fil i en annen bruker vi `require_relative`
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim=""># Fil: dobbel.rb
+def dobbel(x)
+  x + x
+end</code><code class="ruby" data-trim=""># Fil: hoved.rb
+require_relative 'dobbel'  # obs! .rb er fjernet fra navnet
+
+puts(dobbel(15)) # skriver ut 30</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: mitt første bibliotek
+    </h2>
+    <p>
+      Vi skal splitte scriptet fra forrige oppgave inn i to. I den ene delen
+      har vi de to funksjonene, og resten i den andre.  <a href="https://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_2/bibliotek" target="_top">Løsningsforslag her.</a> 
+    </p>
+  </section>
+  <section>
+    <p>
+      På de neste sidene finner du noen oppgaver hvor du kan velge de som er
+      mest interessante, eller lage egne vrier
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Anagrammer
+    </h2>
+    <p>
+      På    <a href="http://www2.scrabbleforbundet.no/wp-content/uploads/2012/07/NSF-ordlisten.zip">denne linken</a> fra Norsk Scrabble Forbund finnes en tekstfil med norske ord. Filen ser omtrent lik ut:
+    </p>
+    <pre>ACTINIUMENE subst
+ACTINIUMET subst
+ACTION subs</pre>
+    <p>
+      Lag et program som spør om et ord og så finner anagrammer for det
+      (ord med samme bokstaver i en annen rekkefølge). Tips på neste side.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">"ACTINIUMENE subst".split
+ =&gt; ["ACTINIUMENE", "subst"] </code><code class="ruby" data-trim=""># BEINET og BITENE er anagrammer
+"BEINET".chars.sort.join
+ =&gt; "BEEINT"
+"BITENE".chars.sort.join
+ =&gt; "BEEINT"</code><code class="ruby" data-trim=""># pass på at det brukeren skriver blir likt med bokstavene i ordlisten
+# Fjern blanke tegn og gjør til store bokstaver
+inntastet = gets.strip.upcase</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Kriminalitet (vanskelig)
+    </h2>
+    <p>
+      På hjemmesiden til The District of Columbia finnes en oversikt over <a href="http://data.octo.dc.gov/feeds/crime_incidents/archive/crime_incidents_2013_CSV.zip">alle lovbrudd som er begått i 2013</a>. Lag en oversikt over hvor mange lovbrudd som er gjort av hver type
+      (fjerde verdi) og skriv det ut som en tabell. Bonusoppgave: Finn ut
+      hvilken type kriminalitet som skjedde hyppigst for hver klokketime
+    </p>
+    <pre><code class="ruby" data-trim="">"A,B,C,D,E".split(",")
+ =&gt; ["A", "B", "C", "D", "E"] </code><code class="ruby" data-trim="">dato_tid = DateTime.parse("1/2/2013 3:00:00 PM")
+dato_tid.hour
+ =&gt; 15</code></pre>
   </section>
 </section>
 
