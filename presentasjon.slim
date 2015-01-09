@@ -1140,3 +1140,466 @@ section
           dato_tid = DateTime.parse("1/2/2013 3:00:00 PM")
           dato_tid.hour
            => 15
+
+
+section
+  section
+    h1 Dag 3 - HTML og Web
+
+    p
+      |
+        Vi kikker litt på HTML og på hvordan en hjemmeside fungerer
+
+  section
+    h2 Kidsbook...
+    p
+      |
+        I løpet av de siste tre dagene skal vi bygge en hjemmeside med Ruby.
+        Når vi er ferdige har vi bygd en veldig enkel Facebook lignende side
+        hvor man kan legge inn innlegg.
+
+  section
+    h2 HTML
+    p
+      |
+        HTML er det språket som man beskriver en web side med.
+
+    p.fragment
+      |
+        HTML er ikke et programmeringsspråk, men en måte å beskrive en web side
+        på. Sånn sett ligner HTML mer på YAML enn på Ruby.
+
+  section
+    pre
+      code (data-trim class="html")
+        |
+          &lt;!DOCTYPE html>
+          &lt;html>
+            &lt;head>
+              &lt;title>Hallo!&lt;/title>
+              &lt;meta charset="UTF-8"> 
+            &lt;/head>
+            &lt;body>
+              &lt;p>Hallo verden!&lt;/p>
+            &lt;/body>
+          &lt;/html>
+    p.fragment
+      |
+        Prøv å skrive inn dette i en tekstfil som du kaller `hello.html`. Åpne
+        filen i nettleseren din (Firefox, Safari, Chrome, Internet Explorer)
+  
+  section
+    p
+      |
+        I HTML har vi `tagger` som åpner og som lukker. De opptrer parvis slik
+        som dette:
+
+    p 
+      code (data-trim class="html")
+        |
+          &lt;div>   &lt;/div>
+
+    p
+      |
+        Hva slags tag vi lager bestemmer hva som blir skrevet i browseren.
+        `div` taggen gjør ingenting annet enn å gruppere andre tagger og tekst.
+
+  section
+    p
+      |
+        HTML bryr seg ikke om mellomrom og linjeskift. Dette
+
+    pre
+      code (data-trim class="html")
+        |
+          <p>P taggen inneholder vanligvis et avsnitt med tekst</p>
+
+    p er likt med dette:
+
+    pre
+      code (data-trim class="html")
+        |
+          <p>
+            P taggen inneholder 
+            vanligvis       et avsnitt med 
+            tekst
+          </p>
+
+  section
+    p
+      |
+        En HTML fil deles opp opp i `head` og `body`. Body inneholder alt som
+        blir vist på siden. Head inneholder tittelen som vises øverst i
+        nettleseren, og spesielle tagger.
+
+    p Tabellen på neste side viser noen vanlige tagger
+    
+  section
+    table
+      tbody
+        tr
+          td: em heading 1
+          td: code &lt;h1>
+          td brukes til overskrifter
+        tr
+          td: em heading 2
+          td: code &lt;h2>
+          td brukes til overskrifter
+        tr
+          td: em heading 3
+          td: code &lt;h3>
+          td brukes til overskrifter
+        tr
+          td: em paragraph
+          td: code  &lt;p>
+          td inneholder et avsnitt med tekst
+        tr
+          td: em division
+          td: code &lt;div>
+          td gruppering
+        tr
+          td: em anchor
+          td: code &lt;a&nbsp;href="...">
+          td en lenke til noe annet
+        tr
+          td: em image
+          td: code &lt;img&nbsp;src="...">
+          td bilder
+
+
+  section
+    h2 Bilder
+    p Du kan sette inn et bilde fra en komplett adresse (URL) slik
+
+    pre
+      code (data-trim class="html")
+        |
+          &lt;img src="http://goo.gl/TZjd4Q">&lt;/img>
+
+    p eller du kan hente bildet fra samme sted
+
+    pre
+      code (data-trim class="html")
+        |
+          &lt;img src="kidsbook_logo.png">&lt;/img>
+
+    p HTML filen og bildet må ligge i samme katalog
+
+  section
+    h2 Hyperlenker
+    p Lenker til komplette adresser lages slik
+    pre
+      code (data-trim class="html")
+        |
+          &lt;a href="http://www.duckduckgo.com">trykk her for å søke&lt;/a>
+
+    p eller du kan hoppe til en annen side fra fra samme sted
+
+    pre
+      code (data-trim class="html")
+        |
+          &lt;a href="andre.html">her er den andre siden min&lt;/a>
+  
+  section
+    h2 Oppgave: Lag et utkast til din Kidsbook
+
+    p Lag en side som skal bli Kidsbook. Siden skal ha:
+
+    ul
+      li tittelen skal være `Kidsbook`
+      li en overskrift, `Siste innlegg`
+      li fire innlegg med en tekst du bestemmer
+      li hvert innlegg skal ha navnet på avsender
+      li 
+        a href="http://goo.gl/TZjd4Q" Kidsbook logoen 
+        | lagret i samme katalog som HTML filen
+      li øverst på siden en lenke til `login` siden som vi lager senere
+
+    p 
+      br/
+      | Vent lengst mulig med å kikke på 
+      a href="https://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/kidsbook_1.html"
+        | løsningsforslaget
+
+
+  section
+    p
+    h2 CSS
+    p 
+      |
+        Web siden vi laget ser litt kjedelig ut. Mens teksten på en web side er
+        bestemt av HTML kodene, er utseendet bestemt av CSS filen
+
+  
+  section
+    pre
+      code (data-trim class="css")
+        |
+          body {
+            background-color: #bde7ee;
+          }
+
+          p.innlegg-tekst {
+            margin-top: 50px;
+          }
+
+          p.avsender {
+            color: #999;
+          }
+    p.fragment
+      |
+        Vi kommer ikke til å gå så mye inn på CSS her, så vi skriver av denne
+        teksten og lagrer som `kidsbook.css`
+
+  section
+    p
+      |
+        Neste steg er å koble HTML filen sammen med CSS filen. Det ser omtrent sånn ut
+
+    pre
+      code (data-trim class="html")
+        |
+           &lt;head>
+             &lt;title>Kidsbook&lt;/title>
+             &lt;link rel="stylesheet" type="text/css" href="kidsbook.css">
+           &lt;/head>
+
+  section
+    p
+      |
+        For at valgene i CSS filen skal tre i kraft må de matche med tagger i HTML filen. Stilen
+    pre
+      code (data-trim class="css")
+        |
+          p.avsender {
+            color: #999;
+          }
+    p
+      |
+        vil matche med denne HTML taggen:
+
+    pre
+      code (data-trim class="html")
+        |
+          &lt;p class="avsender">Hilsen Doffen&lt;/a>
+    p
+      |
+        Resultatet vil være at avsnittet blir lysegrått, som fargekoden #999 angir.
+
+
+  section
+    h2 Oppgave: vi legger til litt stil
+
+    p
+      |
+        For siden vi laget først skal vi bruke CSS filen. Gjør slik av både
+        innlegg og avsendere er påvirket av CSS stilene.  
+      a href="https://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/kidsbook_2.html"
+        | Løsningsforslag
+      | .
+  
+  section
+    h2 Pålogginagsskjema
+    p 
+      |
+        Vi skal lage en HTML fil nummer to hvor man får mulighet til å logge
+        seg inn.  
+    p
+      |
+        Vi gjør det veldig enkelt med en boks hvor man skiver inn navnet sitt,
+        og en knapp for å bekrefte
+
+
+  section
+    p 
+      | Her er noen tagger vi kan bruke
+
+
+    table
+      tbody
+        tr
+          td: code &lt;form>
+          td omslutter alle elementer i ett skjema
+        tr
+          td: code &lt;textarea>
+          td en stor boks for tekst
+        tr
+          td: code &lt;input type="text">
+          td en liten boks for tekst
+        tr
+          td: code &lt;input&nbsp;type="submit">
+          td knappen for å sende inn skjemaet
+
+
+
+  section
+    p
+      |
+        Et enkelt skjema for innlogging ser da omtrent sånn ut
+
+    pre
+      code (data-trim class="html")
+        | 
+          &lt;form method="POST" action="/behandle-login">
+            &lt;p>
+              &lt;input type="text" name="avsender">&lt;/input>
+            &lt;/p>
+         
+            &lt;p>
+             &lt;input type="submit" value="Logg inn" />
+            &lt;/p>
+          &lt;/form>
+
+  section
+    pre
+      code (data-trim class="html")
+        | 
+          &lt;form method="POST" action="/behandle-login">
+            &lt;p>
+              &lt;input type="text" name="avsender">&lt;/input>
+            &lt;/p>
+         
+            &lt;p>
+             &lt;input type="submit" value="Logg inn" />
+            &lt;/p>
+          &lt;/form>
+
+    p
+      |
+        I dette skjemaet oppgir vi at aksjonen når vi trykker på knappen skal
+        være `behandle-login`. Tenk at det er som
+
+    pre
+      code (data-trim class="html")
+        | 
+          &lt;a href="/behandle-login">
+
+    p men som gjelder for skjemaer
+
+  section
+    pre
+      code (data-trim class="html")
+        | 
+          &lt;form method="POST" action="/behandle-login">
+            &lt;p>
+              &lt;input type="text" name="avsender">&lt;/input>
+            &lt;/p>
+         
+            &lt;p>
+             &lt;input type="submit" value="Logg inn" />
+            &lt;/p>
+          &lt;/form>
+
+    p
+      |
+        Navnet `avsender` trenger vi når vi senere mottar dataene fra skjemaet
+
+
+  section
+    h2 Oppgave: innloggingssiden
+    p 
+      |
+        Lag en html fil for pålogging. Sjekk at lenken fra hovedsiden fungerer. 
+      a href="https://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/login.html"
+        | Løsningsforslag her
+      | .
+
+
+
+
+  section
+    h2 Web serveren
+
+    p
+      |
+        Filene som ligger på din datamaskin vil ikke være tilgjengelige for
+        andre maskiner. Vi trenger en web server for å gjøre dette
+  
+  section
+    p 
+      |
+        Vi skal bruke Sinatra som web server. Sinatra er et system som brukes
+        av mange profesjonelle kodere.
+
+    p
+      |
+        Før vi kan bruke Sinatra skal det installeres. Åpne et kommandovindu og skriv:
+
+    pre
+      code (data-trim class="sh")
+        | $ gem install sinatra
+
+    p PS: $ tegnet skal ikke skrives
+
+
+  section
+    p
+      |
+        Det neste vi skal gjøre er å lage følgende mappestruktur:
+
+    pre
+      |
+        ├── data_til_fil.rb
+        ├── kidsbook.rb
+        ├── public
+        │   ├── kidsbook.html
+        │   ├── login.html
+        │   ├── kidsbook.css
+        │   └── kidsbook_logo.png
+        └── views
+            └── (foreløpig tomt)
+
+  section
+    p Filen `kidsbook.rb` skal være hovedfilen vår. Vi oppretter den med innholdet:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          require 'sinatra'
+
+    p 
+      | Hvis du nå kjører scriptet starter web serven. Du kan koble til siden din på adressen 
+      a href="http://localhost:4567/kidsbook.html"
+        | http://localhost:4567/kidsbook.html
+
+  section
+    p
+      a href="http://localhost:4567/kidsbook.html"
+        | http://localhost:4567/kidsbook.html
+
+    p
+      |
+        Vi sier her at vi kjører mot vår egen maskin på port 4567. Når vi
+        erstatter `localhost` med din ip adresse kan man lese siden fra en
+        annen maskin.
+
+  section
+    h2 Dynamiske web sider
+
+    p Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss lage en side med tilfeldige tall.
+
+  section
+    p 
+      |
+        Modifiser `kidsbook.rb` filen slik, og restart serveren. Du må
+        trykke Ctrl+C for å avslutte den som allerede kjører.
+
+    pre
+      code (data-trim class="ruby")
+        |
+          require 'sinatra'
+
+          get '/tilfeldig' do
+            tall = rand(1000)
+            tall.to_s             # vi må alltid gi tilbake en streng
+          end
+
+    p
+      | Se hva som skjer når du går inn på 
+      a href="http://localhost:4567/tilfeldig"
+        | http://localhost:4567/tilfeldig
+
+
+  section
+    h2 Oppgaver
+    p Ingen oppgaver. Lek med HTML og CSS
