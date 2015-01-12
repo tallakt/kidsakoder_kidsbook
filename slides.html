@@ -17,6 +17,89 @@
 <section>
   <section>
     <h1>
+      Forberedelser
+    </h1>
+    <p>
+      Før første kursdag er det noen ting som du gjerne kan forsøke å løse på
+      egenhånd for å spare tid.
+    </p>
+  </section>
+  <section>
+    <p>
+      Du kan ta med din egen bærbare datamaskin. Om den kjører Windows, Mac OS X
+      eller Linux betyr lite. 
+    </p>
+    <p>
+      Om du vil så vil det være maskiner på kurset du kan låne.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Installere Ruby
+    </h2>
+    <p>
+      Har du Mac OS X eller Linux er det sannsynlig at Ruby allerede er
+      installert på maskinen din. Du kan sjekke dette med kommandoen:
+    </p>
+    <pre>$ ruby --version
+ruby 2.2.0p0 (2014-12-25 revision 49005) [i686-linux]</pre>
+    <p>
+      Hint: Du skal ikke skrive $ tegnet, denne angir hvor du skal skrive
+      dine kommandoer.
+    </p>
+  </section>
+  <section>
+    <p>
+      Om du ikke har Ruby finner du det på <a href="http://ruby-lang.org">http://ruby-lang.org</a>. Du kan bruke en versjon som er 1.8.7 eller nyere.
+    </p>
+    <p>
+      På Windows anbefaler vi å velge 'Add Ruby to Path' under installajonen.
+    </p>
+  </section>
+  <section>
+    <p>
+      Om du har problemer med å installere Ruby får du hjelp på kurset.
+    </p>
+  </section>
+  <section>
+    <p>
+      For å skrive programfiler bruker vi en tekst editor. Noen gratis
+      anbefalinger: 
+    </p>
+    <ul>
+      <li>
+        <a href="https://atom.io/">Atom editor</a>
+      </li>
+      <li>
+        <a href="http://macromates.com/">Textmate (for Mac OS X)</a>
+      </li>
+      <li>
+        <a href="http://notepad-plus-plus.org/">Notepad++ (for Windows)</a>
+      </li>
+    </ul>
+    <p>
+      Vim og Emacs er to veldig avanserte editorer som brukes mye av
+      profesjonelle. Hvis du allerede bruker en av disse er det ok.
+    </p>
+  </section>
+  <section>
+    <p>
+      Ta helst med en USB minnebrikke på kurset slik at du kan ta en kopi av
+      filene dine når du reiser hjem for dagen.
+    </p>
+    <p>
+      Hvis du har (eller registrerer) en gratis konto på <a href="http://github.com">GitHub</a> 
+       er det mulig å legge koden din der. Vi hjelper i såfall til om
+      nødvendig.
+    </p>
+    <p>
+      Vel møtt!
+    </p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
       Dag 1 - Ruby
     </h1>
     <p>
@@ -32,7 +115,14 @@
     </p>
     <img alt="Matz" src="http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg">
     <p>
-      Han ville lage et språk for 'programmer happiness'
+      Han ville lage et språk som gjorde programmering gøy
+    </p>
+  </section>
+  <section>
+    <p>
+      Ruby er likevel et språk som kan brukes til mye. Twitter er det mest
+      kjente nettstedet som har brukt Ruby. De brukte det til å lage hele
+      hjemmesiden sin
     </p>
   </section>
   <section>
@@ -40,25 +130,73 @@
       Ruby script
     </h2>
     <p>
-      For å kjøre et script i filen  <code> hello.rb </code>kan man kjøre kommandoen:
+      Ruby tar en tekstfil og utfører kommandoer linje for linje.
     </p>
-    <pre><code class="ruby" data-trim="">$ ruby hello.rb
+    <div class="fragment">
+      <p>
+        Hvis vi har en tekstfil med
+      </p>
+      <pre><code class="ruby" data-trim=""># i filen hello.rb
+puts "Hello World!"</code></pre>
+      <p>
+        Når vi kjører den får vi
+      </p>
+      <pre><code class="ruby" data-trim="">$ ruby hello.rb
 Hello World!</code></pre>
-    <p>
-      Ruby utfører innholdet i tekstfilen linje for linje.
-    </p>
+    </div>
   </section>
   <section>
     <h2>
       Hello Ruby
     </h2>
     <p>
-      La oss lage et slikt program. Start med å lage en tekstfil som inneholder teksten: 
+      Vi skal lage et slikt program
     </p>
-    <pre><code class="ruby" data-trim="">puts "Hello World!"</code></pre>
+    <h3>
+      Windows
+    </h3>
     <p>
-      Etter å ha lagret filen kan den kjøres
+      Lag en mappe som heter<code> c:\min_ruby</code>
     </p>
+    <h3>
+      Mac OS X og Linux
+    </h3>
+    <p>
+      Lag en mappe<code> min_ruby </code>i hjemmekatalogen din.
+    </p>
+  </section>
+  <section>
+    <div>
+      <p>
+        Åpne tekst editoren og skriv:
+      </p>
+      <pre><code class="ruby" data-trim="">puts "Hello World!"</code></pre>
+      <p>
+        Lagre filen i katalogen din med navnet<code> hello.rb</code>
+      </p>
+    </div>
+  </section>
+  <section>
+    <p>
+      Ruby script kjører vi vanligvis i et terminalvindu.
+    </p>
+    <h3>
+      Windows
+    </h3>
+    <p>
+      Trykk på start knappen, så `Run...` og skriver `cmd`. For å endre
+      katalog og kjøre scriptet ditt skriver du
+    </p>
+    <pre><code>c:\Program Files&gt; cd c:\min_ruby
+c:\min_ruby&gt; ruby hello.rb</code></pre>
+    <h3>
+      Mac OS X og Linux
+    </h3>
+    <p>
+      Kjør `Terminal` og skriv:
+    </p>
+    <pre><code>$ cd ~/min_ruby
+$ ruby hello.rb</code></pre>
   </section>
   <section>
     <h2>
@@ -72,7 +210,7 @@ Hello World!</code></pre>
     <pre><code class="ruby" data-trim="">a = 1
 b = a + 2
 puts b     # Skriver ut 3
-b = 10
+b = 10     # her setter vi b på nytt
 puts b     # Skriver ut 10</code></pre>
   </section>
   <section>
@@ -94,7 +232,7 @@ puts b     # Skriver ut 10</code></pre>
   </section>
   <section>
     <p>
-      Variable med stor bokstav er konstanter i Ruby. Konstanter får man ikke endre etter at de først er satt
+      Variable med STORE BOKSTAVER er konstanter i Ruby. Konstanter får man ikke endre etter at de først er satt
     </p>
     <pre><code class="ruby" data-trim="">VIKTIG_VERDI = 49</code></pre>
     <p>
@@ -176,7 +314,8 @@ puts "#{a} #{b}" # Skriver Yukihiro Matsumoto</code></pre>
 b = "Matsumoto"
 puts "#{a} #{b}"</code></pre>
     <p>
-      Den siste linjen bruker strenginterpolering. Dette er en god måte å sette sammen verdier til noe man skal skrive ut på skjermen. Men en annen (mindre elegant) metode ville vært: 
+      På den siste linjen vises en fin måte å sette verdier sammen til en
+      streng. Du kunne også gjort 
     </p>
     <pre><code class="ruby" data-trim="">a = "Yukihiro"
 b = "Matsumoto"
@@ -219,7 +358,7 @@ puts "Hei Ruby" if valg == :ruby</code></pre>
   </section>
   <section>
     <p>
-      Eller kanskje var det dette vi egentlig tenkte?
+      Eller motsatt, et heltall til en streng med `to_s`
     </p>
     <pre><code class="ruby" data-trim="">1.to_s + "10"       # to_s gjør til streng
  =&gt; "110"</code></pre>
@@ -296,14 +435,14 @@ tekst.length
   </section>
   <section>
     <p>
-      Hvilke metoder du kan bruke avhenger av hva slags verdi du har
+      Forskjellig type verdier har forskjellige metoder
     </p>
-    <pre><code class="ruby" data-trim="">1.even?
- =&gt; false
+    <pre><code class="ruby" data-trim="">-100.abs
+ =&gt; 100
 "     Matz     ".strip
  =&gt; "Matz"
-1.strip
-NoMethodError: undefined method `strip' for 1:Fixnum</code></pre>
+-100.strip
+NoMethodError: undefined method `strip' for -100:Fixnum</code></pre>
   </section>
   <section>
     <p>
@@ -336,35 +475,34 @@ tekst.center(30, "_")
     <p>
       Vi bruker `if` til å velge om en kodeblokk skal utføres
     </p>
-    <pre><code class="ruby" data-trim="">if 1 &gt; 10
-  puts "En er større en ti???!? Her er noe galt"
+    <pre><code class="ruby" data-trim="">verdi = 1
+if verdi &gt; 10
+  puts "En er større enn ti? Her er noe galt"
 end</code></pre>
   </section>
   <section>
     <p>
       Vi kan også legge til en `else` blokk der det trengs
     </p>
-    <pre><code class="ruby" data-trim="">if 1 &gt; 10
-  puts "En er større en ti???!? Her er noe galt"
+    <pre><code class="ruby" data-trim="">verdi = 1
+if verdi &gt; 10
+  puts "En er større enn ti? Her er noe galt"
 else
   puts "En er ikke større en ti, som forventet"
 end</code></pre>
   </section>
   <section>
     <img alt="@tenderlove" src="http://jc00ke.com/speaking/cascadia-ruby-2012-maglev/lib/assets/tenderlove.jpg">
-    <p>
-      (Vi tar et avbrekk for å hylle Ruby kjendisen Tenderlove)
-    </p>
   </section>
   <section>
     <h2>
       Gjentakelse
     </h2>
     <p>
-      For å gjenta en oppgave kan vi bruke looping. Noen eksempler på dette er:
+      For å gjenta en oppgave kan vi bruke løkker
     </p>
-    <pre><code class="ruby" data-trim="">10.times do
-  puts "Dette skriver jeg ut ti ganger"
+    <pre><code class="ruby" data-trim="">10.times do |n|
+  puts "Dette er linje #{n}"
 end</code></pre>
   </section>
   <section>
@@ -378,13 +516,13 @@ while inntastet != 5 do
 end</code></pre>
   </section>
   <section>
+    <h2>
+      Oppgave: De ti navnene
+    </h2>
     <p>
-      `while` løkker som aldri skal avbrytes skrives gjerne med `loop` i stedet
+      Lag et program som skriver ut ti linjer. De første fem er fornavnet
+      ditt, de siste fem er etternavnet.  
     </p>
-    <pre><code class="ruby" data-trim="">loop do
-  puts "Dette skriver jeg ut til jeg går tom for strøm"
-end
-puts "Dette får jeg aldri skrevet ut"</code></pre>
   </section>
   <section>
     <h2>
@@ -397,7 +535,9 @@ puts "Dette får jeg aldri skrevet ut"</code></pre>
     <p>
       Tips: For å lage tilfeldige tall kan man bruke
     </p>
-    <pre><code class="ruby" data-trim="">tilfeldig_tall = rand(10)</code></pre>
+    <pre><code class="ruby" data-trim="">tilfeldig_tall = rand(0..9)
+
+svart_tall = gets.to_i</code></pre>
   </section>
   <section>
     <h2>
@@ -446,38 +586,38 @@ noen_tall.each do |tall|
 end
 
 # Når vi kommer hit er sum lik 28</code></pre>
-    <div class="fragment">
-      <pre><code class="ruby" data-trim="">sum = (4..10).reject(&amp;:odd?).reduce(&amp;:+)</code></pre>
-    </div>
-    <p class="fragment">
-      (Den siste linjen var en spøk)
-    </p>
   </section>
   <section>
     <h2>
       Oppgave: Vi sorterer tall
     </h2>
     <p>
-      På neste side er det en kodesnutt som sorterer tall som brukeren skriver inn. Vi skal skrive teksten i en tekstfil og se hva som skjer.
+      På neste side er det en kodesnutt som sorterer tall brukeren skriver
+      inn. Kopier eller skriv av koden inn i en ruby fil som du kjører. Se om
+      du kan finne ut hva hver linje gjør
     </p>
   </section>
   <section>
-    <pre><code class="ruby" data-trim="">inntastet = nil
+    <pre><code class="ruby" data-trim=""># nulltiling av variable
+inntastet = nil
 liste = []
 
+# vi spør brukeren om tall, og legger de til listen vår
 while inntastet != -1
   puts "Skriv et positivt heltall og avslutt med -1"
   inntastet = gets.to_i
   if inntastet &gt;= 0
     liste.push(inntastet)
   end
-end</code><code class="ruby" data-trim="">sortert = []
+end</code><code class="ruby" data-trim=""># vi lager en sortert liste ved å ta ut den minste verdien
+sortert = []
 while liste.any?
   minste = liste.min
   liste.delete(minste)
   sortert.push(minste)
 end
 
+# skriv ut resultatet
 sortert.each do |tall|
   puts tall
 end</code></pre>
@@ -494,7 +634,7 @@ end</code></pre>
       Hash
     </h2>
     <p>
-      I Ruby er en Hash en tabell hvor man slår opp en verdi utfra en nøkkel
+      I Ruby er en hash en tabell hvor man slår opp en verdi utfra en nøkkel
     </p>
   </section>
   <section>
@@ -503,27 +643,28 @@ end</code></pre>
     </p>
     <ul>
       <li>
-        slå opp et navn utfra et telefonnummer
-      </li>
-      <li>
-        slå opp et telefonnummer utfra et navn
+        en telefonkatalog
       </li>
       <li>
         en bok med tittel, forfatter og antall sider
       </li>
     </ul>
+    <p class="fragment">
+      <br>En hash kan minne veldig om en vegg med bankbokser. En nøkkel gir
+      adgang til innholdet i den ene boksen.
+    </p>
   </section>
   <section>
     <p>
-      La oss tenke at vi skal lage en søketjeneste som gir telefonnummeret til en  
-      person utfra oppgitt navn
+      Eksempel 1: Telefonkatalogen. Nøkkelen i hashen vår er navnet, verdien er
+      telefonnummeret
     </p>
     <pre><code class="ruby" data-trim="">katalog = {}     # start med en tom hash
 katalog["Matz"] = "555-555-5555"
 katalog["Tenderlove"] = "888-888-8888"</code></pre>
     <div class="fragment">
       <p>
-        Nå kan vi nå slå opp nummer:
+        Når vi senere skal slå opp et nummer gjør vi:
       </p>
       <pre><code class="ruby" data-trim="">katalog["Matz"]
  =&gt; "555-555-5555"
@@ -533,75 +674,73 @@ katalog["Yukihiro Matsumoto"]  # finnes ikke
   </section>
   <section>
     <p>
-      I en Hash er har hver nøkkel bare en verdi
+      I en hash er har hver nøkkel bare en verdi
     </p>
     <pre><code class="ruby" data-trim="">katalog = {} 
 katalog["Matz"] = "555-555-5555"
-katalog["Matz"] = "666-666-6666" # denne overskriver tidligere verdi
+katalog["Matz"] = "666-666-6666" # denne overskriver 555-555-5555
 katalog["Matz"]
  =&gt; "666-666-6666"</code></pre>
   </section>
   <section>
     <p>
-      Vi kan bygge boka opp slik
+      Eksempel 2: Lagre bok informasjon
     </p>
     <pre><code class="ruby" data-trim="">bok = {}     # start med en tom hash
-bok[:tittel] = "Pride And Prejudice"
-bok[:forfatter] = "Jane Austen"
-bok[:sideantall] = 397</code></pre>
+bok[:tittel] = "Ready Player One"
+bok[:forfatter] = "Ernest Cline"
+bok[:sider] = 384</code></pre>
     <p>
       Og så kan vi bruke bok variabelen slik
     </p>
     <pre><code class="ruby" data-trim="">t = bok[:tittel]
 f = bok[:forfatter]
-s = bok[:sideantall]
+s = bok[:sider]
 beskrivelse =  "#{t} av #{f}, #{s} sider"
- =&gt; "Pride And Prejudice av Jane Austen, 397 sider"</code></pre>
+ =&gt; "Ready Player One av Ernest Cline, 384 sider"</code></pre>
+  </section>
+  <section>
+    <p>
+      Legg merke til at telefonkatalogen har mange nøkler, mens boken vår har
+      noen få faste nøkler 
+    </p>
   </section>
   <section>
     <p>
       Siden hash blir mye brukt i Ruby, finnes noen enklere måter å skrive de inn på
     </p>
-  </section>
-  <section>
     <pre><code class="ruby" data-trim="">bok = {
-  :tittel =&gt; "Pride And Prejudice",
-  :forfatter =&gt; "Jane Austen",
-  :sideantall =&gt; 397
+  :tittel =&gt; "Ready Player One",
+  :forfatter =&gt; "Ernest Cline",
+  :sideantall =&gt; 384
 }</code></pre>
   </section>
   <section>
     <pre><code class="ruby" data-trim="">bok = {
-  tittel: "Pride And Prejudice",
-  forfatter: "Jane Austen",
-  sideantall: 397
+  tittel: "Ready Player One",
+  forfatter: "Ernest Cline",
+  sideantall: 384
 }</code></pre>
-    <p dette="" bare="" er="" fungerer="" n symboler=""></p>
   </section>
   <section>
     <p>
       Det er fullt mulig å kombinere en liste og hasher
     </p>
     <pre><code class="ruby" data-trim="">liste = []
-liste.push({twitter: "@matz", land: "Japan"})
-liste.push({twitter: "@tenderlove", land: "USA"})
+liste.push({twitter: "matz", land: "Japan"})
+liste.push({twitter: "tenderlove", land: "USA"})
 liste
  =&gt; [
-      {:twitter=&gt;"@matz", :land=&gt;"Japan"}, 
-      {:twitter=&gt;"@tenderlove", :land=&gt;"USA"}
+      {:twitter=&gt;"matz", :land=&gt;"Japan"}, 
+      {:twitter=&gt;"tenderlove", :land=&gt;"USA"}
     ] 
 liste[1][:land]
  =&gt; "USA"</code></pre>
   </section>
   <section>
     <p>
-      Som kjent er parenteser valgfrie i Ruby, så denne koden kunne også vært:
-    </p>
-    <pre><code class="ruby" data-trim="">liste = []
-liste.push twitter: "@matz", land: "Japan"
-liste.push twitter: "@tenderlove", land: "USA"</code></pre>
-    <p>
-      De to kodene er helt tilsvarende
+      Lister med hasher er ganske kompleks programmering. Det er ok hvis du
+      ikke skjønner det med en gang.
     </p>
   </section>
   <section>
@@ -612,24 +751,79 @@ liste.push twitter: "@tenderlove", land: "USA"</code></pre>
   </section>
   <section>
     <h2>
-      Oppgave: Yatzy
+      Oppgave: Stein Saks Papir
     </h2>
     <p>
-      a)
+      Les et tall fra brukeren. Stein saks papir er som for listen under.
+      Datamaskinen velger så et tilfeldig valg. Angi hvem som vant, eller
+      spill en ny runde hvis det ble uavgjort. 
     </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            Stein
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            Saks
+          </td>
+        </tr>
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            Papir
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <p>
-      Når du starter programmet kaster vi fem terninger. Sjekk om man har fått hus. Tips: bruk `sort`
+      Tips:
     </p>
-    <p>
-      b)
-    </p>
-    <p>
-      Datamaskinen spiller for tre spillere. Først skal spilleren skrive inn navnet sitt og så kastes fem terninger. Poengene regnes som `sjanse` og lagres i en hash med navn som nøkkel og poeng som verdi. Skriv så ut resultatene. Tips:
-    </p>
-    <pre><code class="ruby" data-trim="">resultater = { ... }
-resultater.each do |navn, poengsum|
-  # ...
+    <pre><code class="ruby" data-trim="">tilfeldig_tall = rand(1..3)
+
+if tilfeldig_tall == 1 then
+  # kode her
 end</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Yatzy - Har vi fått hus?
+    </h2>
+    <p>
+      Når du starter programmet kaster vi fem terninger. Sjekk om man har
+      fått hus. Tips: legg terningkastene i en liste og bruk `liste.sort`. Vi
+      skal da enten ha 3+2 like eller 2+3 like.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: To terninger sammen
+    </h2>
+    <p>
+      La datamaskinen kaste to terninger hundre ganger. Pluss sammen antall
+      øyne for hvert kast. Lagre summen i en hash med sum som nøkkel og
+      antall kast som verdi. Skriv ut resultatene. Tips: 
+    </p>
+    <pre><code class="ruby" data-trim="">tellere = {}
+
+# Initialiser hash med null
+(2..12).each do |sum|
+  tellere[sum] = 0
+end
+
+# kast to terninger og øk teller
+sum = rand(1..6) + rand(1..6)
+tellere[sum] = tellere[sum] + 1</code></pre>
   </section>
   <section>
     <h2>
@@ -644,7 +838,12 @@ desimaltall = 55.5
 heltall = desimaltall.to_i # runder av til et heltall
 
 innrykk = 10 * " "
-puts "#{innrykk}Matz"</code></pre>
+puts "#{innrykk}Matz"
+
+# evig løkke
+loop do
+  # kode her
+end</code></pre>
   </section>
   <section>
     <h2>
@@ -681,27 +880,66 @@ puts "#{innrykk}Matz"</code></pre>
   </section>
   <section>
     <h2>
-      Oppgave: Kortspillet Tjue-ett (vanskelig)
-    </h2>
-    <p>
-      Spilleren satser en krone og får dobbelt tilbake ved seier. Spilleren
-      får to kort og kan velge fler kort eller å stoppe. Banken legger så ut
-      kort for kort frem til den har fler poeng enn spilleren eller går over
-      21 poeng. I såfall vinner spilleren. Gjenta til spilleren er konkurs.
-    </p>
-    <p>
-      For å gjøre det litt enklere kan du anta at det bare finnes kort i en
-      farge med verdier fra 1 til 10.
-    </p>
-  </section>
-  <section>
-    <h2>
       Oppgave: Mastermind (supervanskelig)
     </h2>
     <p>
       Implementer spillet mastermind. Datamaskinen sitter med den hemmelige
-      løsningen.
+      løsningen. Tips: Når brukeren skal gi svar kan han ha en bokstav per
+      farge, og skrive fire bokstaver. Programmet svarer så med hvor mange
+      som var riktig farge på riktig sted, og hvor mange som var riktig farge på
+      feil sted.
     </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            G
+          </td>
+          <td>
+            R
+          </td>
+          <td>
+            U
+          </td>
+          <td>
+            L
+          </td>
+          <td>
+            H
+          </td>
+          <td>
+            S
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Grønn
+          </td>
+          <td>
+            Rød
+          </td>
+          <td>
+            Gul
+          </td>
+          <td>
+            Lilla
+          </td>
+          <td>
+            Hvit
+          </td>
+          <td>
+            Sort
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pre><code class="ruby" data-trim=""># lage datamaskinens hemmelige løsning
+FARGER = ["G", "R", "U", "L", "H", "S"]
+losning = []
+4.times do
+  indeks = random(0..5)
+  losning.push(FARGER[indeks])
+end</code></pre>
     <p>
       <a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29" target="_top">http://en.wikipedia.org/wiki/Mastermind_(board_game)</a>
     </p>
@@ -806,6 +1044,12 @@ end</code></pre>
     </p>
   </section>
   <section>
+    <p>
+      YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
+      form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
+    </p>
+  </section>
+  <section>
     <pre><code class="ruby" data-trim="">require 'yaml'
 
 yaml1 = 5.to_yaml 
@@ -828,6 +1072,9 @@ yaml2 = [1, 2, 3].to_yaml </code></pre>
       Setter vi sammen filer og YAML får vi da
     </p>
     <pre><code class="ruby" data-trim="">require 'yaml'
+
+# dataene vi vil skriv og lese
+# vi har med vilje valgt en kompleks struktur
 data = [ {navn: "Matz", land: "Japan"}, 
          {navn: "Tenderlove", land: "USA"} ]
 
@@ -841,9 +1088,6 @@ data_som_tekst = File.read("mine_data.yml")
 leste_data = YAML.load(data_som_tekst)
  =&gt; [ {navn: "Matz", land: "Japan"}, 
       {navn: "Tenderlove", land: "USA"} ]</code></pre>
-    <p class="fragment">
-      Uansett hvor komplekse data vi har kommer de likt tilbake
-    </p>
   </section>
   <section>
     <p>
@@ -855,7 +1099,8 @@ leste_data = YAML.load(data_som_tekst)
       Oppgave: YAML
     </h2>
     <p>
-      Skriv om forrige oppgave til å lagre dataene som YAML fil
+      I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
+      Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
     </p>
     <p>
       Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
@@ -907,9 +1152,8 @@ er_tallet_stort(50000)
   </section>
   <section>
     <p>
-      Funksjoner er en fin måte å dele scriptet opp i logiske deler. I større
-      programmer vil gjerne funksjoner kalle andre funksjoner, som igjen
-      kaller andre funksjoner
+      Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
+      script er det vanlig at funksjoner igjen kaller andre funksjoner
     </p>
   </section>
   <section>
@@ -926,34 +1170,67 @@ lag_dobbel_liste(1, 2, 3)
   </section>
   <section>
     <p>
-      Vi skal nå lage et litt større script som vi skal ta med oss videre til
-      den endelige websiden
+      Vi skal nå lage et litt større script der brukeren kan skrive innlegg
+      signert med navn, og disse blir lagret til fil
     </p>
   </section>
   <section>
     <p>
-      Scriptet skal ha ansvar for å lagre en liste med innlegg til en fil, og
-      lese den tilbake. 
+      Lag scriptet slik at den har tre deler
     </p>
+    <ul>
+      <li>
+        En funksjon som skriver en liste av innlegg til fil
+      </li>
+      <li>
+        En funksjon som leser innleggene tilbake
+      </li>
+      <li>
+        En kodebit som snakker med brukeren og kaller de to funksjonene
+      </li>
+    </ul>
+    <p>
+      <br>Vi lagrer hvert innlegg som en hash, og innleggene som liste
+    </p>
+    <pre><code class="ruby" data-trim="">ny_tekst = ...     # fra brukeren
+ny_avsender = ...  # fra brukeren
+
+nytt_innlegg = {
+  :tekst =&gt; ny_tekst,
+  :avsender =&gt; ny_avsender
+}
+
+alle_innlegg.push(nytt_innlegg)</code></pre>
   </section>
   <section>
     <p>
-      Når vi starter scriptet skal vi spørre brukeren om å skrive inn navnet
-      sitt og teksten til et nytt innlegg. Dette legger vi til en liste
-      sammen med de gamle innleggene fra fil.
+      Når vi starter scriptet skjer dette:
     </p>
-  </section>
-  <section>
-    <p>
-      Til slutt skal vi skrive ut alle innleggene
-    </p>
-  </section>
-  <section>
-    <p>
-      Scriptet skal ha to funksjoner, en for å lese og en for å skrive.
-    </p>
+    <ul>
+      <li>
+        vi spør om avsenders navn og teksten til det nye innlegget
+      </li>
+      <li>
+        dette blir lagret i en variabel som en hash
+      </li>
+      <li>
+        vi leser tilbake eldre innlegg fra fil
+      </li>
+      <li>
+        hvis filen ikke finnes skal vi bruke en tom liste i stedet
+      </li>
+      <li>
+        vi legger det nye innlegget til på slutten av listen
+      </li>
+      <li>
+        vi lagrer den oppdaterte listen tilbake til filen
+      </li>
+      <li>
+        vi skriver ut alle innleggene
+      </li>
+    </ul>
     <p class="fragment">
-      Se hvor langt du kommer på egenhånd før du kikker på <a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top">løsningsforslaget</a>
+      <br>Se hvor langt du kommer på egenhånd før du kikker på <a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top">løsningsforslaget</a>
     </p>
   </section>
   <section>
@@ -1497,7 +1774,7 @@ p.avsender {
     <pre><code class="ruby" data-trim="">require 'sinatra'
 
 get '/tilfeldig' do
-  tall = rand(1000)
+  tall = rand(0..9999)
   tall.to_s             # vi må alltid gi tilbake en streng
 end</code></pre>
     <p>
