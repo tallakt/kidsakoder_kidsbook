@@ -15,6 +15,100 @@ section
 
 section
   section
+    h1 Forberedelser
+
+    p
+      |
+        Før første kursdag er det noen ting som du gjerne kan forsøke å løse på
+        egenhånd for å spare tid.
+
+  section
+    p
+      |
+        Du kan ta med din egen bærbare datamaskin. Om den kjører Windows, Mac OS X
+        eller Linux betyr lite. 
+    p
+      |
+        Om du vil så vil det være maskiner på kurset du kan låne.
+
+  section
+    h2 Installere Ruby
+
+    p 
+      |
+        Har du Mac OS X eller Linux er det sannsynlig at Ruby allerede er
+        installert på maskinen din. Du kan sjekke dette med kommandoen:
+
+    pre
+      | 
+        $ ruby --version
+        ruby 2.2.0p0 (2014-12-25 revision 49005) [i686-linux]
+    p
+      | 
+        Hint: Du skal ikke skrive $ tegnet, denne angir hvor du skal skrive
+        dine kommandoer.
+
+  section
+    p
+      |
+        Om du ikke har Ruby finner du det på 
+      a href="http://ruby-lang.org"
+        | http://ruby-lang.org
+      | . Du kan bruke en versjon som er 1.8.7 eller nyere.
+
+
+    p
+      |
+        På Windows anbefaler vi å velge 'Add Ruby to Path' under installajonen.
+
+  section
+    p
+      |
+        Om du har problemer med å installere Ruby får du hjelp på kurset.
+
+
+  section
+    p
+      |
+        For å skrive programfiler bruker vi en tekst editor. Noen gratis
+        anbefalinger: 
+
+    ul
+      li
+        a href="https://atom.io/"
+          | Atom editor
+      li
+        a href="http://macromates.com/"
+          | Textmate (for Mac OS X)
+      li
+        a href="http://notepad-plus-plus.org/"
+          | Notepad++ (for Windows)
+
+    p
+      |
+        Vim og Emacs er to veldig avanserte editorer som brukes mye av
+        profesjonelle. Hvis du allerede bruker en av disse er det ok.
+
+
+  section
+    p
+      |
+        Ta helst med en USB minnebrikke på kurset slik at du kan ta en kopi av
+        filene dine når du reiser hjem for dagen.
+
+    p
+      | Hvis du har (eller registrerer) en gratis konto på 
+      a href="http://github.com"
+        | GitHub
+      |  
+         er det mulig å legge koden din der. Vi hjelper i såfall til om
+        nødvendig.
+        
+    p Vel møtt!
+
+
+section
+  section
     h1 Dag 1 - Ruby
 
     p
@@ -27,36 +121,95 @@ section
       | Ruby er et 20 år gammelt programmeringsspråk som ble laget av japaneren  
       | Matz (Yukihiro Matsumoto).
     img src="http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg" alt="Matz"/
-    p Han ville lage et språk for 'programmer happiness'
+    p Han ville lage et språk som gjorde programmering gøy
+
+  section
+    p
+      |
+        Ruby er likevel et språk som kan brukes til mye. Twitter er det mest
+        kjente nettstedet som har brukt Ruby. De brukte det til å lage hele
+        hjemmesiden sin
 
   section
     h2 Ruby script
     p 
-      | For å kjøre et script i filen  
-      code <> hello.rb 
-      | kan man kjøre kommandoen:
+      | 
+        Ruby tar en tekstfil og utfører kommandoer linje for linje.
+    div.fragment
+      p Hvis vi har en tekstfil med
+      pre: code (data-trim class="ruby")
+        |
+          # i filen hello.rb
+          puts "Hello World!"
 
-    pre
-      code (data-trim class="ruby")
+      p Når vi kjører den får vi
+      pre: code (data-trim class="ruby")
         |
           $ ruby hello.rb
           Hello World!
 
-    p
-      | Ruby utfører innholdet i tekstfilen linje for linje.
+
 
   section
     h2 Hello Ruby
     p
-      | La oss lage et slikt program. Start med å lage en tekstfil som 
-      | inneholder teksten: 
+      | 
+        Vi skal lage et slikt program
 
-    pre
-      code (data-trim class="ruby")
-        |
-          puts "Hello World!"
+    h3 Windows
+    p
+      | Lag en mappe som heter
+      code <> c:\min_ruby
 
-    p Etter å ha lagret filen kan den kjøres
+    h3 Mac OS X og Linux
+    p
+      | Lag en mappe
+      code <> min_ruby 
+      | i hjemmekatalogen din.
+
+  section
+    div
+      p Åpne tekst editoren og skriv:
+
+      pre
+        code (data-trim class="ruby")
+          |
+            puts "Hello World!"
+
+      p 
+        | Lagre filen i katalogen din med navnet
+        code <> hello.rb
+
+
+
+  section
+    p
+      |
+        Ruby script kjører vi vanligvis i et terminalvindu.
+
+    h3 Windows
+
+    p
+      |
+        Trykk på start knappen, så `Run...` og skriver `cmd`. For å endre
+        katalog og kjøre scriptet ditt skriver du
+
+
+    pre: code
+      |
+        c:\Program Files> cd c:\min_ruby
+        c:\min_ruby> ruby hello.rb
+
+    h3 Mac OS X og Linux
+    p
+      |
+        Kjør `Terminal` og skriv:
+
+    pre: code 
+      |
+        $ cd ~/min_ruby
+        $ ruby hello.rb
+
 
   section
     h2 Variabler
@@ -70,7 +223,7 @@ section
           a = 1
           b = a + 2
           puts b     # Skriver ut 3
-          b = 10
+          b = 10     # her setter vi b på nytt
           puts b     # Skriver ut 10
 
   section
@@ -89,7 +242,7 @@ section
 
   section
     p 
-      | Variable med stor bokstav er konstanter i Ruby. Konstanter 
+      | Variable med STORE BOKSTAVER er konstanter i Ruby. Konstanter 
       | får man ikke endre etter at de først er satt
 
     pre
@@ -153,9 +306,9 @@ section
           b = "Matsumoto"
           puts "\#{a} \#{b}"
     p 
-      | Den siste linjen bruker strenginterpolering. Dette er en god måte å sette 
-      | sammen verdier til noe man skal skrive ut på skjermen. Men en annen (mindre 
-      | elegant) metode ville vært: 
+      | 
+        På den siste linjen vises en fin måte å sette verdier sammen til en
+        streng. Du kunne også gjort 
 
     pre
       code (data-trim class="ruby")
@@ -205,7 +358,7 @@ section
            => 11
 
   section
-    p Eller kanskje var det dette vi egentlig tenkte?
+    p Eller motsatt, et heltall til en streng med `to_s`
 
     pre
       code (data-trim class="ruby")
@@ -287,17 +440,17 @@ section
            => 4
 
   section
-    p Hvilke metoder du kan bruke avhenger av hva slags verdi du har
+    p Forskjellig type verdier har forskjellige metoder
 
     pre
       code (data-trim class="ruby")
         |
-          1.even?
-           => false
+          -100.abs
+           => 100
           "     Matz     ".strip
            => "Matz"
-          1.strip
-          NoMethodError: undefined method `strip' for 1:Fixnum
+          -100.strip
+          NoMethodError: undefined method `strip' for -100:Fixnum
 
   section
     p
@@ -340,8 +493,9 @@ section
     pre
       code (data-trim class="ruby")
         |
-          if 1 > 10
-            puts "En er større en ti???!? Her er noe galt"
+          verdi = 1
+          if verdi > 10
+            puts "En er større enn ti? Her er noe galt"
           end
 
   section
@@ -351,26 +505,25 @@ section
     pre
       code (data-trim class="ruby")
         |
-          if 1 > 10
-            puts "En er større en ti???!? Her er noe galt"
+          verdi = 1
+          if verdi > 10
+            puts "En er større enn ti? Her er noe galt"
           else
             puts "En er ikke større en ti, som forventet"
           end
 
   section
     img src="http://jc00ke.com/speaking/cascadia-ruby-2012-maglev/lib/assets/tenderlove.jpg" alt="@tenderlove"
-    p
-      | (Vi tar et avbrekk for å hylle Ruby kjendisen Tenderlove)
 
   section
     h2 Gjentakelse
-    p For å gjenta en oppgave kan vi bruke looping. Noen eksempler på dette er:
+    p For å gjenta en oppgave kan vi bruke løkker
 
     pre
       code (data-trim class="ruby")
         |
-          10.times do
-            puts "Dette skriver jeg ut ti ganger"
+          10.times do |n|
+            puts "Dette er linje \#{n}"
           end
 
   section
@@ -384,18 +537,14 @@ section
             puts "Skriv et tall, 5 for å avslutte"
             inntastet = gets.to_i
           end
+
   section
+    h2 Oppgave: De ti navnene
 
-    p `while` løkker som aldri skal avbrytes skrives gjerne med `loop` i stedet
-
-    pre
-      code (data-trim class="ruby")
-        |
-          loop do
-            puts "Dette skriver jeg ut til jeg går tom for strøm"
-          end
-          puts "Dette får jeg aldri skrevet ut"
-
+    p
+      |
+        Lag et program som skriver ut ti linjer. De første fem er fornavnet
+        ditt, de siste fem er etternavnet.  
 
   section
     h2 Oppgave: Gjett det hemmelige tallet
@@ -410,8 +559,9 @@ section
     pre
       code (data-trim class="ruby")
         |
-          tilfeldig_tall = rand(10)
+          tilfeldig_tall = rand(0..9)
 
+          svart_tall = gets.to_i
 
   section
     h2 Lister
@@ -472,29 +622,24 @@ section
 
           # Når vi kommer hit er sum lik 28
 
-    div.fragment
-      pre
-        code (data-trim class="ruby")
-          |
-            sum = (4..10).reject(&:odd?).reduce(&:+)
-
-    p.fragment 
-      | (Den siste linjen var en spøk)
-
   section
     h2 Oppgave: Vi sorterer tall
 
     p
-      | På neste side er det en kodesnutt som sorterer tall som brukeren 
-      | skriver inn. Vi skal skrive teksten i en tekstfil og se hva som skjer.
+      | 
+        På neste side er det en kodesnutt som sorterer tall brukeren skriver
+        inn. Kopier eller skriv av koden inn i en ruby fil som du kjører. Se om
+        du kan finne ut hva hver linje gjør
 
   section
     pre
       code (data-trim class="ruby")
         |
+          # nulltiling av variable
           inntastet = nil
           liste = []
 
+          # vi spør brukeren om tall, og legger de til listen vår
           while inntastet != -1
             puts "Skriv et positivt heltall og avslutt med -1"
             inntastet = gets.to_i
@@ -505,6 +650,7 @@ section
 
       code (data-trim class="ruby")
         |
+          # vi lager en sortert liste ved å ta ut den minste verdien
           sortert = []
           while liste.any?
             minste = liste.min
@@ -512,6 +658,7 @@ section
             sortert.push(minste)
           end
 
+          # skriv ut resultatet
           sortert.each do |tall|
             puts tall
           end
@@ -529,22 +676,28 @@ section
     h2 Hash
 
     p
-      | I Ruby er en Hash en tabell hvor man slår opp en verdi utfra en nøkkel
+      | I Ruby er en hash en tabell hvor man slår opp en verdi utfra en nøkkel
 
   section
     p
       | Eksempler hvor man ville brukt en hash er:
 
     ul
-      li slå opp et navn utfra et telefonnummer
-      li slå opp et telefonnummer utfra et navn
+      li en telefonkatalog
       li en bok med tittel, forfatter og antall sider
+
+
+    p.fragment
+      br/
+      |
+        En hash kan minne veldig om en vegg med bankbokser. En nøkkel gir
+        adgang til innholdet i den ene boksen.
 
   section
     p
       |
-        La oss tenke at vi skal lage en søketjeneste som gir telefonnummeret til en  
-        person utfra oppgitt navn
+        Eksempel 1: Telefonkatalogen. Nøkkelen i hashen vår er navnet, verdien er
+        telefonnummeret
 
     pre
       code (data-trim class="ruby")
@@ -554,7 +707,7 @@ section
           katalog["Tenderlove"] = "888-888-8888"
 
     div.fragment
-      p Nå kan vi nå slå opp nummer:
+      p Når vi senere skal slå opp et nummer gjør vi:
 
       pre
         code (data-trim class="ruby")
@@ -567,28 +720,29 @@ section
   section
     p
       |
-        I en Hash er har hver nøkkel bare en verdi
+        I en hash er har hver nøkkel bare en verdi
 
     pre
       code (data-trim class="ruby")
         |
           katalog = {} 
           katalog["Matz"] = "555-555-5555"
-          katalog["Matz"] = "666-666-6666" # denne overskriver tidligere verdi
+          katalog["Matz"] = "666-666-6666" # denne overskriver 555-555-5555
           katalog["Matz"]
            => "666-666-6666"
 
   section
     p
-      | Vi kan bygge boka opp slik
+      |
+        Eksempel 2: Lagre bok informasjon
 
     pre
       code (data-trim class="ruby")
         |
           bok = {}     # start med en tom hash
-          bok[:tittel] = "Pride And Prejudice"
-          bok[:forfatter] = "Jane Austen"
-          bok[:sideantall] = 397
+          bok[:tittel] = "Ready Player One"
+          bok[:forfatter] = "Ernest Cline"
+          bok[:sider] = 384
 
     p
       | Og så kan vi bruke bok variabelen slik
@@ -598,9 +752,15 @@ section
         |
           t = bok[:tittel]
           f = bok[:forfatter]
-          s = bok[:sideantall]
+          s = bok[:sider]
           beskrivelse =  "\#{t} av \#{f}, \#{s} sider"
-           => "Pride And Prejudice av Jane Austen, 397 sider"
+           => "Ready Player One av Ernest Cline, 384 sider"
+
+  section
+    p
+      |
+        Legg merke til at telefonkatalogen har mange nøkler, mens boken vår har
+        noen få faste nøkler 
 
   section
 
@@ -608,14 +768,13 @@ section
       | Siden hash blir mye brukt i Ruby, finnes noen enklere måter å skrive 
       | de inn på
 
-  section
     pre
       code (data-trim class="ruby")
         |
           bok = {
-            :tittel => "Pride And Prejudice",
-            :forfatter => "Jane Austen",
-            :sideantall => 397
+            :tittel => "Ready Player One",
+            :forfatter => "Ernest Cline",
+            :sideantall => 384
           }
 
 
@@ -624,12 +783,10 @@ section
       code (data-trim class="ruby")
         |
           bok = {
-            tittel: "Pride And Prejudice",
-            forfatter: "Jane Austen",
-            sideantall: 397
+            tittel: "Ready Player One",
+            forfatter: "Ernest Cline",
+            sideantall: 384
           }
-
-    p (Dette fungerer bare når nøklene er symboler)
 
   section
     p Det er fullt mulig å kombinere en liste og hasher
@@ -637,25 +794,21 @@ section
       code (data-trim class="ruby")
         |
           liste = []
-          liste.push({twitter: "@matz", land: "Japan"})
-          liste.push({twitter: "@tenderlove", land: "USA"})
+          liste.push({twitter: "matz", land: "Japan"})
+          liste.push({twitter: "tenderlove", land: "USA"})
           liste
            => [
-                {:twitter=>"@matz", :land=>"Japan"}, 
-                {:twitter=>"@tenderlove", :land=>"USA"}
+                {:twitter=>"matz", :land=>"Japan"}, 
+                {:twitter=>"tenderlove", :land=>"USA"}
               ] 
           liste[1][:land]
            => "USA"
 
   section
-    p Som kjent er parenteser valgfrie i Ruby, så denne koden kunne også vært:
-    pre
-      code (data-trim class="ruby")
-        |
-          liste = []
-          liste.push twitter: "@matz", land: "Japan"
-          liste.push twitter: "@tenderlove", land: "USA"
-    p De to kodene er helt tilsvarende
+    p
+      |
+        Lister med hasher er ganske kompleks programmering. Det er ok hvis du
+        ikke skjønner det med en gang.
 
   section
     p
@@ -664,26 +817,69 @@ section
         passer
 
   section
-    h2 Oppgave: Yatzy
-    p a)
+    h2 Oppgave: Stein Saks Papir
     p
-      | Når du starter programmet kaster vi fem terninger. Sjekk om man har 
-      | fått hus. Tips: bruk `sort`
-    p b)
-    p
-      | Datamaskinen spiller for tre spillere. Først skal spilleren skrive 
-      | inn navnet sitt og så kastes fem terninger. Poengene regnes som 
-      | `sjanse` og lagres i en hash med navn som nøkkel og poeng som verdi. 
-      | Skriv så ut resultatene. Tips:
+      |
+        Les et tall fra brukeren. Stein saks papir er som for listen under.
+        Datamaskinen velger så et tilfeldig valg. Angi hvem som vant, eller
+        spill en ny runde hvis det ble uavgjort. 
+
+    table
+      tbody
+        tr
+          td 1
+          td Stein
+        tr
+          td 2
+          td Saks
+        tr
+          td 3
+          td Papir
+
+    p Tips:
+
     pre
       code (data-trim class="ruby")
         |
-          resultater = { ... }
-          resultater.each do |navn, poengsum|
-            # ...
+          tilfeldig_tall = rand(1..3)
+
+          if tilfeldig_tall == 1 then
+            # kode her
           end
 
 
+
+  section
+    h2 Oppgave: Yatzy - Har vi fått hus?
+    p
+      | 
+        Når du starter programmet kaster vi fem terninger. Sjekk om man har
+        fått hus. Tips: legg terningkastene i en liste og bruk `liste.sort`. Vi
+        skal da enten ha 3+2 like eller 2+3 like.
+
+  section
+    h2 Oppgave: To terninger sammen
+    p
+      | 
+        La datamaskinen kaste to terninger hundre ganger. Pluss sammen antall
+        øyne for hvert kast. Lagre summen i en hash med sum som nøkkel og
+        antall kast som verdi. Skriv ut resultatene. Tips: 
+
+    pre
+      code (data-trim class="ruby")
+        |
+          tellere = {}
+
+          # Initialiser hash med null
+          (2..12).each do |sum|
+            tellere[sum] = 0
+          end
+
+          # kast to terninger og øk teller
+          sum = rand(1..6) + rand(1..6)
+          tellere[sum] = tellere[sum] + 1
+
+        
   section
     h2 Oppgave: Sinus
     p
@@ -701,6 +897,11 @@ section
 
           innrykk = 10 * " "
           puts "\#{innrykk}Matz"
+
+          # evig løkke
+          loop do
+            # kode her
+          end
 
   section
     h2 Oppgave: Caesar Cipher (vanskelig)
@@ -730,31 +931,50 @@ section
           "A".next
            => "B"
 
-  section
-    h2 Oppgave: Kortspillet Tjue-ett (vanskelig)
-    p 
-      |
-        Spilleren satser en krone og får dobbelt tilbake ved seier. Spilleren
-        får to kort og kan velge fler kort eller å stoppe. Banken legger så ut
-        kort for kort frem til den har fler poeng enn spilleren eller går over
-        21 poeng. I såfall vinner spilleren. Gjenta til spilleren er konkurs.
-
-    p
-      |
-        For å gjøre det litt enklere kan du anta at det bare finnes kort i en
-        farge med verdier fra 1 til 10.
-
 
   section
     h2 Oppgave: Mastermind (supervanskelig)
     p
       |
         Implementer spillet mastermind. Datamaskinen sitter med den hemmelige
-        løsningen.
+        løsningen. Tips: Når brukeren skal gi svar kan han ha en bokstav per
+        farge, og skrive fire bokstaver. Programmet svarer så med hvor mange
+        som var riktig farge på riktig sted, og hvor mange som var riktig farge på
+        feil sted.
 
+
+
+    table
+      tbody
+        tr
+          td G
+          td R
+          td U
+          td L
+          td H
+          td S
+        tr
+          td Grønn
+          td Rød
+          td Gul
+          td Lilla
+          td Hvit
+          td Sort
+
+    pre
+      code (data-trim class="ruby")
+        |
+          # lage datamaskinens hemmelige løsning
+          FARGER = ["G", "R", "U", "L", "H", "S"]
+          losning = []
+          4.times do
+            indeks = random(0..5)
+            losning.push(FARGER[indeks])
+          end
     p
       a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29" target="_top"
         | http://en.wikipedia.org/wiki/Mastermind_(board_game)
+
 
 
 section
@@ -863,6 +1083,12 @@ section
         vi skrive til en fil.
 
   section
+    p
+      |
+        YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
+        form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
+
+  section
     pre
       code (data-trim class="ruby")
         |
@@ -897,6 +1123,9 @@ section
       code (data-trim class="ruby")
         |
           require 'yaml'
+
+          # dataene vi vil skriv og lese
+          # vi har med vilje valgt en kompleks struktur
           data = [ {navn: "Matz", land: "Japan"}, 
                    {navn: "Tenderlove", land: "USA"} ]
 
@@ -911,11 +1140,6 @@ section
            => [ {navn: "Matz", land: "Japan"}, 
                 {navn: "Tenderlove", land: "USA"} ]
 
-    p.fragment
-      |
-        Uansett hvor komplekse data vi har kommer de likt tilbake
-
-
   section
     p En fordel med YAML er at man kan redigere den for hånd om det trengs
 
@@ -923,7 +1147,8 @@ section
     h2 Oppgave: YAML
     p 
       |
-        Skriv om forrige oppgave til å lagre dataene som YAML fil
+        I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
+        Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
     p 
       |
         Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
@@ -980,9 +1205,8 @@ section
   section
     p
       |
-        Funksjoner er en fin måte å dele scriptet opp i logiske deler. I større
-        programmer vil gjerne funksjoner kalle andre funksjoner, som igjen
-        kaller andre funksjoner
+        Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
+        script er det vanlig at funksjoner igjen kaller andre funksjoner
 
   section
     pre
@@ -1002,33 +1226,52 @@ section
   section
     p
       | 
-        Vi skal nå lage et litt større script som vi skal ta med oss videre til
-        den endelige websiden
+        Vi skal nå lage et litt større script der brukeren kan skrive innlegg
+        signert med navn, og disse blir lagret til fil
+
 
   section
     p
       | 
-        Scriptet skal ha ansvar for å lagre en liste med innlegg til en fil, og
-        lese den tilbake. 
-        
-  section
+        Lag scriptet slik at den har tre deler
+
+    ul
+      li En funksjon som skriver en liste av innlegg til fil
+      li En funksjon som leser innleggene tilbake
+      li En kodebit som snakker med brukeren og kaller de to funksjonene
+
     p
+      br/
       |
-        Når vi starter scriptet skal vi spørre brukeren om å skrive inn navnet
-        sitt og teksten til et nytt innlegg. Dette legger vi til en liste
-        sammen med de gamle innleggene fra fil.
+        Vi lagrer hvert innlegg som en hash, og innleggene som liste
+    pre
+      code (data-trim class="ruby")
+        |
+          ny_tekst = ...     # fra brukeren
+          ny_avsender = ...  # fra brukeren
+
+          nytt_innlegg = {
+            :tekst => ny_tekst,
+            :avsender => ny_avsender
+          }
+
+          alle_innlegg.push(nytt_innlegg)
 
   section
     p
       |
-        Til slutt skal vi skrive ut alle innleggene
-
-  section
-    p
-      |
-        Scriptet skal ha to funksjoner, en for å lese og en for å skrive.
+        Når vi starter scriptet skjer dette:
+    ul
+      li vi spør om avsenders navn og teksten til det nye innlegget
+      li dette blir lagret i en variabel som en hash
+      li vi leser tilbake eldre innlegg fra fil
+      li hvis filen ikke finnes skal vi bruke en tom liste i stedet
+      li vi legger det nye innlegget til på slutten av listen
+      li vi lagrer den oppdaterte listen tilbake til filen
+      li vi skriver ut alle innleggene
 
     p.fragment
+      br/
       |
         Se hvor langt du kommer på egenhånd før du kikker på 
       a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top"
@@ -1590,7 +1833,7 @@ section
           require 'sinatra'
 
           get '/tilfeldig' do
-            tall = rand(1000)
+            tall = rand(0..9999)
             tall.to_s             # vi må alltid gi tilbake en streng
           end
 
