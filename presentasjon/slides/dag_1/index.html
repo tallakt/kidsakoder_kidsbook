@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+<title>Slides</title>
+
+<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+<meta name="author" content="">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<link rel="stylesheet" href="css/reveal-ck.css">
+
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+  document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+  </head>
+
+  <body>
+    <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+
+<h1>Kidsbook</h1>
+
+<h2>Dag 1 - Ruby</h2>
+
+<p>av Tallak Tveide / <a href="https://github.com/tallakt" class="user-mention">@tallakt</a></p>
+
+<hr>
+
+<h2>Hva er Ruby?</h2>
+
+<p>Ruby er et 20 år gammelt programmeringsspråk som ble laget av en japaner kalt Matz (Yukihiro Matsumoto).</p>
+
+<p><img src="http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg" alt="Matz"></p>
+
+<p>Språket var fokusert på å gjøre utvikleren mest mulig lykkelig.</p>
+
+<hr>
+
+<h2>Ruby script</h2>
+
+<p>Et Ruby script er en samling Ruby kommandoer i en tekstfil. Ruby er et interpretert språk, det betyr at den leser tekstfilen og utfører kommandoene fortløpende. </p>
+
+<p>For å kjøre et script i filen <code>hello.rb</code> kan man kjøre kommandoen:</p>
+<pre><code>$ ruby hello.rb
+Hello World!
+</code></pre>
+<hr>
+
+<h2>Mitt første Ruby program</h2>
+
+<p>Vi skal forsøke å lage dette programmet. Start med å lage en tekstfil som inneholder teksten: </p>
+<pre><code class="Ruby">puts " Hello World!"
+</code></pre>
+<p>Etter å ha lagret filen kan den kjøres</p>
+
+<hr>
+
+<h2>Variable</h2>
+
+<p>Variable brukes til å lagre verdier</p>
+<pre><code class="Ruby">a = 1
+b = a + 2
+puts b     # Skriver ut 3
+b = 10
+puts b     # Skriver ut 10
+</code></pre>
+<p>Alt som kommer etter <code>#</code> tegner er kommentarer som Ruby ser bort fra.</p>
+
+<p>Variable må begynne med liten bokstav, og ikke inneholde spesielle tegn (tegnet <code>_</code> er lov). Noen lovlige variabelnavn er <code>a</code>, <code>tallet</code>, <code>et_viktig_tall</code>. </p>
+
+<p>Unngå norske bokstaver i variabelnavn (selv om de strengt tatt er lovlige)</p>
+
+<hr>
+
+<h2>Verdier</h2>
+
+<p>Verdier kan ha forskjellige typer, de vanligste er:</p>
+
+<ul>
+<li>
+<code>Fixnum</code> - Hele tall, f.eks, <code>1</code>, <code>-100</code>
+</li>
+<li>
+<code>Float</code> - Desimaltall, f.eks. <code>1.1</code>, <code>100.0</code>
+</li>
+<li>
+<code>String</code> - En tekstbit, f.eks. <code>"Ruby er topp!"</code>`</li>
+<li>
+<code>Symbol</code> - En tekstbit som brukes internt i programmet, <code>:ruby</code>
+</li>
+<li>
+<code>true</code> eller <code>false</code> - noe som er sant eller usant</li>
+<li>
+<code>nil</code> - tomrom</li>
+</ul>
+
+<hr>
+
+<h2>Strenger</h2>
+
+<p>Ruby er et veldig godt språk for å behandle tekst strenger (strenger), noen eksempler:</p>
+<pre><code class="Ruby">puts "Ruby"      # Skriver Ruby
+puts 'Ruby'      # Skriver også ut Ruby
+a = "Yukihiro"
+b = "Matsumoto"
+puts "#{a} #{b}" # Skriver Yukihiro Matsumoto
+</code></pre>
+<p>Den siste linjen bruker strenginterpolering. Dette er en god måte å sette sammen verdier til noe man skal skrive ut på skjermen. Men en annen (mindre elegant) metode ville vært:</p>
+<pre><code class="Ruby">a = "Yukihiro"
+b = "Matsumoto"
+puts a + " " + b # Skriver Yukihiro Matsumoto
+</code></pre>
+<hr>
+
+<h2>Symboler</h2>
+
+<p>Symboler brukes mye i Ruby fordi de er raske og enkle å bruke. Et symbol er som en streng, men er ikke godt egnet til å sette sammen eller endres på. Vi bruker de til å beskrive til i programmet som ikke endrer seg</p>
+<pre><code class="Ruby">valg = :ruby
+puts "Hei Java" if valg == :java
+puts "Hei Ruby" if valg == :ruby
+</code></pre>
+<p>Koden over vil skrive ut <code>Hei Ruby</code></p>
+
+<hr>
+
+<h2>Konstanter</h2>
+
+<p>Konstanter er som variable, men de skal skrives i store bokstaver.</p>
+
+<p>Når man først har skrevet til en konstant er det ikke mulig å gi den en ny verdi senere.</p>
+<pre><code class="Ruby">VIKTIG_VERDI = 49
+</code></pre>
+<p>Konstanter brukes for å øke lesbarheten</p>
+
+<hr>
+
+<h2>Konvertere verdier</h2>
+
+<p>Men hvis vi bruker <code>+</code> må vi passe på at begge verdiene vi skal sette sammen passer sammen.</p>
+<pre><code class="Ruby">puts 1 + "10"    # TypeError: String cant be coerced into Fixnum
+</code></pre>
+<p>Man kan gjøre en streng om til et heltall ved å bruke metoden <code>to_i</code>. Koden over skal skrives på en av disse måtene:</p>
+<pre><code class="Ruby">puts "#{1}10"       # Skriver ut 110
+puts 1 + "10".to_i  # Skriver ut 11
+</code></pre>
+<p>Tilsvarende kan man bruke <code>to_f</code> for å konvertere en streng til et desimaltall:</p>
+<pre><code class="Ruby">puts 1 + "10.5".to_f  # Skriver ut 11.5
+</code></pre>
+<hr>
+
+<h2>Kommunisere med omverdenen</h2>
+
+<p>En enkel måte som vi har sett at Ruby scriptet kan kommunisere med omverdenen er å lese og skrive strenger til skjermen. Vi har sett bruk av <code>puts</code>, men det finnes også en <code>gets</code> som leser fra tastaturet.</p>
+<pre><code class="Ruby">puts "Skriv noe"
+svar = gets
+puts "Du skrev #{svar}"
+</code></pre>
+<hr>
+
+<h2>IRB</h2>
+
+<p>Et nyttig verktøy som følger med Ruby er <code>irb</code>. Her kan du prøve ut Ruby kode og få umiddelbare svar uten å lagre i tekstfil og så kjøre Ruby.</p>
+
+<p>Jeg bruker å ha oppe et vindu med <code>irb</code> mens jeg programmerer Ruby og kjører ting der først hvis jeg er i tvil</p>
+<pre><code>$ irb
+irb(main):001:0&gt; r = "Ruby"
+=&gt; "Ruby"
+irb(main):002:0&gt; r.upcase
+=&gt; "RUBY"
+</code></pre>
+<p><code>irb</code> skriver ut svaret fra forrige linje etter <code>=&gt;</code></p>
+
+<hr>
+
+<h2>Noen oppgaver</h2>
+
+<ul>
+<li>Lag et script som spør om navnet og hilser tilbake (Hva heter du? Mats. Hei Matz!). Kall det <code>hilsing.rb</code>
+</li>
+<li>Lag et skript som spør om tre tall og regner ut gjennomsnittet av dem. Kall det <code>snitt.rb</code>
+</li>
+</ul>
+
+<hr>
+
+<h2>Metoder</h2>
+
+<p>Alle verdiene i Ruby har metoder. For eksempel på har verdien <code>"Ruby"</code> en medode <code>length</code> som angir hvor mange tegn den har.</p>
+
+<p>Vi kaller opp metoden ved å sette sammen verdier og metodenavn med et punktum <code>.</code></p>
+<pre><code class="Ruby">tekst = "Ruby"
+puts tekst.length    # Skriver ut 4
+puts "Ruby".length   # ditto
+</code></pre>
+<p>En verdi vil ha forskjellige metoder utfra hvilken type verdi det er. For eksempel fil et heltall ha en metode <code>even?</code> som sier om det er et partall, mens en streng kan ha en <code>strip</code> metode som fjerner blanke tegn.</p>
+
+<hr>
+
+<h2>Metoder med parametre</h2>
+
+<p>Noen metoder vil trenge ekstra parametre. Du kan da sette disse etter metodenavnet på denne måten:</p>
+<pre><code class="Ruby">tall = 16
+tall.div(5)    # Divisjon med hele tall
+=&gt; 3
+</code></pre>
+<p>I Ruby er det ikke nødvendig å ha parenteser rundt parametrene. Så linjen over kunne like gjerne vært skrevet slik</p>
+<pre><code class="Ruby">tall.div 5
+=&gt; 3
+</code></pre>
+<p>Flere parametre listes opp adskilt av komma</p>
+<pre><code class="Ruby">tekst = "Ruby"
+tekst.center(30, "_")
+=&gt; "_____________Ruby_____________"
+</code></pre>
+<hr>
+
+<h2>Betingelser</h2>
+
+<p>Vi bruker <code>if</code> til å kjøre en kode på en gitt betingelse</p>
+<pre><code class="Ruby">if 1 &gt; 10
+  puts "En er større en ti???!?"
+end
+</code></pre>
+<p>Når vi har en <code>if</code> blokk rykker vi teksten inn med to mellomrom, så det blir lettere å se hva som passer under <code>if</code> setningen. Hvis vi må ha en plan B, kan vi bruke <code>if</code> og <code>else</code>:</p>
+<pre><code class="Ruby">if 1 &gt; 10
+  puts "En er større en ti???!?"
+else
+  puts "En er selvsagt ikke større en ti"
+end
+</code></pre>
+<p>I Ruby er det bare <code>false</code> og <code>nil</code> som ikke slår til i en <code>if</code> setning.</p>
+
+<hr>
+
+<p><img src="http://jc00ke.com/speaking/cascadia-ruby-2012-maglev/lib/assets/tenderlove.jpg" alt="@tenderlove"></p>
+
+<p>(Vi tar et avbrekk for en Ruby kjendis)</p>
+
+<hr>
+
+<h2>Looping</h2>
+
+<p>For å gjenta en oppgave kan vi bruke looping. Noen eksempler på dette er:</p>
+<pre><code class="Ruby">10.times do
+  puts "Dette skriver jeg ut ti ganger"
+end
+</code></pre>
+<pre><code class="Ruby">while 1 &gt; 10 do
+  puts "Dette skriver jeg ut til jeg går tom for strøm"
+end
+</code></pre>
+<p>Den siste kan gjerne skrives slik</p>
+<pre><code class="Ruby">loop do
+  puts "Dette skriver jeg ut til jeg går tom for strøm"
+end
+
+
+---
+
+## Oppgave: Gjett det hemmelige tallet
+
+- Skriv et program som lager et tilfeldig tall mellom 0 og 9. Spør brukeren hvilket tall det er helt til tallet er gjettet. Avslutt med en gratulasjon.
+
+For å lage tilfeldige tall kan man bruke:
+
+```Ruby
+tilfeldig_tall = rand(10)
+</code></pre>
+<hr>
+
+<h2>Lister</h2>
+<pre><code class="Ruby">liste = [1, 2, 3, 4]
+dobbel = liste + liste
+=&gt; [1, 2, 3, 4, 1, 2, 3, 4]
+liste.push(5)                # Obs! listen er forandret
+=&gt; [1, 2, 3, 4, 5]
+liste
+=&gt; [1, 2, 3, 4, 5]
+en_tom_liste = []
+</code></pre>
+<p>En liste inneholder en rekke verdier. Den første verdien har indeks 0. Du kan bruke indeksen til å hente ut en eller flere verdier</p>
+<pre><code class="Ruby">liste = [1, 2, 3, 4]
+begynnelsen = liste[0]
+=&gt; 1
+de_tre_forste = liste[0..2]
+=&gt; [1, 2, 3]
+</code></pre>
+<hr>
+
+<h2>Each</h2>
+
+<p>En grei måte å gjøre noe med alle verdiene i en liste er å bruke <code>each</code> metoden.</p>
+<pre><code class="Ruby">noen_tall = [4, 6, 8, 10]
+sum = 0
+
+noen_tall.each do |tall|
+  sum = sum + tall
+end
+
+# Når vi kommer hit er sum lik 28
+</code></pre>
+<hr>
+
+<h2>Vi sorterer tall</h2>
+
+<p>Skriv inn denne (eller improviser litt underveis) og kjør</p>
+<pre><code class="Ruby">inntastet = nil
+liste = []
+
+while inntastet != -1
+  puts "Skriv et positivt heltall og avslutt med -1"
+  inntastet = gets.to_i
+  if inntastet &gt;= 0
+    liste.push(inntastet)
+  end
+end
+
+sortert = []
+while liste.any?
+  minste = liste.min
+  liste.delete(minste)
+  sortert.push(minste)
+end
+
+sortert.each do |tall|
+  puts tall
+end
+</code></pre>
+<p>Det fins selvsagt også en <code>sort</code> metode for lister <code>:)</code></p>
+
+<hr>
+
+<h2>Hash</h2>
+
+<p>I Ruby er en Hash en tabell hvor man slår opp en verdi utfra en nøkkel. Noen eksempler hvor man ville brukt en hash er:</p>
+
+<ul>
+<li>Slå opp et navn utfra et telefonnummer</li>
+<li>Slå opp et telefonnummer utfra et navn</li>
+<li>Representere noe med faste verdier, f.eks. en bok med tittel, forfatter og antall sider</li>
+</ul>
+
+<p>Hvert oppslag i en Hash vil ha en nøkkel og en verdi. For hver nøkkel finnes bare en verdi (dvs i eksempel nummer to over kan et navn bare knyttes til et telefonnummer.</p>
+
+<p>Nøklene er i Ruby verden ofte symboler.</p>
+
+<hr>
+
+<h2>Hash - telefonlisten</h2>
+
+<p>La oss tenke at vi skal lage en søketjeneste som gir telefonnummeret til en person utfra oppgitt navn.</p>
+<pre><code class="Ruby">katalog = {}     # start med en tom hash
+katalog["Matz"] = "555-555-5555"
+katalog["Tenderlove"] = "888-888-8888"
+</code></pre>
+<p>Etter å ha bygd opp en litt mer omfattende katalog kan vi nå slå opp nummer</p>
+<pre><code class="Ruby">katalog["Matz"]
+=&gt; "555-555-5555"
+katalog["Yukihiro Matsumoto"]  # finnes ikke
+=&gt; nil
+</code></pre>
+<hr>
+
+<h2>Hash - boka</h2>
+
+<p>Vi kan bygge boka opp slik</p>
+<pre><code class="Ruby">bok = {}     # start med en tom hash
+bok[:tittel] = "Pride And Prejudice"
+bok[:forfatter] = "Jane Austen"
+bok[:sideantall] = 397
+</code></pre>
+<p>Og så kan vi bruke bok variabelen slik</p>
+<pre><code class="Ruby">beskrivelse =  "#{bok[:tittel]} av #{bok[:forfatter]}, #{bok[:sideantall]} sider"
+=&gt; "Pride And Prejudice av Jane Austen, 397 sider"
+</code></pre>
+<hr>
+
+<h2>Hash - litt andre skrivemåter</h2>
+
+<p>Siden hash blir mye brukt i Ruby, finnes noen forenklede varianter å skrive disse inn på. Bok eksempelet kan da gjøres slik</p>
+<pre><code class="Ruby">bok = {
+  :tittel =&gt; "Pride And Prejudice",
+  :forfatter =&gt; "Jane Austen",
+  :sideantall =&gt; 397
+}
+</code></pre>
+<p>Eller også </p>
+<pre><code class="Ruby">bok = {
+  tittel: "Pride And Prejudice",
+  forfatter: "Jane Austen",
+  sideantall: 397
+}
+</code></pre>
+<p>Den siste varianten fungerer bare når nøklene er symboler.</p>
+
+<p>Og så kan vi bruke bok variabelen slik</p>
+<pre><code class="Ruby">beskrivelse =  "#{bok[:tittel]} av #{bok[:forfatter]}, #{bok[:sideantall]} sider"
+=&gt; "Pride And Prejudice av Jane Austen, 397 sider"
+</code></pre>
+<h2>Flere oppgaver</h2>
+
+<ul>
+<li>Lag en Yatzy som kaster fem terninger og sjekker for hus (tips: bruk <code>sort</code> på listen)</li>
+<li>Lag en Yatsy hvor tre spillere kan skrive inn navn og kaste sjanse. Avslutt med å skrive ut hva alle fikk (tips: legg navnene i en liste, og bruk navnet som nøkkel i en tabell med resultater)</li>
+<li>Lag en evig løkke som skriver ut "Matz" som en sinus (tips: Ctrl+C avbryter programmet, bruk koden under for kodebiter)</li>
+<li>Lag kortspillet 21. Spilleren satser en krone og får dobbelt tilbake ved seier. Først skal spilleren velge om han vil ha fler kort. Når han stopper, skal banken legge ut kort til han har fler poeng en spilleren, eller over 21 poeng. Hvis banken går over 21 har spilleren vunnet. For å gjøre det enkelt har kortstokken vår bare kort i en farge med verdier 1 til 10. Spiller fortsetter til spilleren har spilt bort pengene sine. (vanskelig). Bonus: Støtte for fler spillere. Etter at alle spillerene har trekt kort, trekker banken mot alle og stopper på 16 poeng.</li>
+</ul>
+<pre><code class="Ruby">s = Math.sin(0.3)   # Sinus til et tall
+
+desimaltall = 55.5
+heltall = desimaltall.to_i # runder av til et heltall
+
+innrykk = 10 * " "
+puts "#{innrykk}Matz"
+</code></pre>
+</section>
+
+  </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  (function() {
+  function extend( a, b ) {
+    for(var i in b) {
+      a[i] = b[i];
+    }
+  }
+  var baseOptions = {
+    transition: 'default',
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  };
+  var configOptions = {"controls":true,"progress":true,"history":true,"center":true}
+  var initializeOptions = {};
+  extend(initializeOptions, baseOptions);
+  extend(initializeOptions, configOptions);
+  Reveal.initialize(initializeOptions);
+})();
+
+</script>
+
+  </body>
+</html>
