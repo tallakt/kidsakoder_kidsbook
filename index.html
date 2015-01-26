@@ -1835,11 +1835,26 @@ end</code></pre>
   </section>
   <section>
     <h2>
-      Oppgaver
+      Oppgave 1 - Fritt HTML/CSS
     </h2>
     <p>
-      Ingen oppgaver. Lek med HTML og CSS
+      Lek med HTML og CSS. 
     </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave 2 - adressekorter
+    </h2>
+    <p>
+      `bit.ly` er et eksempel på en web side som lager en kort adresse som
+      videresender deg til en annen side med en lengre adresse. Lag en egen
+      slik web side. For å sende videre til en annen adresse bruk koden:
+    </p>
+    <pre><code class="ruby" data-trim="">require 'sinatra'
+
+get '/a' do
+  redirect to("http://www.google.com/")
+end</code></pre>
   </section>
 </section>
 
