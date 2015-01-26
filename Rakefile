@@ -13,10 +13,12 @@ desc "Update github pages"
 task :gh do
   if `git status --porcelain`.empty?
     Rake::Task["slides"].execute
-    sh "git rm -f -r ."
     mkdir_p "gh-pages"
+    sh "cp -r CNAME gh-pages/"
+#    sh "git rm -f -r ."
+#    mkdir_p "gh-pages"
     sh "cp -r slides/* gh-pages/"
-    sh "rm -r slides"
+#    sh "rm -r slides"
     sh "git add -f gh-pages"
     sh "tree=$(git write-tree --prefix=gh-pages/) && commit=$(echo \"Generated docs\" | git commit-tree $tree -p gh-pages) && git update-ref refs/heads/gh-pages $commit && git reset HEAD"
     sh "if [ -d slides ]; then rm -r slides; fi"

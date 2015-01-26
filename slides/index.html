@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+<title>Slides</title>
+
+<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+<meta name="author" content="">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<link rel="stylesheet" href="css/reveal-ck.css">
+
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+  document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+  </head>
+
+  <body>
+    <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+  <h1>
+    Kidsbook
+  </h1>
+  <p>
+    Laget av Tallak Tveide / <a href="http://twitter.com/tallakt">@tallakt</a> 
+  </p>
+</section>
+<section>
+  <p>
+    Du kan hente opp denne presentasjonen på din egen maskin på adressen
+  </p>
+  <p>
+    <a href="http://tallakt.github.io/kidsakoder_kidsbook/">http://tallakt.github.io/kidsakoder_kidsbook/</a>
+  </p>
+</section>
+<section>
+  <section>
+    <h1>
+      Forberedelser
+    </h1>
+    <p>
+      Før første kursdag er det noen ting som du gjerne kan forsøke å løse på
+      egenhånd for å spare tid.
+    </p>
+  </section>
+  <section>
+    <p>
+      Du kan ta med din egen bærbare datamaskin. Om den kjører Windows, Mac OS X
+      eller Linux betyr lite. 
+    </p>
+    <p>
+      Om du vil så vil det være maskiner på kurset du kan låne.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Installere Ruby
+    </h2>
+    <p>
+      Har du Mac OS X eller Linux er det sannsynlig at Ruby allerede er
+      installert på maskinen din. Du kan sjekke dette med kommandoen:
+    </p>
+    <pre>$ ruby --version
+ruby 2.2.0p0 (2014-12-25 revision 49005) [i686-linux]</pre>
+    <p>
+      Hint: Du skal ikke skrive $ tegnet, denne angir hvor du skal skrive
+      dine kommandoer.
+    </p>
+  </section>
+  <section>
+    <p>
+      Om du ikke har Ruby finner du det på <a href="http://ruby-lang.org">http://ruby-lang.org</a>. Du kan bruke en versjon som er 1.8.7 eller nyere.
+    </p>
+    <p>
+      På Windows anbefaler vi å velge 'Add Ruby to Path' under installajonen.
+    </p>
+  </section>
+  <section>
+    <p>
+      Om du har problemer med å installere Ruby får du hjelp på kurset.
+    </p>
+  </section>
+  <section>
+    <p>
+      For å skrive programfiler bruker vi en tekst editor. Noen gratis
+      anbefalinger: 
+    </p>
+    <ul>
+      <li>
+        <a href="http://atom.io/">Atom editor</a>
+      </li>
+      <li>
+        <a href="http://macromates.com/">Textmate (for Mac OS X)</a>
+      </li>
+      <li>
+        <a href="http://notepad-plus-plus.org/">Notepad++ (for Windows)</a>
+      </li>
+    </ul>
+    <p>
+      Vim og Emacs er to veldig avanserte editorer som brukes mye av
+      profesjonelle. Hvis du allerede bruker en av disse er det ok.
+    </p>
+  </section>
+  <section>
+    <p>
+      Ta helst med en USB minnebrikke på kurset slik at du kan ta en kopi av
+      filene dine når du reiser hjem for dagen.
+    </p>
+    <p>
+      Hvis du har (eller registrerer) en gratis konto på <a href="http://github.com">GitHub</a> 
+       er det mulig å legge koden din der. Vi hjelper i såfall til om
+      nødvendig.
+    </p>
+    <p>
+      Et annet alternativ er å bruke Dropbox<a> href="http://www.dropbox.com/"
+        | Dropbox</a>
+    </p>
+    <p>
+      Vel møtt!
+    </p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
+      Dag 1 - Ruby
+    </h1>
+    <p>
+      I dag går vi gjennom grunnleggende Ruby og lager noen enkle (og mindre enkle) script.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Hva er Ruby?
+    </h2>
+    <p>
+      Ruby er et 20 år gammelt programmeringsspråk som ble laget av japaneren  Matz (Yukihiro Matsumoto).
+    </p>
+    <img alt="Matz" src="http://shareittips.com/images/Founder-Of-Ruby-Yukihiro-%E2%80%9CMatz%E2%80%9D.jpg">
+    <p>
+      Han ville lage et språk som gjorde programmering gøy
+    </p>
+  </section>
+  <section>
+    <p>
+      Ruby er likevel et språk som kan brukes til mye. Twitter er det mest
+      kjente nettstedet som har brukt Ruby. De brukte det til å lage hele
+      hjemmesiden sin
+    </p>
+  </section>
+  <section>
+    <h2>
+      Ruby script
+    </h2>
+    <p>
+      Ruby tar en tekstfil og utfører kommandoer linje for linje.
+    </p>
+    <div class="fragment">
+      <p>
+        Hvis vi har en tekstfil med
+      </p>
+      <pre><code class="ruby" data-trim=""># i filen hello.rb
+puts "Hello World!"</code></pre>
+      <p>
+        Når vi kjører den får vi
+      </p>
+      <pre><code class="ruby" data-trim="">$ ruby hello.rb
+Hello World!</code></pre>
+    </div>
+  </section>
+  <section>
+    <h2>
+      Hello Ruby
+    </h2>
+    <p>
+      Tradisjonen i programmering er at det første programmet man lærer i ett
+      nytt språk skal skrive ut teksten "Hello World"
+    </p>
+  </section>
+  <section>
+    <p>
+      Vi skal lage et slikt program
+    </p>
+    <h3>
+      Windows
+    </h3>
+    <p>
+      Lag en mappe som heter<code> c:\min_ruby</code>
+    </p>
+    <h3>
+      Mac OS X og Linux
+    </h3>
+    <p>
+      Lag en mappe<code> min_ruby </code>i hjemmekatalogen din.
+    </p>
+  </section>
+  <section>
+    <div>
+      <p>
+        Åpne tekst editoren og skriv:
+      </p>
+      <pre><code class="ruby" data-trim="">puts "Hello World!"</code></pre>
+      <p>
+        Lagre filen i katalogen din med navnet<code> hello.rb</code>
+      </p>
+    </div>
+  </section>
+  <section>
+    <p>
+      Ruby script kjører vi vanligvis i et terminalvindu.
+    </p>
+    <h3>
+      Windows
+    </h3>
+    <p>
+      Trykk på start knappen, så `Run...` og skriver `cmd`. For å endre
+      katalog og kjøre scriptet ditt skriver du
+    </p>
+    <pre><code>c:\Program Files&gt; cd c:\min_ruby
+c:\min_ruby&gt; ruby hello.rb</code></pre>
+    <h3>
+      Mac OS X og Linux
+    </h3>
+    <p>
+      Kjør `Terminal` og skriv:
+    </p>
+    <pre><code>$ cd ~/min_ruby
+$ ruby hello.rb</code></pre>
+  </section>
+  <section>
+    <h2>
+      Variabler
+    </h2>
+    <p>
+      Variable brukes til å lagre verdier
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">a = 1
+b = a + 2
+puts b     # Skriver ut 3
+b = 10     # her setter vi b på nytt
+puts b     # Skriver ut 10</code></pre>
+  </section>
+  <section>
+    <p>
+      Variable må begynne med liten bokstav, og ikke inneholde spesielle tegn. Noen lovlige variabelnavn er:
+    </p>
+    <p>
+      <code>a </code>
+    </p>
+    <p>
+      <code>tallet </code>
+    </p>
+    <p>
+      <code>svar5</code>
+    </p>
+    <p>
+      <code>et_viktig_tall </code>
+    </p>
+    <p class="fragment">
+      Det lønner seg å unngå norske bokstaver i variabelnavn
+    </p>
+  </section>
+  <section>
+    <p>
+      Variable med STORE BOKSTAVER er konstanter i Ruby. Konstanter får man ikke endre etter at de først er satt
+    </p>
+    <pre><code class="ruby" data-trim="">MENINGEN_MED_LIVET_OG_ALT = 42</code></pre>
+    <p>
+      Konstanter kan ofte gjøre koden lettere å lese
+    </p>
+  </section>
+  <section>
+    <h2>
+      Verdier 
+    </h2>
+    <p>
+      Verdier kan ha forskjellige typer, de vanligste er:
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            Fixnum
+          </td>
+          <td>
+            Hele tall som 1 eller -100
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Float
+          </td>
+          <td>
+            Desimaltall som 1.5 og 100.0
+          </td>
+        </tr>
+        <tr>
+          <td>
+            String
+          </td>
+          <td>
+            Tekster, f.eks. <code>"Ruby er topp!"</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Symbol
+          </td>
+          <td>
+            brukes som nøkler<code> :ruby</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>true </code>og <code>false</code>
+          </td>
+          <td>
+            angir sannhet
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>nil</code>
+          </td>
+          <td>
+            mangel på verdi
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>
+      Strenger
+    </h2>
+    <pre><code class="ruby" data-trim="">puts "Ruby"      # Skriver Ruby
+puts 'Ruby'      # Skriver også ut Ruby
+a = "Yukihiro"
+b = "Matsumoto"
+puts "#{a} #{b}" # Skriver Yukihiro Matsumoto</code></pre>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">a = "Yukihiro"
+b = "Matsumoto"
+puts "#{a} #{b}"</code></pre>
+    <p>
+      På den siste linjen vises en fin måte å sette verdier sammen til en
+      streng. Du kunne også gjort 
+    </p>
+    <pre><code class="ruby" data-trim="">a = "Yukihiro"
+b = "Matsumoto"
+puts a + " " + b # Skriver også Yukihiro Matsumoto</code></pre>
+  </section>
+  <section>
+    <h2>
+      Symboler
+    </h2>
+    <p>
+      Symboler brukes mye i Ruby fordi de er så greie
+    </p>
+    <p class="fragment">
+      Man kan tenkte at symboler er som strenger
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">valg = :ruby
+puts "Hei Java" if valg == :java
+puts "Hei Ruby" if valg == :ruby</code></pre>
+    <p>
+      Koden over vil skrive ut `Hei Ruby`
+    </p>
+  </section>
+  <section>
+    <h2>
+      Konvertere verdier
+    </h2>
+    <p>
+      Bruker vi `+` må vi passe på at begge verdiene vi skal sette sammen passer i hop
+    </p>
+    <pre><code class="ruby" data-trim="">1 + "10"    # TypeError: String cant be coerced into Fixnum</code></pre>
+  </section>
+  <section>
+    <p>
+      Man kan gjøre en streng om til et heltall med `to_i`.
+    </p>
+    <pre><code class="ruby" data-trim="">1 + "10".to_i
+ =&gt; 11</code></pre>
+  </section>
+  <section>
+    <p>
+      Eller motsatt, et heltall til en streng med `to_s`
+    </p>
+    <pre><code class="ruby" data-trim="">1.to_s + "10"       # to_s gjør til streng
+ =&gt; "110"</code></pre>
+  </section>
+  <section>
+    <p>
+      `to_f` konverterer en streng til et desimaltall:
+    </p>
+    <pre><code class="ruby" data-trim="">1 + "10.5".to_f
+ =&gt; 11.5</code></pre>
+  </section>
+  <section>
+    <h2>
+      Computeren vil snakke med deg!
+    </h2>
+    <p>
+      `puts` og `gets` er en enkel måte å skrive til skjermen og spørre brukeren om ting
+    </p>
+    <pre class="fragment"><code class="ruby" data-trim="">puts "Skriv noe"
+svar = gets
+puts "Du skrev #{svar}"</code></pre>
+    <p class="fragment">
+      `puts` er mye brukt av profesjonelle kodere
+    </p>
+  </section>
+  <section>
+    <h2>
+      IRB
+    </h2>
+    <p>
+      IRB er et nyttig verktøy som følger med Ruby. Her kan du prøve ut Ruby kode og få resultatet umiddelbart. Du trenger ikke opprette en tekstfil.
+    </p>
+  </section>
+  <section>
+    <p>
+      IRB er fin for eksperimentering!
+    </p>
+  </section>
+  <section>
+    <pre><code data-trim="">$ irb
+irb(main):001:0&gt; r = "Ruby"
+ =&gt; "Ruby"
+irb(main):002:0&gt; r.upcase
+ =&gt; "RUBY"</code></pre>
+  </section>
+  <section>
+    <h2>
+      Noen oppgaver
+    </h2>
+    <ul>
+      <li>
+        Lag et script som spør om navnet og hilser tilbake (Hva heter du? Matz. Hei Matz!)
+      </li>
+      <li>
+        Lag et skript som spør om tre tall og regner ut gjennomsnittet
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Metoder
+    </h2>
+    <p>
+      Alle verdiene i Ruby har metoder. For eksempel har verdien "Ruby" en 
+      metode `length` som angir hvor mange tegn den har.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">tekst = "Ruby"
+tekst.length
+ =&gt; 4
+"Ruby".length
+ =&gt; 4</code></pre>
+  </section>
+  <section>
+    <p>
+      Forskjellig type verdier har forskjellige metoder
+    </p>
+    <pre><code class="ruby" data-trim="">-100.abs
+ =&gt; 100
+"     Matz     ".strip
+ =&gt; "Matz"
+-100.strip
+NoMethodError: undefined method `strip' for -100:Fixnum</code></pre>
+  </section>
+  <section>
+    <p>
+      Noen metoder vil trenge ekstra informasjon som parametre
+    </p>
+    <pre><code class="ruby" data-trim="">tall = 16
+tall.div(5)    # Divisjon med hele tall
+ =&gt; 3</code></pre>
+    <div class="fragment">
+      <p>
+        I Ruby er det ikke nødvendig å ha parenteser rundt parametrene, dette 
+        er også ok:
+      </p>
+      <pre><code class="ruby" data-trim="">tall.div 5
+ =&gt; 3</code></pre>
+    </div>
+  </section>
+  <section>
+    <p>
+      Flere parametre listes opp adskilt av komma
+    </p>
+    <pre><code class="ruby" data-trim="">tekst = "Ruby"
+tekst.center(30, "_")
+ =&gt; "_____________Ruby_____________"</code></pre>
+  </section>
+  <section>
+    <h2>
+      Betingelser
+    </h2>
+    <p>
+      Vi bruker `if` til å velge om en kodeblokk skal utføres
+    </p>
+    <pre><code class="ruby" data-trim="">verdi = 1
+if verdi &gt; 10
+  puts "En er større enn ti? Her er noe galt"
+end</code></pre>
+  </section>
+  <section>
+    <p>
+      Vi kan også legge til en `else` blokk der det trengs
+    </p>
+    <pre><code class="ruby" data-trim="">verdi = 1
+if verdi &gt; 10
+  puts "En er større enn ti? Her er noe galt"
+else
+  puts "En er ikke større en ti, som forventet"
+end</code></pre>
+  </section>
+  <section>
+    <img alt="@tenderlove" src="http://jc00ke.com/speaking/cascadia-ruby-2012-maglev/lib/assets/tenderlove.jpg">
+  </section>
+  <section>
+    <h2>
+      Gjentakelse
+    </h2>
+    <p>
+      For å gjenta en oppgave kan vi bruke løkker
+    </p>
+    <pre><code class="ruby" data-trim="">10.times do |n|
+  puts "Dette er linje #{n}"
+end</code></pre>
+  </section>
+  <section>
+    <p>
+      For å gjenta en kodeblokk til noe blir sant bruker man `while`
+    </p>
+    <pre><code class="ruby" data-trim="">inntastet = 0
+while inntastet != 5 do
+  puts "Skriv et tall, 5 for å avslutte"
+  inntastet = gets.to_i
+end</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: De ti navnene
+    </h2>
+    <p>
+      Lag et program som skriver ut ti linjer. De første fem er fornavnet
+      ditt, de siste fem er etternavnet.  
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Gjett det hemmelige tallet
+    </h2>
+    <p>
+      Skriv et program som lager et tilfeldig tall mellom 0 og 9. Spør brukeren 
+      hvilket tall det er, helt til tallet er gjettet. Avslutt med en gratulasjon. 
+    </p>
+    <p>
+      Tips: For å lage tilfeldige tall kan man bruke
+    </p>
+    <pre><code class="ruby" data-trim="">tilfeldig_tall = rand(0..9)
+
+svart_tall = gets.to_i</code></pre>
+  </section>
+  <section>
+    <h2>
+      Lister
+    </h2>
+    <pre><code class="ruby" data-trim="">liste = [1, 2, 3, 4]
+liste.push(5)         # legg til på slutten
+ =&gt; [1, 2, 3, 4, 5]
+liste.pop             # hent siste element
+ =&gt; 5
+liste
+ =&gt; [1, 2, 3, 4]
+liste.shift           # hent første element
+ =&gt; 1
+liste
+ =&gt; [2, 3, 4]
+lang_liste = liste + [:a, :b, :c]
+ =&gt; [2, 3, 4, :a, :b, :c]
+en_tom_liste = []</code></pre>
+  </section>
+  <section>
+    <p>
+      Verdiene i en liste har en indeks som begynner på null. Indeksen kan brukes til å lese en eller fler verdier.
+    </p>
+    <pre><code class="ruby" data-trim="">liste = [1, 2, 3, 4]
+den_forste = liste[0]
+ =&gt; 1
+de_tre_forste = liste[0..2]
+ =&gt; [1, 2, 3]</code></pre>
+  </section>
+  <section>
+    <h2>
+      Each
+    </h2>
+    <p>
+      En grei måte å gjøre noe med alle verdiene i en liste er å bruke `each` 
+      metoden.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">noen_tall = [4, 6, 8, 10]
+sum = 0
+
+noen_tall.each do |tall|
+  sum = sum + tall
+end
+
+# Når vi kommer hit er sum lik 28</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Vi sorterer tall
+    </h2>
+    <p>
+      På neste side er det en kodesnutt som sorterer tall brukeren skriver
+      inn. Kopier eller skriv av koden inn i en ruby fil som du kjører. Se om
+      du kan finne ut hva hver linje gjør
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim=""># nulltiling av variable
+inntastet = nil
+liste = []
+
+# vi spør brukeren om tall, og legger de til listen vår
+while inntastet != -1
+  puts "Skriv et positivt heltall og avslutt med -1"
+  inntastet = gets.to_i
+  if inntastet &gt;= 0
+    liste.push(inntastet)
+  end
+end</code><code class="ruby" data-trim=""># vi lager en sortert liste ved å ta ut den minste verdien
+sortert = []
+while liste.any?
+  minste = liste.min
+  liste.delete(minste)
+  sortert.push(minste)
+end
+
+# skriv ut resultatet
+sortert.each do |tall|
+  puts tall
+end</code></pre>
+  </section>
+  <section>
+    <p>
+      Ruby har sortering innebygd
+    </p>
+    <pre><code class="ruby" data-trim="">[2, 5, 6, 3, 6].sort
+ =&gt; [2, 3, 5, 6, 6] </code></pre>
+  </section>
+  <section>
+    <h2>
+      Hash
+    </h2>
+    <p>
+      I Ruby er en hash en tabell hvor man slår opp en verdi utfra en nøkkel
+    </p>
+  </section>
+  <section>
+    <p>
+      Eksempler hvor man ville brukt en hash er:
+    </p>
+    <ul>
+      <li>
+        en telefonkatalog
+      </li>
+      <li>
+        en bok med tittel, forfatter og antall sider
+      </li>
+    </ul>
+    <p class="fragment">
+      <br>En hash kan minne veldig om en vegg med bankbokser. En nøkkel gir
+      adgang til innholdet i den ene boksen.
+    </p>
+  </section>
+  <section>
+    <p>
+      Eksempel 1: Telefonkatalogen. Nøkkelen i hashen vår er navnet, verdien er
+      telefonnummeret
+    </p>
+    <pre><code class="ruby" data-trim="">katalog = {}     # start med en tom hash
+katalog["Matz"] = "555-555-5555"
+katalog["Tenderlove"] = "888-888-8888"</code></pre>
+    <div class="fragment">
+      <p>
+        Når vi senere skal slå opp et nummer gjør vi:
+      </p>
+      <pre><code class="ruby" data-trim="">katalog["Matz"]
+ =&gt; "555-555-5555"
+katalog["Yukihiro Matsumoto"]  # finnes ikke
+ =&gt; nil</code></pre>
+    </div>
+  </section>
+  <section>
+    <p>
+      I en hash er har hver nøkkel bare en verdi
+    </p>
+    <pre><code class="ruby" data-trim="">katalog = {} 
+katalog["Matz"] = "555-555-5555"
+katalog["Matz"] = "666-666-6666" # denne overskriver 555-555-5555
+katalog["Matz"]
+ =&gt; "666-666-6666"</code></pre>
+  </section>
+  <section>
+    <p>
+      Eksempel 2: Lagre bok informasjon
+    </p>
+    <pre><code class="ruby" data-trim="">bok = {}     # start med en tom hash
+bok[:tittel] = "Ready Player One"
+bok[:forfatter] = "Ernest Cline"
+bok[:sider] = 384</code></pre>
+    <p>
+      Og så kan vi bruke bok variabelen slik
+    </p>
+    <pre><code class="ruby" data-trim="">t = bok[:tittel]
+f = bok[:forfatter]
+s = bok[:sider]
+beskrivelse =  "#{t} av #{f}, #{s} sider"
+ =&gt; "Ready Player One av Ernest Cline, 384 sider"</code></pre>
+  </section>
+  <section>
+    <p>
+      Legg merke til at telefonkatalogen har mange nøkler, mens boken vår har
+      noen få faste nøkler 
+    </p>
+  </section>
+  <section>
+    <p>
+      Siden hash blir mye brukt i Ruby, finnes noen enklere måter å skrive de inn på
+    </p>
+    <pre><code class="ruby" data-trim="">bok = {
+  :tittel =&gt; "Ready Player One",
+  :forfatter =&gt; "Ernest Cline",
+  :sideantall =&gt; 384
+}</code></pre>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">bok = {
+  tittel: "Ready Player One",
+  forfatter: "Ernest Cline",
+  sideantall: 384
+}</code></pre>
+  </section>
+  <section>
+    <p>
+      Det er fullt mulig å kombinere en liste og hasher
+    </p>
+    <pre><code class="ruby" data-trim="">liste = []
+liste.push({twitter: "matz", land: "Japan"})
+liste.push({twitter: "tenderlove", land: "USA"})
+liste
+ =&gt; [
+      {:twitter=&gt;"matz", :land=&gt;"Japan"}, 
+      {:twitter=&gt;"tenderlove", :land=&gt;"USA"}
+    ] 
+liste[1][:land]
+ =&gt; "USA"</code></pre>
+  </section>
+  <section>
+    <p>
+      Lister med hasher er ganske kompleks programmering. Det er ok hvis du
+      ikke skjønner det med en gang.
+    </p>
+  </section>
+  <section>
+    <p>
+      På de neste sidene finner du noen oppgaver. Her kan du velge noe som
+      passer
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Stein Saks Papir
+    </h2>
+    <p>
+      Les et tall fra brukeren. Stein saks papir er som for listen under.
+      Datamaskinen velger så et tilfeldig valg. Angi hvem som vant, eller
+      spill en ny runde hvis det ble uavgjort. 
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            Stein
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            Saks
+          </td>
+        </tr>
+        <tr>
+          <td>
+            3
+          </td>
+          <td>
+            Papir
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Tips:
+    </p>
+    <pre><code class="ruby" data-trim="">tilfeldig_tall = rand(1..3)
+
+if tilfeldig_tall == 1 then
+  # kode her
+end</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Yatzy - Har vi fått hus?
+    </h2>
+    <p>
+      Når du starter programmet kaster vi fem terninger. Sjekk om man har
+      fått hus. Tips: legg terningkastene i en liste og bruk `liste.sort`. Vi
+      skal da enten ha 3+2 like eller 2+3 like.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: To terninger sammen
+    </h2>
+    <p>
+      La datamaskinen kaste to terninger hundre ganger. Pluss sammen antall
+      øyne for hvert kast. Lagre summen i en hash med sum som nøkkel og
+      antall kast som verdi. Skriv ut resultatene. Tips: 
+    </p>
+    <pre><code class="ruby" data-trim="">tellere = {}
+
+# Initialiser hash med null
+(2..12).each do |sum|
+  tellere[sum] = 0
+end
+
+# kast to terninger og øk teller
+sum = rand(1..6) + rand(1..6)
+tellere[sum] = tellere[sum] + 1</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Sinus
+    </h2>
+    <p>
+      Lag en evig løkke som skriver ut "Matz" som en sinus. Tips: bruk elementer fra koden nedenfor.
+    </p>
+    <pre><code class="ruby" data-trim="">s = Math.sin(0.3)   # Sinus til et tall
+
+desimaltall = 55.5
+heltall = desimaltall.to_i # runder av til et heltall
+
+innrykk = 10 * " "
+puts "#{innrykk}Matz"
+
+# evig løkke
+loop do
+  # kode her
+end</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Caesar Cipher (vanskelig)
+    </h2>
+    <p>
+      Dette er en gammel form for kryptering hvor alle bokstavene blir
+      forskjøvet. Man angir nøkkelen, og hver bokstav forskyves så mange
+      bokstaver videre. Hvis nøkkelen er 2 vil "A" byttes ut med "C", "B"
+      blir til "D", "Y" blir til "A" etc. For å gjøre det enklere støttes
+      bare A-Z, tilsammen 26 bokstaver. Dekryptering gjøres ved å kjøre ny
+      kryptering med nøkkel 26 - (forrige nøkkel). (Hjelpekode på neste side)
+      Programflyt:
+    </p>
+    <ul>
+      <li>
+        Spør om nøkkelen (tall fra 1 til 25)
+      </li>
+      <li>
+        Spør om teksten som skal krypteres
+      </li>
+      <li>
+        Skriv ut den krypterte teksten
+      </li>
+    </ul>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">"MATZ".chars
+ =&gt; ["M", "A", "T", "Z"] 
+["M", "A", "T", "Z"].join
+ =&gt; "MATZ"
+"A".next
+ =&gt; "B"</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Mastermind (supervanskelig)
+    </h2>
+    <p>
+      Implementer spillet mastermind. Datamaskinen sitter med den hemmelige
+      løsningen. Tips: Når brukeren skal gi svar kan han ha en bokstav per
+      farge, og skrive fire bokstaver. Programmet svarer så med hvor mange
+      som var riktig farge på riktig sted, og hvor mange som var riktig farge på
+      feil sted.
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            G
+          </td>
+          <td>
+            R
+          </td>
+          <td>
+            U
+          </td>
+          <td>
+            L
+          </td>
+          <td>
+            H
+          </td>
+          <td>
+            S
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Grønn
+          </td>
+          <td>
+            Rød
+          </td>
+          <td>
+            Gul
+          </td>
+          <td>
+            Lilla
+          </td>
+          <td>
+            Hvit
+          </td>
+          <td>
+            Sort
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pre><code class="ruby" data-trim=""># lage datamaskinens hemmelige løsning
+FARGER = ["G", "R", "U", "L", "H", "S"]
+losning = []
+4.times do
+  indeks = random(0..5)
+  losning.push(FARGER[indeks])
+end</code></pre>
+    <p>
+      <a href="http://en.wikipedia.org/wiki/Mastermind_%28board_game%29" target="_top">http://en.wikipedia.org/wiki/Mastermind_(board_game)</a>
+    </p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
+      Dag 2 - Filer
+    </h1>
+    <p>
+      I dag skal vi skrive til filer og kikke litt på å lage egne funksjoner.
+      Vi skal lage et bibliotek som skal brukes som en komponent i den
+      endelige Kidsbook siden
+    </p>
+  </section>
+  <section>
+    <h2>
+      Filer
+    </h2>
+    <pre><code class="ruby" data-trim=""># Åpne en fil for skriving
+File.open("min_fil.txt", "w") do |fil|
+  fil.puts "A"
+  fil.puts "B"
+end
+
+# Åpne samme fil for å lese tilbake
+File.open("min_fil.txt") do |fil|
+  while not fil.eof?               # `eof?` angir end-of-file
+    puts fil.gets
+  end
+end</code></pre>
+    <div class="fragment">
+      <p>
+        Slik ser det omtrent ut hvis vi kjører scriptet
+      </p>
+      <pre>$ ruby lese_og_skrive_til_fil.rb
+A
+B</pre>
+    </div>
+  </section>
+  <section>
+    <p>
+      Filer er den måten en datamaskin kan lagre data mellom hver gang den
+      startes på nytt. Filen legger seg på datamaskinens harddisk. Slike
+      filer kan man åpne og lese i teksteditoren din.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: lagre data man skriver inn
+    </h2>
+    <p>
+      a) Lag et script som henter inn tre tall med `gets` og skriver dem
+      ut til en fil
+    </p>
+    <p>
+      b) Lag et script for å lese tallene i filen og skriv ut summen
+    </p>
+    <p>
+      c) Hent filen opp i en tekst editor
+    </p>
+  </section>
+  <section>
+    <p>
+      En tekstfil inneholder alle bokstaver adskilt av linjeskift tegnet.
+      Dette tegnet vises som strengen<code> "\n"</code>
+    </p>
+    <p>
+      Når vi leser linjer i en fil får vi tilbake disse tegnene også. Det
+      er vår jobb å fjerne dem fra strengene
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">innhold = File.read("min_fil.txt") # leser alt i et jafs
+linjer = innhold.each_line         # splitter opp linjene
+forste_linje = linjer.first
+ =&gt; "A\n"
+forste_linje.strip
+ =&gt; "A"</code></pre>
+  </section>
+  <section>
+    <p>
+      Noen ganger må vi ha en plan B om filen ikke finnes
+    </p>
+    <pre><code class="ruby" data-trim="">filnavn = "min_fil.txt"
+verdi = nil
+if File.exist?(filnavn)
+  verdi = File.read(filnavn)
+else
+  verdi = "HELT TOMT"
+end</code></pre>
+  </section>
+  <section>
+    <h2>
+      YAML
+    </h2>
+    <p>
+      Å lese filer linje for linje er ganske slitsomt. YAML er en måte å
+      gjøre variable i Ruby om til tekst og tilbake. Denne teksten kan
+      vi skrive til en fil.
+    </p>
+  </section>
+  <section>
+    <p>
+      YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
+      form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">require 'yaml'
+
+yaml1 = 5.to_yaml 
+yaml2 = [1, 2, 3].to_yaml </code></pre>
+    <p>
+      yaml1 inneholder
+    </p>
+    <pre>--- 5
+...</pre>
+    <p>
+      yaml2 inneholder
+    </p>
+    <pre>---
+- 1
+- 2
+- 3</pre>
+  </section>
+  <section>
+    <p>
+      Setter vi sammen filer og YAML får vi da
+    </p>
+    <pre><code class="ruby" data-trim="">require 'yaml'
+
+# dataene vi vil skriv og lese
+# vi har med vilje valgt en kompleks struktur
+data = [ {navn: "Matz", land: "Japan"}, 
+         {navn: "Tenderlove", land: "USA"} ]
+
+# Skriv data til fil
+File.open("mine_data.yml", "w") do |fil|
+  fil.write data.to_yaml
+end
+
+# Les tilbake fra filen
+data_som_tekst = File.read("mine_data.yml")
+leste_data = YAML.load(data_som_tekst)
+ =&gt; [ {navn: "Matz", land: "Japan"}, 
+      {navn: "Tenderlove", land: "USA"} ]</code></pre>
+  </section>
+  <section>
+    <p>
+      En fordel med YAML er at man kan redigere den for hånd om det trengs
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: YAML
+    </h2>
+    <p>
+      I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
+      Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
+    </p>
+    <p>
+      Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
+      lesescriptet på nytt
+    </p>
+  </section>
+  <section>
+    <p>
+      Til nå har vi laget script som kjører fra A til Å. Større programmer
+      krever litt mer organisering. Dette skal vi nå kikke litt på.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Funksjoner
+    </h2>
+    <p>
+      La oss definere en funksjon som dobler parameteret sitt
+    </p>
+    <pre><code class="ruby" data-trim="">def dobbelt_av(x)
+  x + x
+end
+
+dobbelt_av(10)
+ =&gt; 20
+dobbelt_av(3)
+ =&gt; 6
+dobbelt_av("Matz")
+ =&gt; "MatzMatz"</code></pre>
+  </section>
+  <section>
+    <p>
+      Funksjonen gir tilbake resultatet fra siste linje som ble kjørt
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">def er_tallet_stort(tall)
+  if tall &gt; 1000
+    true
+  else
+    false
+  end
+end
+
+er_tallet_stort(50)
+ =&gt; false
+er_tallet_stort(50000)
+ =&gt; true</code></pre>
+  </section>
+  <section>
+    <p>
+      Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
+      script er det vanlig at funksjoner igjen kaller andre funksjoner
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">def dobbel(x)
+  x + x
+end
+
+def lag_dobbel_liste(a, b, c)
+  [dobbel(a), dobbel(b), dobbel(c)]
+end
+
+lag_dobbel_liste(1, 2, 3)
+ =&gt; [2, 4, 6]</code></pre>
+  </section>
+  <section>
+    <p>
+      Vi skal nå lage et litt større script der brukeren kan skrive innlegg
+      signert med navn, og disse blir lagret til fil
+    </p>
+  </section>
+  <section>
+    <p>
+      Lag scriptet slik at den har tre deler
+    </p>
+    <ul>
+      <li>
+        En funksjon som skriver en liste av innlegg til fil
+      </li>
+      <li>
+        En funksjon som leser innleggene tilbake
+      </li>
+      <li>
+        En kodebit som snakker med brukeren og kaller de to funksjonene
+      </li>
+    </ul>
+    <p>
+      <br>Vi lagrer hvert innlegg som en hash, og innleggene som liste
+    </p>
+    <pre><code class="ruby" data-trim="">ny_tekst = ...     # fra brukeren
+ny_avsender = ...  # fra brukeren
+
+nytt_innlegg = {
+  :tekst =&gt; ny_tekst,
+  :avsender =&gt; ny_avsender
+}
+
+alle_innlegg.push(nytt_innlegg)</code></pre>
+  </section>
+  <section>
+    <p>
+      Når vi starter scriptet skjer dette:
+    </p>
+    <ul>
+      <li>
+        vi spør om avsenders navn og teksten til det nye innlegget
+      </li>
+      <li>
+        dette blir lagret i en variabel som en hash
+      </li>
+      <li>
+        vi leser tilbake eldre innlegg fra fil
+      </li>
+      <li>
+        hvis filen ikke finnes skal vi bruke en tom liste i stedet
+      </li>
+      <li>
+        vi legger det nye innlegget til på slutten av listen
+      </li>
+      <li>
+        vi lagrer den oppdaterte listen tilbake til filen
+      </li>
+      <li>
+        vi skriver ut alle innleggene
+      </li>
+    </ul>
+    <p class="fragment">
+      <br>Se hvor langt du kommer på egenhånd før du kikker på <a href="http://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top">løsningsforslaget</a>
+    </p>
+  </section>
+  <section>
+    <h2>
+      Splitte scriptet i filer
+    </h2>
+    <p>
+      På et tidspunkt blir script filen så stor at vi begynner å miste
+      oversikten. Da er det på tide å splitte den i flere filer. For å bruke
+      en fil i en annen bruker vi `require_relative`
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim=""># Fil: dobbel.rb
+def dobbel(x)
+  x + x
+end</code><code class="ruby" data-trim=""># Fil: hoved.rb
+require_relative 'dobbel'  # obs! .rb er fjernet fra navnet
+
+puts(dobbel(15)) # skriver ut 30</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: et bibliotek
+    </h2>
+    <p>
+      Vi skal splitte scriptet fra forrige oppgave inn i to. I den ene delen
+      har vi de to funksjonene, og resten i den andre.  <a href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_2/bibliotek" target="_top">Løsningsforslag her.</a> 
+    </p>
+  </section>
+  <section>
+    <p>
+      På de neste sidene finner du noen oppgaver hvor du kan velge de som er
+      mest interessante, eller lage egne vrier
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Anagrammer
+    </h2>
+    <p>
+      På    <a href="http://www2.scrabbleforbundet.no/wp-content/uploads/2012/07/NSF-ordlisten.zip">denne linken</a> fra Norsk Scrabble Forbund finnes en tekstfil med norske ord. Filen ser omtrent lik ut:
+    </p>
+    <pre>ACTINIUMENE subst
+ACTINIUMET subst
+ACTION subs</pre>
+    <p>
+      Lag et program som spør om et ord og så finner anagrammer for det
+      (ord med samme bokstaver i en annen rekkefølge). Tips på neste side.
+    </p>
+  </section>
+  <section>
+    <pre><code class="ruby" data-trim="">"ACTINIUMENE subst".split
+ =&gt; ["ACTINIUMENE", "subst"] </code><code class="ruby" data-trim=""># BEINET og BITENE er anagrammer
+"BEINET".chars.sort.join
+ =&gt; "BEEINT"
+"BITENE".chars.sort.join
+ =&gt; "BEEINT"</code><code class="ruby" data-trim=""># pass på at det brukeren skriver blir likt med bokstavene i ordlisten
+# Fjern blanke tegn og gjør til store bokstaver
+inntastet = gets.strip.upcase</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Kriminalitet (vanskelig)
+    </h2>
+    <p>
+      På hjemmesiden til The District of Columbia finnes en oversikt over <a href="http://data.octo.dc.gov/feeds/crime_incidents/archive/crime_incidents_2013_CSV.zip">alle lovbrudd som er begått i 2013</a>. Lag en oversikt over hvor mange lovbrudd som er gjort av hver type
+      (fjerde verdi) og skriv det ut som en tabell. Bonusoppgave: Finn ut
+      hvilken type kriminalitet som skjedde hyppigst for hver klokketime
+    </p>
+    <pre><code class="ruby" data-trim="">"A,B,C,D,E".split(",")
+ =&gt; ["A", "B", "C", "D", "E"] </code><code class="ruby" data-trim="">dato_tid = DateTime.parse("1/2/2013 3:00:00 PM")
+dato_tid.hour
+ =&gt; 15</code></pre>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
+      Dag 3 - HTML og Web
+    </h1>
+    <p>
+      Vi kikker litt på HTML og på hvordan en hjemmeside fungerer
+    </p>
+  </section>
+  <section>
+    <h2>
+      Kidsbook...
+    </h2>
+    <p>
+      I løpet av de siste tre dagene skal vi bygge en hjemmeside med Ruby.
+      Når vi er ferdige har vi bygd en veldig enkel Facebook lignende side
+      hvor man kan legge inn innlegg.
+    </p>
+  </section>
+  <section>
+    <h2>
+      HTML
+    </h2>
+    <p>
+      HTML er det språket som man beskriver en web side med.
+    </p>
+    <p class="fragment">
+      HTML er ikke et programmeringsspråk, men en måte å beskrive en web side
+      på. Sånn sett ligner HTML mer på YAML enn på Ruby.
+    </p>
+  </section>
+  <section>
+    <pre><code class="html" data-trim="">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hallo!&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt; 
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Hallo verden!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p class="fragment">
+      Prøv å skrive inn dette i en tekstfil som du kaller `hello.html`. Åpne
+      filen i nettleseren din (Firefox, Safari, Chrome, Internet Explorer).
+    </p>
+  </section>
+  <section>
+    <p>
+      I HTML har vi `tagger` som åpner og som lukker. De opptrer parvis slik
+      som dette:
+    </p>
+    <p>
+      <code class="html" data-trim="">&lt;div&gt;   &lt;/div&gt;</code>
+    </p>
+    <p>
+      Hva slags tag vi lager bestemmer hva som blir skrevet i browseren.
+      `div` taggen gjør ingenting annet enn å gruppere andre tagger og tekst.
+    </p>
+  </section>
+  <section>
+    <p>
+      HTML bryr seg ikke om mellomrom og linjeskift. Dette
+    </p>
+    <pre><code class="html" data-trim=""><p>P taggen inneholder vanligvis et avsnitt med tekst</p></code></pre>
+    <p>
+      er likt med dette:
+    </p>
+    <pre><code class="html" data-trim=""><p>
+  P taggen inneholder 
+  vanligvis       et avsnitt med 
+  tekst
+</p></code></pre>
+  </section>
+  <section>
+    <p>
+      En HTML fil deles opp opp i `head` og `body`. Body inneholder alt som
+      blir vist på siden. Head inneholder tittelen som vises øverst i
+      nettleseren, og spesielle tagger.
+    </p>
+    <p>
+      Tabellen på neste side viser noen vanlige tagger
+    </p>
+  </section>
+  <section>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <em>heading 1</em>
+          </td>
+          <td>
+            <code>&lt;h1&gt;</code>
+          </td>
+          <td>
+            brukes til overskrifter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>heading 2</em>
+          </td>
+          <td>
+            <code>&lt;h2&gt;</code>
+          </td>
+          <td>
+            brukes til overskrifter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>heading 3</em>
+          </td>
+          <td>
+            <code>&lt;h3&gt;</code>
+          </td>
+          <td>
+            brukes til overskrifter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>paragraph</em>
+          </td>
+          <td>
+            <code> &lt;p&gt;</code>
+          </td>
+          <td>
+            inneholder et avsnitt med tekst
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>division</em>
+          </td>
+          <td>
+            <code>&lt;div&gt;</code>
+          </td>
+          <td>
+            gruppering
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>anchor</em>
+          </td>
+          <td>
+            <code>&lt;a href="..."&gt;</code>
+          </td>
+          <td>
+            en lenke til noe annet
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <em>image</em>
+          </td>
+          <td>
+            <code>&lt;img src="..."&gt;</code>
+          </td>
+          <td>
+            bilder
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>
+      Bilder
+    </h2>
+    <p>
+      Du kan sette inn et bilde fra en komplett adresse (URL) slik
+    </p>
+    <pre><code class="html" data-trim="">&lt;img src="http://goo.gl/TZjd4Q"&gt;&lt;/img&gt;</code></pre>
+    <p>
+      eller du kan hente bildet fra samme sted
+    </p>
+    <pre><code class="html" data-trim="">&lt;img src="kidsbook_logo.png"&gt;&lt;/img&gt;</code></pre>
+    <p>
+      HTML filen og bildet må ligge i samme katalog
+    </p>
+  </section>
+  <section>
+    <h2>
+      Hyperlenker
+    </h2>
+    <p>
+      Lenker til komplette adresser lages slik
+    </p>
+    <pre><code class="html" data-trim="">&lt;a href="http://www.duckduckgo.com"&gt;trykk her for å søke&lt;/a&gt;</code></pre>
+    <p>
+      eller du kan hoppe til en annen side fra fra samme sted
+    </p>
+    <pre><code class="html" data-trim="">&lt;a href="andre.html"&gt;her er den andre siden min&lt;/a&gt;</code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Lag et utkast til din Kidsbook
+    </h2>
+    <p>
+      Lag en side som skal bli Kidsbook. Siden skal ha:
+    </p>
+    <ul>
+      <li>
+        tittelen skal være `Kidsbook`
+      </li>
+      <li>
+        en overskrift, `Siste innlegg`
+      </li>
+      <li>
+        fire innlegg med en tekst du bestemmer
+      </li>
+      <li>
+        hvert innlegg skal ha navnet på avsender
+      </li>
+      <li>
+        <a href="http://goo.gl/TZjd4Q">Kidsbook logoen </a>lagret i samme katalog som HTML filen
+      </li>
+      <li>
+        øverst på siden en lenke til `login` siden som vi lager senere
+      </li>
+    </ul>
+    <p>
+      <br>Vent lengst mulig med å kikke på <a href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/kidsbook_1.html">løsningsforslaget</a>
+    </p>
+  </section>
+  <section>
+    <p></p>
+    <h2>
+      CSS
+    </h2>
+    <p>
+      Web siden vi laget ser litt kjedelig ut. Mens teksten på en web side er
+      bestemt av HTML kodene, er utseendet bestemt av CSS filen
+    </p>
+  </section>
+  <section>
+    <pre><code class="css" data-trim="">body {
+  background-color: #bde7ee;
+}
+
+p.innlegg-tekst {
+  margin-top: 50px;
+}
+
+p.avsender {
+  color: #999;
+}</code></pre>
+    <p class="fragment">
+      Vi kommer ikke til å gå så mye inn på CSS her, så vi skriver av denne
+      teksten og lagrer som `kidsbook.css`
+    </p>
+  </section>
+  <section>
+    <p>
+      Neste steg er å koble HTML filen sammen med CSS filen. Det ser omtrent sånn ut
+    </p>
+    <pre><code class="html" data-trim="">&lt;head&gt;
+  &lt;title&gt;Kidsbook&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="kidsbook.css"&gt;
+&lt;/head&gt;</code></pre>
+  </section>
+  <section>
+    <p>
+      For at valgene i CSS filen skal tre i kraft må de matche med tagger i HTML filen. Stilen
+    </p>
+    <pre><code class="css" data-trim="">p.avsender {
+  color: #999;
+}</code></pre>
+    <p>
+      vil matche med denne HTML taggen:
+    </p>
+    <pre><code class="html" data-trim="">&lt;p class="avsender"&gt;Hilsen Doffen&lt;/a&gt;</code></pre>
+    <p>
+      Resultatet vil være at avsnittet blir lysegrått, som fargekoden #999 angir.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: vi legger til litt stil
+    </h2>
+    <p>
+      For siden vi laget først skal vi bruke CSS filen. Gjør slik av både
+      innlegg og avsendere er påvirket av CSS stilene.  <a href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/kidsbook_2.html">Løsningsforslag</a>.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Påloggingsskjema
+    </h2>
+    <p>
+      Vi skal lage en HTML fil nummer to hvor man får mulighet til å logge
+      seg inn.  
+    </p>
+    <p>
+      Vi gjør det veldig enkelt med en boks hvor man skiver inn navnet sitt,
+      og en knapp for å bekrefte
+    </p>
+  </section>
+  <section>
+    <p>
+      Her er noen tagger vi kan bruke
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <code>&lt;form&gt;</code>
+          </td>
+          <td>
+            omslutter alle elementer i ett skjema
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>&lt;textarea&gt;</code>
+          </td>
+          <td>
+            en stor boks for tekst
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>&lt;input type="text"&gt;</code>
+          </td>
+          <td>
+            en liten boks for tekst
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>&lt;input type="submit"&gt;</code>
+          </td>
+          <td>
+            knappen for å sende inn skjemaet
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <p>
+      Et enkelt skjema for innlogging ser da omtrent sånn ut
+    </p>
+    <pre><code class="html" data-trim="">&lt;form method="POST" action="/behandle-login"&gt;
+  &lt;p&gt;
+    &lt;input type="text" name="avsender"&gt;&lt;/input&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+   &lt;input type="submit" value="Logg inn" /&gt;
+  &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+  </section>
+  <section>
+    <pre><code class="html" data-trim="">&lt;form method="POST" action="/behandle-login"&gt;
+  &lt;p&gt;
+    &lt;input type="text" name="avsender"&gt;&lt;/input&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+   &lt;input type="submit" value="Logg inn" /&gt;
+  &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+    <p>
+      I dette skjemaet oppgir vi at aksjonen når vi trykker på knappen skal
+      være `behandle-login`. Tenk at det er som
+    </p>
+    <pre><code class="html" data-trim="">&lt;a href="/behandle-login"&gt;</code></pre>
+    <p>
+      men som gjelder for skjemaer
+    </p>
+  </section>
+  <section>
+    <pre><code class="html" data-trim="">&lt;form method="POST" action="/behandle-login"&gt;
+  &lt;p&gt;
+    &lt;input type="text" name="avsender"&gt;&lt;/input&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+   &lt;input type="submit" value="Logg inn" /&gt;
+  &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+    <p>
+      Navnet `avsender` trenger vi når vi senere mottar dataene fra skjemaet
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave: innloggingssiden
+    </h2>
+    <p>
+      Lag en html fil for pålogging. Sjekk at lenken fra hovedsiden fungerer. <a href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_3/login.html">Løsningsforslag her</a>.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Web serveren
+    </h2>
+    <p>
+      Filene som ligger på din datamaskin vil ikke være tilgjengelige for
+      andre maskiner. Vi trenger en web server for å gjøre dette
+    </p>
+  </section>
+  <section>
+    <p>
+      Vi skal bruke Sinatra som web server. Sinatra er et system som brukes
+      av mange profesjonelle kodere.
+    </p>
+    <p>
+      Før vi kan bruke Sinatra skal det installeres. Åpne et kommandovindu og skriv:
+    </p>
+    <pre><code class="sh" data-trim="">$ gem install sinatra</code></pre>
+    <p>
+      PS: $ tegnet skal ikke skrives
+    </p>
+  </section>
+  <section>
+    <p>
+      Det neste vi skal gjøre er å lage følgende mappestruktur:
+    </p>
+    <pre>├── data_til_fil.rb
+├── kidsbook.rb
+├── public
+│   ├── kidsbook.html
+│   ├── login.html
+│   ├── kidsbook.css
+│   └── kidsbook_logo.png
+└── views
+    └── (foreløpig tomt)</pre>
+  </section>
+  <section>
+    <p>
+      Filen `kidsbook.rb` skal være hovedfilen vår. Vi oppretter den med innholdet:
+    </p>
+    <pre><code class="ruby" data-trim="">require 'sinatra'</code></pre>
+    <p>
+      Hvis du nå kjører scriptet starter web serven. Du kan koble til siden din på adressen <a href="http://localhost:4567/kidsbook.html">http://localhost:4567/kidsbook.html</a>
+    </p>
+  </section>
+  <section>
+    <p>
+      <a href="http://localhost:4567/kidsbook.html">http://localhost:4567/kidsbook.html</a>
+    </p>
+    <p>
+      Vi sier her at vi kjører mot vår egen maskin på port 4567. Når vi
+      erstatter `localhost` med din ip adresse kan man lese siden fra en
+      annen maskin.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Dynamiske web sider
+    </h2>
+    <p>
+      Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss lage en side med tilfeldige tall.
+    </p>
+  </section>
+  <section>
+    <p>
+      Modifiser `kidsbook.rb` filen slik, og restart serveren. Du må
+      trykke Ctrl+C for å avslutte den som allerede kjører.
+    </p>
+    <pre><code class="ruby" data-trim="">require 'sinatra'
+
+get '/tilfeldig' do
+  tall = rand(0..9999)
+  tall.to_s             # vi må alltid gi tilbake en streng
+end</code></pre>
+    <p>
+      Se hva som skjer når du går inn på <a href="http://localhost:4567/tilfeldig">http://localhost:4567/tilfeldig</a>
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave 1 - Fritt HTML/CSS
+    </h2>
+    <p>
+      Lek med HTML og CSS. 
+    </p>
+  </section>
+  <section>
+    <h2>
+      Oppgave 2 - adressekorter
+    </h2>
+    <p>
+      `bit.ly` er et eksempel på en web side som lager en kort adresse som
+      videresender deg til en annen side med en lengre adresse. Lag en egen
+      slik web side. For å sende videre til en annen adresse bruk koden:
+    </p>
+    <pre><code class="ruby" data-trim="">require 'sinatra'
+
+get '/a' do
+  redirect to("http://www.google.com/")
+end</code></pre>
+  </section>
+</section>
+
+  </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  (function() {
+  function extend( a, b ) {
+    for(var i in b) {
+      a[i] = b[i];
+    }
+  }
+  var baseOptions = {
+    transition: 'default',
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  };
+  var configOptions = {"controls":true,"progress":true,"history":true,"center":true}
+  var initializeOptions = {};
+  extend(initializeOptions, baseOptions);
+  extend(initializeOptions, configOptions);
+  Reveal.initialize(initializeOptions);
+})();
+
+</script>
+
+  </body>
+</html>
