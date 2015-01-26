@@ -1857,5 +1857,23 @@ section
 
 
   section
-    h2 Oppgaver
-    p Ingen oppgaver. Lek med HTML og CSS
+    h2 Oppgave 1 - Fritt HTML/CSS
+    p Lek med HTML og CSS. 
+
+  section
+    h2 Oppgave 2 - adressekorter
+    p 
+      | 
+        `bit.ly` er et eksempel på en web side som lager en kort adresse som
+        videresender deg til en annen side med en lengre adresse. Lag en egen
+        slik web side. For å sende videre til en annen adresse bruk koden:
+
+    pre
+      code (data-trim class="ruby")
+        |
+          require 'sinatra'
+
+          get '/a' do
+            redirect to("http://www.google.com/")
+          end
+
