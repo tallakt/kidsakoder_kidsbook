@@ -576,6 +576,19 @@ section
 
           svart_tall = gets.to_i
 
+
+
+
+
+section
+  section
+    h1 Dag 2 - Mer Ruby
+
+    p
+      |
+        I dag skal vi kikke på mer avanserte datastrukturer i Ruby og lese og
+        skrive til filer.  
+
   section
     h2 Lister
 
@@ -824,6 +837,93 @@ section
         ikke skjønner det med en gang.
 
   section
+    h2 Filer
+
+    pre
+      code (data-trim class="ruby")
+        |
+          # Åpne en fil for skriving
+          File.open("min_fil.txt", "w") do |fil|
+            fil.puts "A"
+            fil.puts "B"
+          end
+
+          # Åpne samme fil for å lese tilbake
+          File.open("min_fil.txt") do |fil|
+            while not fil.eof?               # `eof?` angir end-of-file
+              puts fil.gets
+            end
+          end
+
+    div.fragment
+
+      p Slik ser det omtrent ut hvis vi kjører scriptet
+
+      pre
+          |
+            $ ruby lese_og_skrive_til_fil.rb
+            A
+            B
+
+
+  section
+    p
+      |
+        Filer er den måten en datamaskin kan lagre data mellom hver gang den
+        startes på nytt. Filen legger seg på datamaskinens harddisk. Slike
+        filer kan man åpne og lese i teksteditoren din.
+
+  section
+    h2 Oppgave: lagre data man skriver inn
+
+    p
+      |
+        a) Lag et script som henter inn tre tall med `gets` og skriver dem
+        ut til en fil
+    p
+      |
+        b) Lag et script for å lese tallene i filen og skriv ut summen
+    p
+      |
+        c) Hent filen opp i en tekst editor
+  
+
+  section
+    p
+      |
+        En tekstfil inneholder alle bokstaver adskilt av linjeskift tegnet.
+        Dette tegnet vises som strengen
+      code <> "\n"
+
+    p
+      |
+        Når vi leser linjer i en fil får vi tilbake disse tegnene også. Det
+        er vår jobb å fjerne dem fra strengene
+    
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          innhold = File.read("min_fil.txt") # leser alt i et jafs
+          linjer = innhold.each_line         # splitter opp linjene
+          forste_linje = linjer.first
+           => "A\n"
+          forste_linje.strip
+           => "A"
+
+  section
+    p Noen ganger må vi ha en plan B om filen ikke finnes
+    pre
+      code (data-trim class="ruby")
+        |
+          filnavn = "min_fil.txt"
+          verdi = nil
+          if File.exist?(filnavn)
+            verdi = File.read(filnavn)
+          else
+            verdi = "HELT TOMT"
+          end
+  section
     p
       |
         På de neste sidene finner du noen oppgaver. Her kan du velge noe som
@@ -946,6 +1046,73 @@ section
 
 
   section
+    h2 Oppgave: Anagrammer
+    p
+      | 
+        På   
+      a<> href="http://www2.scrabbleforbundet.no/wp-content/uploads/2012/07/NSF-ordlisten.zip" 
+        | denne linken
+      |
+        fra Norsk Scrabble Forbund finnes en tekstfil med norske ord. Filen ser omtrent lik ut:
+
+    pre
+      |
+        ACTINIUMENE subst
+        ACTINIUMET subst
+        ACTION subs
+
+    p
+      |
+        Lag et program som spør om et ord og så finner anagrammer for det
+        (ord med samme bokstaver i en annen rekkefølge). Tips på neste side.
+
+
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          "ACTINIUMENE subst".split
+           => ["ACTINIUMENE", "subst"] 
+
+      code (data-trim class="ruby")
+        |
+          # BEINET og BITENE er anagrammer
+          "BEINET".chars.sort.join
+           => "BEEINT"
+          "BITENE".chars.sort.join
+           => "BEEINT"
+
+      code (data-trim class="ruby")
+        |
+          # pass på at det brukeren skriver blir likt med bokstavene i ordlisten
+          # Fjern blanke tegn og gjør til store bokstaver
+          inntastet = gets.strip.upcase
+
+  section
+    h2 Oppgave: Kriminalitet (vanskelig)
+
+    p
+      |
+        På hjemmesiden til The District of Columbia finnes en oversikt over 
+      a href="http://data.octo.dc.gov/feeds/crime_incidents/archive/crime_incidents_2013_CSV.zip"
+        | alle lovbrudd som er begått i 2013
+      |
+        . Lag en oversikt over hvor mange lovbrudd som er gjort av hver type
+        (fjerde verdi) og skriv det ut som en tabell. Bonusoppgave: Finn ut
+        hvilken type kriminalitet som skjedde hyppigst for hver klokketime
+
+    pre
+      code (data-trim class="ruby")
+        |
+          "A,B,C,D,E".split(",")
+           => ["A", "B", "C", "D", "E"] 
+      code (data-trim class="ruby")
+        |
+          dato_tid = DateTime.parse("1/2/2013 3:00:00 PM")
+          dato_tid.hour
+           => 15
+
+  section
     h2 Oppgave: Mastermind (supervanskelig)
     p
       |
@@ -992,101 +1159,13 @@ section
 
 section
   section
-    h1 Dag 2 - Filer
+    h1 Dag 3 - Funksjoner og filer
 
     p
       |
-        I dag skal vi skrive til filer og kikke litt på å lage egne funksjoner.
-        Vi skal lage et bibliotek som skal brukes som en komponent i den
-        endelige Kidsbook siden
+        I dag  skal vi fortsette å leke med filer, og lage etr bibliotek som vi
+        senere skal bruke på den ferdige web siden. 
 
-  section
-    h2 Filer
-
-    pre
-      code (data-trim class="ruby")
-        |
-          # Åpne en fil for skriving
-          File.open("min_fil.txt", "w") do |fil|
-            fil.puts "A"
-            fil.puts "B"
-          end
-
-          # Åpne samme fil for å lese tilbake
-          File.open("min_fil.txt") do |fil|
-            while not fil.eof?               # `eof?` angir end-of-file
-              puts fil.gets
-            end
-          end
-
-    div.fragment
-
-      p Slik ser det omtrent ut hvis vi kjører scriptet
-
-      pre
-          |
-            $ ruby lese_og_skrive_til_fil.rb
-            A
-            B
-
-
-  section
-    p
-      |
-        Filer er den måten en datamaskin kan lagre data mellom hver gang den
-        startes på nytt. Filen legger seg på datamaskinens harddisk. Slike
-        filer kan man åpne og lese i teksteditoren din.
-
-  section
-    h2 Oppgave: lagre data man skriver inn
-
-    p
-      |
-        a) Lag et script som henter inn tre tall med `gets` og skriver dem
-        ut til en fil
-    p
-      |
-        b) Lag et script for å lese tallene i filen og skriv ut summen
-    p
-      |
-        c) Hent filen opp i en tekst editor
-  
-
-  section
-    p
-      |
-        En tekstfil inneholder alle bokstaver adskilt av linjeskift tegnet.
-        Dette tegnet vises som strengen
-      code <> "\n"
-
-    p
-      |
-        Når vi leser linjer i en fil får vi tilbake disse tegnene også. Det
-        er vår jobb å fjerne dem fra strengene
-    
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          innhold = File.read("min_fil.txt") # leser alt i et jafs
-          linjer = innhold.each_line         # splitter opp linjene
-          forste_linje = linjer.first
-           => "A\n"
-          forste_linje.strip
-           => "A"
-
-  section
-    p Noen ganger må vi ha en plan B om filen ikke finnes
-    pre
-      code (data-trim class="ruby")
-        |
-          filnavn = "min_fil.txt"
-          verdi = nil
-          if File.exist?(filnavn)
-            verdi = File.read(filnavn)
-          else
-            verdi = "HELT TOMT"
-          end
   section
     h2 YAML
     p
@@ -1331,76 +1410,12 @@ section
         mest interessante, eller lage egne vrier
 
   section
-    h2 Oppgave: Anagrammer
-    p
-      | 
-        På   
-      a<> href="http://www2.scrabbleforbundet.no/wp-content/uploads/2012/07/NSF-ordlisten.zip" 
-        | denne linken
-      |
-        fra Norsk Scrabble Forbund finnes en tekstfil med norske ord. Filen ser omtrent lik ut:
-
-    pre
-      |
-        ACTINIUMENE subst
-        ACTINIUMET subst
-        ACTION subs
-
-    p
-      |
-        Lag et program som spør om et ord og så finner anagrammer for det
-        (ord med samme bokstaver i en annen rekkefølge). Tips på neste side.
-
-
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          "ACTINIUMENE subst".split
-           => ["ACTINIUMENE", "subst"] 
-
-      code (data-trim class="ruby")
-        |
-          # BEINET og BITENE er anagrammer
-          "BEINET".chars.sort.join
-           => "BEEINT"
-          "BITENE".chars.sort.join
-           => "BEEINT"
-
-      code (data-trim class="ruby")
-        |
-          # pass på at det brukeren skriver blir likt med bokstavene i ordlisten
-          # Fjern blanke tegn og gjør til store bokstaver
-          inntastet = gets.strip.upcase
-
-  section
-    h2 Oppgave: Kriminalitet (vanskelig)
-
-    p
-      |
-        På hjemmesiden til The District of Columbia finnes en oversikt over 
-      a href="http://data.octo.dc.gov/feeds/crime_incidents/archive/crime_incidents_2013_CSV.zip"
-        | alle lovbrudd som er begått i 2013
-      |
-        . Lag en oversikt over hvor mange lovbrudd som er gjort av hver type
-        (fjerde verdi) og skriv det ut som en tabell. Bonusoppgave: Finn ut
-        hvilken type kriminalitet som skjedde hyppigst for hver klokketime
-
-    pre
-      code (data-trim class="ruby")
-        |
-          "A,B,C,D,E".split(",")
-           => ["A", "B", "C", "D", "E"] 
-      code (data-trim class="ruby")
-        |
-          dato_tid = DateTime.parse("1/2/2013 3:00:00 PM")
-          dato_tid.hour
-           => 15
+    h2 Oppgaver: fortsett med oppgavene fra dag 2
 
 
 section
   section
-    h1 Dag 3 - HTML og Web
+    h1 Dag 4 - HTML og Web
 
     p
       |
@@ -1857,8 +1872,11 @@ section
 
 
   section
-    h2 Oppgave 1 - Fritt HTML/CSS
-    p Lek med HTML og CSS. 
+    h2 Oppgaver
+    p 
+      |
+        Du kan nå velge mellom - å flikke mer på HTML sidene - oppgaven på
+        neste side - eller jobbe mer med oppgavene fra dag 2.
 
   section
     h2 Oppgave 2 - adressekorter
