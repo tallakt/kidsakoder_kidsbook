@@ -18,11 +18,13 @@ Hver dag kan det skje
 - Haiangrep - fire folk får dårligere helse/dør
 - Storm - flåten går i stykker, driver bort
 - Hval angrep
+- Man flytter seg i koordinater. Man skal komme fra øst til vest.
 
 Mål med spillet
 
 - Ingen skal dø (fire personer)
 - Komme frem i tide
 - Ikke sulte
+- Ikke komme for langt nord eller syd
 - 
 - 
