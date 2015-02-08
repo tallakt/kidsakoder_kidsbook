@@ -587,7 +587,6 @@ section
         |
           tilfeldig_tall = rand(0..9)
 
-          svart_tall = gets.to_i
 
 
 
@@ -1180,264 +1179,9 @@ section
 
 
 section
-  section
-    h1 Dag 3 - Funksjoner og filer
-
-    p
-      |
-        I dag  skal vi fortsette å leke med filer, og lage etr bibliotek som vi
-        senere skal bruke på den ferdige web siden. 
-
-  section
-    h2 YAML
-    p
-      |
-        Å lese filer linje for linje er ganske slitsomt. YAML er en måte å
-        gjøre variable i Ruby om til tekst og tilbake. Denne teksten kan
-        vi skrive til en fil.
-
-  section
-    p
-      |
-        YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
-        form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
-
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          require 'yaml'
-
-          yaml1 = 5.to_yaml 
-          yaml2 = [1, 2, 3].to_yaml 
-
-    p yaml1 inneholder
-
-    pre
-      |
-        --- 5
-        ...
-
-    p yaml2 inneholder
-    
-    pre
-      |
-        ---
-        - 1
-        - 2
-        - 3
-
-  section
-
-    p
-      |
-        Setter vi sammen filer og YAML får vi da
-
-    pre
-      code (data-trim class="ruby")
-        |
-          require 'yaml'
-
-          # dataene vi vil skriv og lese
-          # vi har med vilje valgt en kompleks struktur
-          data = [ {navn: "Matz", land: "Japan"}, 
-                   {navn: "Tenderlove", land: "USA"} ]
-
-          # Skriv data til fil
-          File.open("mine_data.yml", "w") do |fil|
-            fil.write data.to_yaml
-          end
-
-          # Les tilbake fra filen
-          data_som_tekst = File.read("mine_data.yml")
-          leste_data = YAML.load(data_som_tekst)
-           => [ {navn: "Matz", land: "Japan"}, 
-                {navn: "Tenderlove", land: "USA"} ]
-
-  section
-    p En fordel med YAML er at man kan redigere den for hånd om det trengs
-
-  section
-    h2 Oppgave: YAML
-    p 
-      |
-        I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
-        Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
-    p 
-      |
-        Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
-        lesescriptet på nytt
-
-  section
-    p
-      |
-        Til nå har vi laget script som kjører fra A til Å. Større programmer
-        krever litt mer organisering. Dette skal vi nå kikke litt på.
-
-  section
-    h2 Funksjoner
-    p La oss definere en funksjon som dobler parameteret sitt
-
-    pre
-      code (data-trim class="ruby")
-        |
-          def dobbelt_av(x)
-            x + x
-          end
-
-          dobbelt_av(10)
-           => 20
-          dobbelt_av(3)
-           => 6
-          dobbelt_av("Matz")
-           => "MatzMatz"
-
-  section
-    p
-      |
-        Funksjonen gir tilbake resultatet fra siste linje som ble kjørt
-
-
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          def er_tallet_stort(tall)
-            if tall > 1000
-              true
-            else
-              false
-            end
-          end
-
-          er_tallet_stort(50)
-           => false
-          er_tallet_stort(50000)
-           => true
-
-
-  section
-    p
-      |
-        Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
-        script er det vanlig at funksjoner igjen kaller andre funksjoner
-
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          def dobbel(x)
-            x + x
-          end
-
-          def lag_dobbel_liste(a, b, c)
-            [dobbel(a), dobbel(b), dobbel(c)]
-          end
-
-          lag_dobbel_liste(1, 2, 3)
-           => [2, 4, 6]
-          
-  section
-    p
-      | 
-        Vi skal nå lage et litt større script der brukeren kan skrive innlegg
-        signert med navn, og disse blir lagret til fil
-
-
-  section
-    p
-      | 
-        Lag scriptet slik at den har tre deler
-
-    ul
-      li En funksjon som skriver en liste av innlegg til fil
-      li En funksjon som leser innleggene tilbake
-      li En kodebit som snakker med brukeren og kaller de to funksjonene
-
-    p
-      br/
-      |
-        Vi lagrer hvert innlegg som en hash, og innleggene som liste
-    pre
-      code (data-trim class="ruby")
-        |
-          ny_tekst = ...     # fra brukeren
-          ny_avsender = ...  # fra brukeren
-
-          nytt_innlegg = {
-            :tekst => ny_tekst,
-            :avsender => ny_avsender
-          }
-
-          alle_innlegg.push(nytt_innlegg)
-
-  section
-    p
-      |
-        Når vi starter scriptet skjer dette:
-    ul
-      li vi spør om avsenders navn og teksten til det nye innlegget
-      li dette blir lagret i en variabel som en hash
-      li vi leser tilbake eldre innlegg fra fil
-      li hvis filen ikke finnes skal vi bruke en tom liste i stedet
-      li vi legger det nye innlegget til på slutten av listen
-      li vi lagrer den oppdaterte listen tilbake til filen
-      li vi skriver ut alle innleggene
-
-    p.fragment
-      br/
-      |
-        Se hvor langt du kommer på egenhånd før du kikker på 
-      a href="http://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top"
-        | løsningsforslaget
-
-  section
-    h2 Splitte scriptet i filer
-    p 
-      |
-        På et tidspunkt blir script filen så stor at vi begynner å miste
-        oversikten. Da er det på tide å splitte den i flere filer. For å bruke
-        en fil i en annen bruker vi `require_relative`
-
-  section
-    pre
-      code (data-trim class="ruby")
-        |
-          # Fil: dobbel.rb
-          def dobbel(x)
-            x + x
-          end
-
-      code (data-trim class="ruby")
-        |
-          # Fil: hoved.rb
-          require_relative 'dobbel'  # obs! .rb er fjernet fra navnet
-
-          puts(dobbel(15)) # skriver ut 30
-          
-  section
-    h2 Oppgave: et bibliotek
-
-    p
-      |
-        Vi skal splitte scriptet fra forrige oppgave inn i to. I den ene delen
-        har vi de to funksjonene, og resten i den andre. 
-      a<> href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_2/bibliotek" target="_top"
-        | Løsningsforslag her.
-
-  section
-    p
-      |
-        På de neste sidene finner du noen oppgaver hvor du kan velge de som er
-        mest interessante, eller lage egne vrier
-
-  section
-    h2 Oppgaver: fortsett med oppgavene fra dag 2
-
-
 section
   section
-    h1 Dag 4 - HTML og Web
+    h1 Dag 3 - HTML og Web
 
     p
       |
@@ -1460,7 +1204,7 @@ section
     p.fragment
       |
         HTML er ikke et programmeringsspråk, men en måte å beskrive en web side
-        på. Sånn sett ligner HTML mer på YAML enn på Ruby.
+        på
 
   section
     pre
@@ -1923,5 +1667,261 @@ section
       | Kildekode for kode og presentasjonen på siden 
       a<> href="http://github.com/tallakt/kidsakoder_kidsbook" target="_top"
         | http://github.com/tallakt/kidsakoder_kidsbook
+
+
+section
+  section
+    h1 Ting som vi ikke rekker
+
+    p
+      |
+        I dag  skal vi fortsette å leke med filer, og lage etr bibliotek som vi
+        senere skal bruke på den ferdige web siden. 
+
+  section
+    h2 YAML
+    p
+      |
+        Å lese filer linje for linje er ganske slitsomt. YAML er en måte å
+        gjøre variable i Ruby om til tekst og tilbake. Denne teksten kan
+        vi skrive til en fil.
+
+  section
+    p
+      |
+        YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
+        form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
+
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          require 'yaml'
+
+          yaml1 = 5.to_yaml 
+          yaml2 = [1, 2, 3].to_yaml 
+
+    p yaml1 inneholder
+
+    pre
+      |
+        --- 5
+        ...
+
+    p yaml2 inneholder
+    
+    pre
+      |
+        ---
+        - 1
+        - 2
+        - 3
+
+  section
+
+    p
+      |
+        Setter vi sammen filer og YAML får vi da
+
+    pre
+      code (data-trim class="ruby")
+        |
+          require 'yaml'
+
+          # dataene vi vil skriv og lese
+          # vi har med vilje valgt en kompleks struktur
+          data = [ {navn: "Matz", land: "Japan"}, 
+                   {navn: "Tenderlove", land: "USA"} ]
+
+          # Skriv data til fil
+          File.open("mine_data.yml", "w") do |fil|
+            fil.write data.to_yaml
+          end
+
+          # Les tilbake fra filen
+          data_som_tekst = File.read("mine_data.yml")
+          leste_data = YAML.load(data_som_tekst)
+           => [ {navn: "Matz", land: "Japan"}, 
+                {navn: "Tenderlove", land: "USA"} ]
+
+  section
+    p En fordel med YAML er at man kan redigere den for hånd om det trengs
+
+  section
+    h2 Oppgave: YAML
+    p 
+      |
+        I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
+        Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
+    p 
+      |
+        Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
+        lesescriptet på nytt
+
+  section
+    p
+      |
+        Til nå har vi laget script som kjører fra A til Å. Større programmer
+        krever litt mer organisering. Dette skal vi nå kikke litt på.
+
+  section
+    h2 Funksjoner
+    p La oss definere en funksjon som dobler parameteret sitt
+
+    pre
+      code (data-trim class="ruby")
+        |
+          def dobbelt_av(x)
+            x + x
+          end
+
+          dobbelt_av(10)
+           => 20
+          dobbelt_av(3)
+           => 6
+          dobbelt_av("Matz")
+           => "MatzMatz"
+
+  section
+    p
+      |
+        Funksjonen gir tilbake resultatet fra siste linje som ble kjørt
+
+
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          def er_tallet_stort(tall)
+            if tall > 1000
+              true
+            else
+              false
+            end
+          end
+
+          er_tallet_stort(50)
+           => false
+          er_tallet_stort(50000)
+           => true
+
+
+  section
+    p
+      |
+        Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
+        script er det vanlig at funksjoner igjen kaller andre funksjoner
+
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          def dobbel(x)
+            x + x
+          end
+
+          def lag_dobbel_liste(a, b, c)
+            [dobbel(a), dobbel(b), dobbel(c)]
+          end
+
+          lag_dobbel_liste(1, 2, 3)
+           => [2, 4, 6]
+          
+  section
+    p
+      | 
+        Vi skal nå lage et litt større script der brukeren kan skrive innlegg
+        signert med navn, og disse blir lagret til fil
+
+
+  section
+    p
+      | 
+        Lag scriptet slik at den har tre deler
+
+    ul
+      li En funksjon som skriver en liste av innlegg til fil
+      li En funksjon som leser innleggene tilbake
+      li En kodebit som snakker med brukeren og kaller de to funksjonene
+
+    p
+      br/
+      |
+        Vi lagrer hvert innlegg som en hash, og innleggene som liste
+    pre
+      code (data-trim class="ruby")
+        |
+          ny_tekst = ...     # fra brukeren
+          ny_avsender = ...  # fra brukeren
+
+          nytt_innlegg = {
+            :tekst => ny_tekst,
+            :avsender => ny_avsender
+          }
+
+          alle_innlegg.push(nytt_innlegg)
+
+  section
+    p
+      |
+        Når vi starter scriptet skjer dette:
+    ul
+      li vi spør om avsenders navn og teksten til det nye innlegget
+      li dette blir lagret i en variabel som en hash
+      li vi leser tilbake eldre innlegg fra fil
+      li hvis filen ikke finnes skal vi bruke en tom liste i stedet
+      li vi legger det nye innlegget til på slutten av listen
+      li vi lagrer den oppdaterte listen tilbake til filen
+      li vi skriver ut alle innleggene
+
+    p.fragment
+      br/
+      |
+        Se hvor langt du kommer på egenhånd før du kikker på 
+      a href="http://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top"
+        | løsningsforslaget
+
+  section
+    h2 Splitte scriptet i filer
+    p 
+      |
+        På et tidspunkt blir script filen så stor at vi begynner å miste
+        oversikten. Da er det på tide å splitte den i flere filer. For å bruke
+        en fil i en annen bruker vi `require_relative`
+
+  section
+    pre
+      code (data-trim class="ruby")
+        |
+          # Fil: dobbel.rb
+          def dobbel(x)
+            x + x
+          end
+
+      code (data-trim class="ruby")
+        |
+          # Fil: hoved.rb
+          require_relative 'dobbel'  # obs! .rb er fjernet fra navnet
+
+          puts(dobbel(15)) # skriver ut 30
+          
+  section
+    h2 Oppgave: et bibliotek
+
+    p
+      |
+        Vi skal splitte scriptet fra forrige oppgave inn i to. I den ene delen
+        har vi de to funksjonene, og resten i den andre. 
+      a<> href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_2/bibliotek" target="_top"
+        | Løsningsforslag her.
+
+  section
+    p
+      |
+        På de neste sidene finner du noen oppgaver hvor du kan velge de som er
+        mest interessante, eller lage egne vrier
+
+  section
+    h2 Oppgaver: fortsett med oppgavene fra dag 2
 
 
