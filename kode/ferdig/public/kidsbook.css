@@ -1,11 +1,11 @@
 body {
-  background-color: #bde7ee;
+  background-color: powderblue;
 }
 
-p.innlegg-tekst {
+.innlegg-tekst {
   margin-top: 50px;
 }
 
-p.avsender {
-  color: #999;
+.avsender {
+  color: steelblue;
 }

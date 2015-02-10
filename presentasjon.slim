@@ -1373,15 +1373,15 @@ section
       code (data-trim class="css")
         |
           body {
-            background-color: #bde7ee;
+            background-color: powderblue;
           }
 
-          p.innlegg-tekst {
+          .innlegg-tekst {
             margin-top: 50px;
           }
 
-          p.avsender {
-            color: #999;
+          .avsender {
+            color: steelblue;
           }
     p.fragment
       |
@@ -1408,8 +1408,8 @@ section
     pre
       code (data-trim class="css")
         |
-          p.avsender {
-            color: #999;
+          .avsender {
+            color: steelblue;
           }
     p
       |
@@ -1418,10 +1418,12 @@ section
     pre
       code (data-trim class="html")
         |
-          &lt;p class="avsender">Hilsen Doffen&lt;/a>
+          &lt;p class="avsender">Hilsen Doffen&lt;/p>
     p
       |
-        Resultatet vil være at avsnittet blir lysegrått, som fargekoden #999 angir.
+        Resultatet vil være at avsnittet blir mørkeblå, som fargekoden
+        steelblue angir. Farger er beskrevet 
+      a<> href="http://sixrevisions.com/css/css-colors/" her
 
 
   section
@@ -1564,9 +1566,9 @@ section
 
     pre
       code (data-trim class="sh")
-        | $ gem install sinatra
+        | $ gem install sinatra -v 1.3
 
-    p PS: $ tegnet skal ikke skrives
+    p PS: $ tegnet skal ikke skrives.
 
 
   section
@@ -1576,7 +1578,6 @@ section
 
     pre
       |
-        ├── data_til_fil.rb
         ├── kidsbook.rb
         ├── public
         │   ├── kidsbook.html
@@ -1613,7 +1614,10 @@ section
   section
     h2 Dynamiske web sider
 
-    p Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss lage en side med tilfeldige tall.
+    p 
+      |
+        Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss
+        lage en side med tilfeldige tall.
 
   section
     p 
@@ -1638,14 +1642,7 @@ section
 
 
   section
-    h2 Oppgaver
-    p 
-      |
-        Du kan nå velge mellom - å flikke mer på HTML sidene - oppgaven på
-        neste side - eller jobbe mer med oppgavene fra dag 2.
-
-  section
-    h2 Oppgave 2 - adressekorter
+    h2 Oppgave: Adressekorter
     p 
       | 
         `bit.ly` er et eksempel på en web side som lager en kort adresse som
@@ -1661,13 +1658,99 @@ section
             redirect to("http://www.google.com/")
           end
 
+  section
+    h2 Layout
+    p 
+      | 
+        Da vi laget en side for startsiden og en for innlogging la du kanskje
+        merke til at det var en del av HTML kodene som var like (dvs alt untatt
+        hoveddelen). Vi skal nå fikse opp i dette.  
+
+  section
+    p 
+      | Første steg skal være å flytte 
+
+    p: code<> public/index.html
+    p
+      | til
+    p: code<> views/index.erb
+
+  section
+    p 
+      | Neste steg er å legge til følgende kode i 
+      code<> kidsakoder.rb
+
+    pre: code (data-trim class="ruby")
+      |
+        get '/' do
+          erb :index
+        end
+
+    p 
+      | Det vi nå sier er at sinatra skal gi ut filen index.erb dynamisk i
+      | stedet for å gi ut en statisk fil fra disken
+
+    p 
+      | Adressen '/' angir den siden man kommer til når adresselinjen kun
+      | inneholder maskinnavn og port.
+
+  section
+    p 
+      | Så kopierer vi views/index.erb til views/layout.erb, og sletter det
+      | midterste som ikke er felles. Det skal se omtrent slik ut: 
+
+    pre: code (data-trim class="html")
+      |
+        &lt;!DOCTYPE html>
+        &lt;html>
+          &lt;head>
+            &lt;title>Kidsbook&lt;/title>
+            &lt;link rel="stylesheet" type="text/css" href="kidsbook.css">
+          &lt;/head>
+          &lt;body>
+            &lt;img src="kidsbook_logo.png">&lt;/img>
+            &lt;%= yield %>
+          &lt;/body>
+        &lt;/html>
+
+    p Vi erstattet delen i midten med `yield`
+      
+  section
+    p 
+      | Til slutt gjør vi motsatt for filen views/index.erb, som skal se slik
+      | ut
+
+    pre: code (data-trim class="html")
+      |
+          </p>
+          Trykk <a href="/login">her</a> for å logge inn.
+          </p>
+
+          <p class="innlegg-tekst">
+            Dette skal bli et innlegg
+          </p>
+          <p class="avsender">
+            Hilsen: Legolas
+          </p>
+
+  section
+    h2 Oppgave: Layout
+    p Lag et layout for din indeks og innloggingssside.
+
+section
+  section
+    h1 Dag 4 - (Ikke skrevet)
+
+section
+  section
+    h1 Dag 5 - (Ikke skrevet)
+
 section
   section
     p
       | Kildekode for kode og presentasjonen på siden 
       a<> href="http://github.com/tallakt/kidsakoder_kidsbook" target="_top"
         | http://github.com/tallakt/kidsakoder_kidsbook
-
 
 section
   section
