@@ -1342,15 +1342,15 @@ end</code></pre>
   </section>
   <section>
     <pre><code class="css" data-trim="">body {
-  background-color: #bde7ee;
+  background-color: powderblue;
 }
 
-p.innlegg-tekst {
+.innlegg-tekst {
   margin-top: 50px;
 }
 
-p.avsender {
-  color: #999;
+.avsender {
+  color: steelblue;
 }</code></pre>
     <p class="fragment">
       Vi kommer ikke til å gå så mye inn på CSS her, så vi skriver av denne
@@ -1370,15 +1370,16 @@ p.avsender {
     <p>
       For at valgene i CSS filen skal tre i kraft må de matche med tagger i HTML filen. Stilen
     </p>
-    <pre><code class="css" data-trim="">p.avsender {
-  color: #999;
+    <pre><code class="css" data-trim="">.avsender {
+  color: steelblue;
 }</code></pre>
     <p>
       vil matche med denne HTML taggen:
     </p>
-    <pre><code class="html" data-trim="">&lt;p class="avsender"&gt;Hilsen Doffen&lt;/a&gt;</code></pre>
+    <pre><code class="html" data-trim="">&lt;p class="avsender"&gt;Hilsen Doffen&lt;/p&gt;</code></pre>
     <p>
-      Resultatet vil være at avsnittet blir lysegrått, som fargekoden #999 angir.
+      Resultatet vil være at avsnittet blir mørkeblå, som fargekoden
+      steelblue angir. Farger er beskrevet  <a href="http://sixrevisions.com/css/css-colors/">her</a> 
     </p>
   </section>
   <section>
@@ -1516,17 +1517,16 @@ p.avsender {
     <p>
       Før vi kan bruke Sinatra skal det installeres. Åpne et kommandovindu og skriv:
     </p>
-    <pre><code class="sh" data-trim="">$ gem install sinatra</code></pre>
+    <pre><code class="sh" data-trim="">$ gem install sinatra -v 1.3</code></pre>
     <p>
-      PS: $ tegnet skal ikke skrives
+      PS: $ tegnet skal ikke skrives.
     </p>
   </section>
   <section>
     <p>
       Det neste vi skal gjøre er å lage følgende mappestruktur:
     </p>
-    <pre>├── data_til_fil.rb
-├── kidsbook.rb
+    <pre>├── kidsbook.rb
 ├── public
 │   ├── kidsbook.html
 │   ├── login.html
@@ -1559,7 +1559,8 @@ p.avsender {
       Dynamiske web sider
     </h2>
     <p>
-      Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss lage en side med tilfeldige tall.
+      Sinatra serveren kan gjøre mer enn å gi ut filer fra disken. La oss
+      lage en side med tilfeldige tall.
     </p>
   </section>
   <section>
@@ -1579,16 +1580,7 @@ end</code></pre>
   </section>
   <section>
     <h2>
-      Oppgaver
-    </h2>
-    <p>
-      Du kan nå velge mellom - å flikke mer på HTML sidene - oppgaven på
-      neste side - eller jobbe mer med oppgavene fra dag 2.
-    </p>
-  </section>
-  <section>
-    <h2>
-      Oppgave 2 - adressekorter
+      Oppgave: Adressekorter
     </h2>
     <p>
       `bit.ly` er et eksempel på en web side som lager en kort adresse som
@@ -1600,6 +1592,100 @@ end</code></pre>
 get '/a' do
   redirect to("http://www.google.com/")
 end</code></pre>
+  </section>
+  <section>
+    <h2>
+      Layout
+    </h2>
+    <p>
+      Da vi laget en side for startsiden og en for innlogging la du kanskje
+      merke til at det var en del av HTML kodene som var like (dvs alt untatt
+      hoveddelen). Vi skal nå fikse opp i dette.  
+    </p>
+  </section>
+  <section>
+    <p>
+      Første steg skal være å flytte 
+    </p>
+    <p>
+      <code>public/index.html</code> 
+    </p>
+    <p>
+      til
+    </p>
+    <p>
+      <code>views/index.erb</code> 
+    </p>
+  </section>
+  <section>
+    <p>
+      Neste steg er å legge til følgende kode i  <code>kidsakoder.rb</code> 
+    </p>
+    <pre><code class="ruby" data-trim="">get '/' do
+  erb :index
+end</code></pre>
+    <p>
+      Det vi nå sier er at sinatra skal gi ut filen index.erb dynamisk istedet for å gi ut en statisk fil fra disken
+    </p>
+    <p>
+      Adressen '/' angir den siden man kommer til når adresselinjen kuninneholder maskinnavn og port.
+    </p>
+  </section>
+  <section>
+    <p>
+      Så kopierer vi views/index.erb til views/layout.erb, og sletter detmidterste som ikke er felles. Det skal se omtrent slik ut: 
+    </p>
+    <pre><code class="html" data-trim="">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Kidsbook&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href="kidsbook.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;img src="kidsbook_logo.png"&gt;&lt;/img&gt;
+    &lt;%= yield %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p>
+      Vi erstattet delen i midten med `yield`
+    </p>
+  </section>
+  <section>
+    <p>
+      Til slutt gjør vi motsatt for filen views/index.erb, som skal se slikut
+    </p>
+    <pre><code class="html" data-trim="">
+Trykk <a href="/login">her</a> for å logge inn.
+
+
+<p class="innlegg-tekst">
+  Dette skal bli et innlegg
+</p>
+<p class="avsender">
+  Hilsen: Legolas
+</p></code></pre>
+  </section>
+  <section>
+    <h2>
+      Oppgave: Layout
+    </h2>
+    <p>
+      Lag et layout for din indeks og innloggingssside.
+    </p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
+      Dag 4 - (Ikke skrevet)
+    </h1>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>
+      Dag 5 - (Ikke skrevet)
+    </h1>
   </section>
 </section>
 <section>
