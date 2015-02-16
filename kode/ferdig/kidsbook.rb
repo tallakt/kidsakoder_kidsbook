@@ -1,10 +1,11 @@
 require 'sinatra'
-require 'open-uri'
 
 require_relative 'data_til_fil'
-require_relative 'hent_fra_andre'
 
 enable :sessions
+set :session_secret, '--__KIDSAKODER__--'
+
+set :bind, "0.0.0.0" # slik at vi åpner for tilgang fra andre maskiner
 
 get '/' do
   @avsender = session[:avsender]
@@ -46,10 +47,4 @@ post '/behandle-ny' do
   skriv_innlegg_til_fil(trimmede_innlegg)
 
   redirect to("/")
-end
-
-
-get '/siste.yaml' do
-  content_type :yaml
-  hent_innlegg_fra_fil.to_yaml
 end

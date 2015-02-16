@@ -1179,7 +1179,6 @@ section
 
 
 section
-section
   section
     h1 Dag 3 - HTML og Web
 
@@ -1739,7 +1738,207 @@ section
 
 section
   section
-    h1 Dag 4 - (Ikke skrevet)
+    h1 Dag 4 - Webserveren
+
+  section
+    a href="http://mislav.uniqpath.com/poignant-guide/"
+      img src="http://www.rubyinside.com/wp-content/uploads/2011/03/why1.png" alt="Why's Ruby Book"/
+
+  section
+    h1 Tilgang fra andre maskiner
+    p 
+      |
+        Sinatra starter vanlig utviklingsmodus med begrenset tilgang. For å
+        åpne opp for tilgang fra andre maskiner, kan vi legge til følgende kode
+        i kidsbook.rb: 
+
+    pre: code (data-trim class="ruby")
+      |
+        # i filen kidsbook.rb
+        require 'sinatra'
+        set(:bind, "0.0.0.0")
+        ...
+
+
+  section
+    p Hver gang vi endrer på koden i kidsbook.rb, trenger vi å restarte web servern vår.
+    p.fragment
+      |
+        Endringer i filer i views katalogen oppdateres automatisk
+
+  section
+    h1 Login
+    p
+      |
+        Vi skal implementere en enklest mulig påloggingsfunksjon.
+
+  section
+    p Før vi går videre, skal alle ha kommet så langt:
+    ul
+      li alle .html filene har fått navn .erb og blitt flyttet til views
+      li alle .erb filene skal bruke layout.erb
+      li en side for index og en for login
+      li en linje 'get' for hver av de to sidene i kidsbook.rb
+
+  section
+    p Pålogging som vi skal lage er veldig enkel. Det holder å
+    ul
+      li å skrive inn navnet
+      li og så trykke på ok
+    p Alle får tilgang.
+
+  section
+    p 
+      |
+        Tidligere prøvde vi å logge inn med html filen fra disk. Da fikk vi
+        trøbbel når vi trykket på knappen.  
+
+    p.fragment Nå kan vi la Sinatra håndtere dette
+
+  section
+    p Legg til følgende kode nederst i kidsbook.rb
+
+    pre: code (data-trim class="ruby")
+      |
+        post '/behandle-login' do
+          p params            # skriv ut skjema data
+          redirect to("/")    # omdiriger til startsiden
+        end
+
+  section
+    p Prøv å logg inn nå og se hva som kommer ut i terminalvinuet.
+
+  section
+    img src="http://www.saetre.no/var/ezflow_site/storage/images/selskaper/orkla-brands-nordic/saetre/produkter/start/start/2575334-1-nor-NO/Start_small.gif"
+    p 
+      |
+        Vi har nå en måte å få tak i navnet til brukeren vår. For å lagre dette
+        skal vi bruke en kjeks (cookie).
+
+    p.fragment 
+      |
+        Kjeksen er en liten datapakke som følger brukerens trafikk frem og tilbake
+
+  section
+    p Når vi bruker kjeks lagres ingen informasjon i sinatra
+
+  section
+    p 
+      |
+        Siden kjeksen blir sendt frem og tilbake skal vi passe på at den ikke
+        inneholder store datamengder.
+    p.fragment
+      |
+        Faktisk er hver kjeks begrenset til 4 kilobyte
+
+  section
+    h2 Ok, la oss lage kjeksen!
+    p Start med å skru på kjeks i Sinatra
+    pre: code (data-trim class="ruby")
+      |
+        enable(:sessions)
+        set(:session_secret, '--__KIDSAKODER__--')
+
+  section
+    p Følg opp med å endre post koden til dette:
+    pre: code (data-trim class="ruby")
+      |
+        post '/behandle-login' do
+          session[:avsender] = params[:avsender]
+          redirect to("/")   
+        end
+
+  section
+    p 
+      |
+        Og for å se om vår session er blitt satt kan vi endre indeks metoden
+        vår slik 
+    pre: code (data-trim class="ruby")
+      |
+        get '/' do
+          p session
+          erb :index
+        end
+
+  section
+    p Kjør koden og se at vi nå holder styr på avsenderen
+    p
+      br/
+      | 
+        Frivillig oppgave: Lag en link for å logge ut. Det greieste er å sette
+        session[:avsender] til nil
+
+  section
+    h2 ERB
+    p 
+      |
+        Det neste vi ønsker å gjøre er å endre layout slik at man får enten en
+        link til pålogging, eller teksten 'Velkommen Tenderlove!'
+
+  section
+    p ERB er en måte å blande Ruby kode med HTML.
+
+  section
+    pre: code (data-trim class="html")
+      |
+        &lt;% if session[:avsender] %>
+          Trykk &lt;a href="/ny">her&lt;/a> for å skrive et nytt innlegg
+        &lt;% else %>
+          For å skrive innlegg må man være logget inn.
+          Trykk &lt;a href="/login">her&lt;/a> for å logge inn.
+        &lt;% end %>
+
+  section
+    p Erb kommer i to varianter
+    pre: code (data-trim class="html")
+      |
+        &lt;% if 1 > 10 %>
+          &lt;p>Verden går under!&lt;/p>
+        &lt;% end %>
+    p kode inne i slike bli kjørt i stillhet
+
+  section
+    p Erb kommer i to varianter
+    pre: code (data-trim class="html")
+      |
+        Svaret er: &lt;%= 1000 + 1000 %>
+    p kode inne i slike skriver ut resultatet av Ruby koden
+
+  section
+    h2 Oppgaver
+    ul
+      li lag en topptekst på startsiden som enten ber deg logge inn, eller lar deg poste nye innlegg
+      li se om du kan finne ut forskjellen på get og post
+      li lag et skjema for å skrive nye innlegg på en egen side
+      li lag en ny Sinatra metode som håndterer nye innlegg
+
+  section
+    h2 Arbeidsdeling
+    p 
+      |
+        Siden ERB filene allerede er ganske komplekse, forsøker vi å legge mest
+        mulig kode i Ruby filen vår (kidsbook.rb)
+    
+  section
+    p Vi kan sende @variable fra .rb filen til .erb filen
+
+  section
+    pre: code (data-trim class="ruby")
+      |
+        get '/' do
+          @avsender = session[:avsender]
+          erb :index
+        end
+    p ...sammen med .erb filen...
+
+    pre: code (data-trim class="html")
+      |
+        &lt;% if @avsender %>
+          Trykk &lt;a href="/ny">her&lt;/a> for å skrive et nytt innlegg
+        &lt;% else %>
+          For å skrive innlegg må man være logget inn.
+          Trykk &lt;a href="/login">her&lt;/a> for å logge inn.
+        &lt;% end %>
 
 section
   section
