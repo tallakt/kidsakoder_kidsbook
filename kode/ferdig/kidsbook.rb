@@ -1,16 +1,29 @@
 require 'sinatra'
+require 'yaml/store'
 
-require_relative 'data_til_fil'
+LAGRING = YAML::Store.new "innlegg.yaml"
 
 enable :sessions
 set :session_secret, '--__KIDSAKODER__--'
 
 set :bind, "0.0.0.0" # slik at vi åpner for tilgang fra andre maskiner
 
+def les_alle_innlegg
+  LAGRING.transaction do
+    LAGRING.fetch("innlegg", [])
+  end
+end
+
+def skriv_alle_innlegg(innlegg)
+  LAGRING.transaction do
+    LAGRING["innlegg"] = innlegg
+  end
+end
+
+
 get '/' do
+  @innlegg = les_alle_innlegg
   @avsender = session[:avsender]
-  @innlegg = hent_innlegg_fra_fil
-  @andres_innlegg = hent_fra_andre(["localhost"])
   erb :index
 end
 
@@ -34,17 +47,15 @@ get '/ny' do
 end
 
 post '/behandle-ny' do
-  gamle_data = hent_innlegg_fra_fil
+  gamle_innlegg = les_alle_innlegg
 
-  innlegg = {
+  nytt_innlegg = {
     :tekst => params[:innlegg],
     :avsender => session[:avsender]
   }
 
-  nye_data = [innlegg] + gamle_data
-  trimmede_innlegg = nye_data[0..10] # behold ti innlegg
-
-  skriv_innlegg_til_fil(trimmede_innlegg)
+  alle_nye_innlegg = [nytt_innlegg] + gamle_innlegg
+  skriv_alle_innlegg(alle_nye_innlegg)
 
   redirect to("/")
 end
