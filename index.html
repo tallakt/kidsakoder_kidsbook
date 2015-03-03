@@ -1961,269 +1961,429 @@ end</code></pre>
   Trykk &lt;a href="/login"&gt;her&lt;/a&gt; for å logge inn.
 &lt;% end %&gt;</code></pre>
   </section>
-</section>
-<section>
   <section>
-    <h1>
-      Dag 5 - (Ikke skrevet)
-    </h1>
-  </section>
-</section>
-<section>
-  <section>
-    <p>
-      Kildekode for kode og presentasjonen på siden  <a href="http://github.com/tallakt/kidsakoder_kidsbook" target="_top">http://github.com/tallakt/kidsakoder_kidsbook</a> 
-    </p>
+    <h2>
+      Fler oppgaver
+    </h2>
+    <ul>
+      <li>
+        Utvid pålogging med passord og lagre passordene i en fil
+      </li>
+    </ul>
   </section>
 </section>
 <section>
   <section>
     <h1>
-      Ting som vi ikke rekker
+      Dag 5 - En ferdig kidsbook
     </h1>
+  </section>
+  <section>
     <p>
-      I dag  skal vi fortsette å leke med filer, og lage etr bibliotek som vi
-      senere skal bruke på den ferdige web siden. 
+      <a href="https://github.com/codinghorror" class="user-mention">@codinghorror</a>: Everyone is like whee fun programming! What they don't
+      tell you is that your computer is a total asshole.  
     </p>
   </section>
   <section>
     <h2>
-      YAML
+      Egne metoder
     </h2>
     <p>
-      Å lese filer linje for linje er ganske slitsomt. YAML er en måte å
-      gjøre variable i Ruby om til tekst og tilbake. Denne teksten kan
-      vi skrive til en fil.
+      Vi bruker metoder til å gruppere kodebiter for bedre oversikt og for å
+      slippe å kopiere tekst.
     </p>
   </section>
   <section>
     <p>
-      YAML lar oss skrive en Ruby verdi til fil og lese den tilbake i samme
-      form. Dette er spesielt hendig hvis verdien er en liste eller en hash.
+      Vi definerer og bruker en metode slik:
+    </p>
+    <pre><code class="ruby" data-trim="">def pluss_sammen(a, b, c)
+  a + b + c
+end</code></pre>
+<pre><code class="ruby" data-trim="">&gt; pluss_sammen(1, 2, 3)
+=&gt; 6
+&gt; pluss_sammen(4, 5, 6)
+=&gt; 15</code></pre>
+  </section>
+  <section>
+    <h2>
+      Lagring av innleggene
+    </h2>
+    <p>
+      Vi skal skrive en kode som skal lagre alle innleggene til fil, og lese
+      de tilbake
     </p>
   </section>
   <section>
-    <pre><code class="ruby" data-trim="">require 'yaml'
-
-yaml1 = 5.to_yaml 
-yaml2 = [1, 2, 3].to_yaml </code></pre>
     <p>
-      yaml1 inneholder
+      Det finnes mange muligheter til å lagre innleggene. Vi skal bruke en
+      metode som er innebygd i Ruby. Koden for å skrive ser da omtrent slik
+      ut:
     </p>
-    <pre>--- 5
-...</pre>
-    <p>
-      yaml2 inneholder
-    </p>
-    <pre>---
-- 1
-- 2
-- 3</pre>
+    <pre><code class="ruby" data-trim="">require 'yaml/store'
+LAGRING = YAML::Store.new "lagring.yaml"
+LAGRING.transaction do
+  LAGRING[:mine_data] = ["her", "er", "mine", "data"]
+end</code></pre>
   </section>
   <section>
     <p>
-      Setter vi sammen filer og YAML får vi da
+      Ved å bruke dette biblioteket slipper vi å tenke på linjeskift og
+      slikt. Det vi legger inn på en nøkkel vil være det samme som vi henter
+      ut
     </p>
-    <pre><code class="ruby" data-trim="">require 'yaml'
-
-# dataene vi vil skriv og lese
-# vi har med vilje valgt en kompleks struktur
-data = [ {navn: "Matz", land: "Japan"}, 
-         {navn: "Tenderlove", land: "USA"} ]
-
-# Skriv data til fil
-File.open("mine_data.yml", "w") do |fil|
-  fil.write data.to_yaml
+  </section>
+  <section>
+    <p>
+      Etter å ha kjørt koden vil dette være innholdet i filen `lagring.yaml`:
+    </p>
+    <pre><code class="yaml" data-trim="">---
+:mine_data:
+- her
+- er
+- mine
+- data</code></pre>
+  </section>
+  <section>
+    <p>
+      Når vi skal lese tilbake innholdet kjører vi denne koden:
+    </p>
+    <pre><code class="ruby" data-trim="">require 'yaml/store'
+LAGRING = YAML::Store.new "lagring.yaml"
+LAGRING.transaction do
+  LAGRING.fetch(:mine_data, "denne verdien om nøkkelen ikke fins")
 end
-
-# Les tilbake fra filen
-data_som_tekst = File.read("mine_data.yml")
-leste_data = YAML.load(data_som_tekst)
- =&gt; [ {navn: "Matz", land: "Japan"}, 
-      {navn: "Tenderlove", land: "USA"} ]</code></pre>
+=&gt; ["her", "er", "mine", "data"]</code></pre>
   </section>
   <section>
+    <h2>
+      Oppgave: lagre innleggene
+    </h2>
     <p>
-      En fordel med YAML er at man kan redigere den for hånd om det trengs
+      Legg til posting av innlegg og lagring til fil i kidsbook.rb. For å få
+      det til skal dere kikke på løsningsforslaget og kopiere over den koden
+      dere trenger til ditt eget prosjekt.
+    </p>
+    <p>
+      <a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/kidsbook.rb">Løsningsforslag for kidsbook.rb</a>
     </p>
   </section>
   <section>
     <h2>
-      Oppgave: YAML
+      Oppgave: skriv ut alle innleggene på startsiden
     </h2>
     <p>
-      I forrige oppgave fikk vi tall fra brukeren som vi skrev til ewn fil.
-      Skriv om forrige oppgave til å lagre og lese dataene som YAML fil
-    </p>
-    <p>
-      Åpne YAML filen i teksteditoren. Forsøk å endre dataene og kjør
-      lesescriptet på nytt
+      For å skrive ut alle innleggene, sender vi dem til erb filen fra
+      kidsbook.rb via en <a href="https://github.com/variabel" class="user-mention">@variabel</a>.
     </p>
   </section>
   <section>
+    <pre><code class="ruby" data-trim="">get '/' do
+  @innlegg = les_alle_innlegg
+  erb :index
+end</code></pre>
     <p>
-      Til nå har vi laget script som kjører fra A til Å. Større programmer
-      krever litt mer organisering. Dette skal vi nå kikke litt på.
+      ...og...
+    </p>
+    <pre><code class="erb" data-trim="">&lt;% @innlegg.each do |et_innlegg| %&gt;
+  &lt;p class="innlegg-tekst"&gt;
+  &lt;%= et_innlegg[:tekst] %&gt;
+  &lt;/p&gt;
+  &lt;p class="avsender"&gt;
+  Hilsen: &lt;%= et_innlegg[:avsender] %&gt;
+  &lt;/p&gt;
+&lt;% end %&gt;</code></pre>
+    <p>
+      <a href="https://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/views/index.erb">Løsningsforslag for views/index.erb</a>
     </p>
   </section>
   <section>
     <h2>
-      Funksjoner
+      Hva nå?
     </h2>
-    <p>
-      La oss definere en funksjon som dobler parameteret sitt
-    </p>
-    <pre><code class="ruby" data-trim="">def dobbelt_av(x)
-  x + x
-end
-
-dobbelt_av(10)
- =&gt; 20
-dobbelt_av(3)
- =&gt; 6
-dobbelt_av("Matz")
- =&gt; "MatzMatz"</code></pre>
   </section>
   <section>
-    <p>
-      Funksjonen gir tilbake resultatet fra siste linje som ble kjørt
-    </p>
-  </section>
-  <section>
-    <pre><code class="ruby" data-trim="">def er_tallet_stort(tall)
-  if tall &gt; 1000
-    true
-  else
-    false
-  end
-end
-
-er_tallet_stort(50)
- =&gt; false
-er_tallet_stort(50000)
- =&gt; true</code></pre>
-  </section>
-  <section>
-    <p>
-      Funksjoner er en fin måte å dele scriptet opp i logiske biter. I større
-      script er det vanlig at funksjoner igjen kaller andre funksjoner
-    </p>
-  </section>
-  <section>
-    <pre><code class="ruby" data-trim="">def dobbel(x)
-  x + x
-end
-
-def lag_dobbel_liste(a, b, c)
-  [dobbel(a), dobbel(b), dobbel(c)]
-end
-
-lag_dobbel_liste(1, 2, 3)
- =&gt; [2, 4, 6]</code></pre>
-  </section>
-  <section>
-    <p>
-      Vi skal nå lage et litt større script der brukeren kan skrive innlegg
-      signert med navn, og disse blir lagret til fil
-    </p>
-  </section>
-  <section>
-    <p>
-      Lag scriptet slik at den har tre deler
-    </p>
+    <h2>
+      Raspberry Pi
+    </h2>
+    <img src="http://www1.pcmag.com/media/images/351342-raspberry-pi.jpg?thumb=y">
     <ul>
       <li>
-        En funksjon som skriver en liste av innlegg til fil
+        Kan stå på hele tiden
       </li>
       <li>
-        En funksjon som leser innleggene tilbake
+        Kjører Linux og Ruby (og kidsbook.rb)
       </li>
       <li>
-        En kodebit som snakker med brukeren og kaller de to funksjonene
+        Pris 400,-
+      </li>
+      <li>
+        Kan overvåke og styre elektronikk
       </li>
     </ul>
-    <p>
-      <br>Vi lagrer hvert innlegg som en hash, og innleggene som liste
-    </p>
-    <pre><code class="ruby" data-trim="">ny_tekst = ...     # fra brukeren
-ny_avsender = ...  # fra brukeren
-
-nytt_innlegg = {
-  :tekst =&gt; ny_tekst,
-  :avsender =&gt; ny_avsender
-}
-
-alle_innlegg.push(nytt_innlegg)</code></pre>
   </section>
   <section>
+    <h2>
+      Andre språk
+    </h2>
     <p>
-      Når vi starter scriptet skjer dette:
+      Det finnes heldigvis og beklageligvis veldig mange forskjellige
+      programmeringsspråk. Jeg skal gå gjennom noen synspunkter på de
+      vanligste språkene.
     </p>
+    <a href="http://langpop.corger.nl/">(mer info om språk her)</a>
+  </section>
+  <section>
+    <h2>
+      C og C++
+    </h2>
     <ul>
       <li>
-        vi spør om avsenders navn og teksten til det nye innlegget
+        Raskest ytelse
       </li>
       <li>
-        dette blir lagret i en variabel som en hash
+        Tar lang tid å lære seg godt (spesielt C++)
       </li>
       <li>
-        vi leser tilbake eldre innlegg fra fil
+        Størst utbredelse og derfor finner du alltid de bibliotekene du trenger
       </li>
       <li>
-        hvis filen ikke finnes skal vi bruke en tom liste i stedet
+        Førstevalget for spill
       </li>
       <li>
-        vi legger det nye innlegget til på slutten av listen
+        Programmene kan 'kræsje'
       </li>
       <li>
-        vi lagrer den oppdaterte listen tilbake til filen
+        Kompleks minnehåndtering
       </li>
       <li>
-        vi skriver ut alle innleggene
+        Kjører på alle platformer, men separat kode for hver platform
+      </li>
+      <li>
+        Mange mange linjer kode
       </li>
     </ul>
-    <p class="fragment">
-      <br>Se hvor langt du kommer på egenhånd før du kikker på <a href="http://github.com/tallakt/kidsakoder_kidsbook/blob/master/kode/ferdig/innlegg.rb" target="_top">løsningsforslaget</a>
-    </p>
   </section>
   <section>
     <h2>
-      Splitte scriptet i filer
+      Java
     </h2>
-    <p>
-      På et tidspunkt blir script filen så stor at vi begynner å miste
-      oversikten. Da er det på tide å splitte den i flere filer. For å bruke
-      en fil i en annen bruker vi `require_relative`
-    </p>
-  </section>
-  <section>
-    <pre><code class="ruby" data-trim=""># Fil: dobbel.rb
-def dobbel(x)
-  x + x
-end</code><code class="ruby" data-trim=""># Fil: hoved.rb
-require_relative 'dobbel'  # obs! .rb er fjernet fra navnet
-
-puts(dobbel(15)) # skriver ut 30</code></pre>
+    <ul>
+      <li>
+        Kjører på alle platformer (Linux, OS-X, Windows) uten endring i koden
+      </li>
+      <li>
+        Veldig utbredt, mange biblioteker
+      </li>
+      <li>
+        Ganske lett å komme igang med
+      </li>
+      <li>
+        Koden er litt kjedelig, og ganske mange linjer
+      </li>
+      <li>
+        Brukeren må installere riktig Java
+      </li>
+      <li>
+        Middels i alt
+      </li>
+      <li>
+        Brukes på Android
+      </li>
+    </ul>
   </section>
   <section>
     <h2>
-      Oppgave: et bibliotek
+      C#
     </h2>
-    <p>
-      Vi skal splitte scriptet fra forrige oppgave inn i to. I den ene delen
-      har vi de to funksjonene, og resten i den andre.  <a href="http://github.com/tallakt/kidsakoder_kidsbook/tree/master/kode/dag_2/bibliotek" target="_top">Løsningsforslag her.</a> 
-    </p>
-  </section>
-  <section>
-    <p>
-      På de neste sidene finner du noen oppgaver hvor du kan velge de som er
-      mest interessante, eller lage egne vrier
-    </p>
+    <ul>
+      <li>
+        Kjører bare på Windows/Windows Phone
+      </li>
+      <li>
+        Ligner mer på 'vanlig' Windows enn Java gjør
+      </li>
+      <li>
+        Ganske lett å komme i gang med
+      </li>
+      <li>
+        Godt utvalg i biblioteker
+      </li>
+      <li>
+        Tett knyttet mot Microsoft som vil tjene penger på dette
+      </li>
+      <li>
+        En kopi av Java for Windows
+      </li>
+    </ul>
   </section>
   <section>
     <h2>
-      Oppgaver: fortsett med oppgavene fra dag 2
+      Javascript
     </h2>
+    <ul>
+      <li>
+        Eneste språket som kjører internt i nettleseren
+      </li>
+      <li>
+        Enkelt å lære
+      </li>
+      <li>
+        Mange spesielle måter å løse ting på
+      </li>
+      <li>
+        Mange ting (som f.eks. gets) er veldig vanskelig å få til
+      </li>
+      <li>
+        Brukes mer og mer på server siden 
+      </li>
+      <li>
+        En del suspekte designvalg som vil overraske deg
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Ruby
+    </h2>
+    <ul>
+      <li>
+        Enkelt og oversiktig språk
+      </li>
+      <li>
+        Ofrer hastighet for enkelhet
+      </li>
+      <li>
+        Trenger ikke kompileres
+      </li>
+      <li>
+        Språket har mange avanserte muligheter
+      </li>
+      <li>
+        Brukes mye på server siden, spesielt web
+      </li>
+      <li>
+        Lite støtte for å lage vanlige programmer
+      </li>
+      <li>
+        Knyttet mest til Linux/OS-X verden
+      </li>
+      <li>
+        Brukeren må installere Ruby
+      </li>
+      <li>
+        Innovativt utviklermiljø
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Python
+    </h2>
+    <ul>
+      <li>
+        Enkelt og oversiktig språk
+      </li>
+      <li>
+        Ofrer hastighet for enkelhet
+      </li>
+      <li>
+        Trenger ikke kompileres
+      </li>
+      <li>
+        Språket har få avanserte muligheter for å holde det enkelt
+      </li>
+      <li>
+        Noe større støtte i biblioteker enn Ruby
+      </li>
+      <li>
+        Brukeren må installere Python
+      </li>
+      <li>
+        Innovativt utviklermiljø
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Apple Swift
+    </h2>
+    <ul>
+      <li>
+        Kun for iPhone, iPad og OS-X
+      </li>
+      <li>
+        Ligner litt på Ruby
+      </li>
+      <li>
+        Veldig nytt, så fremtiden er uviss
+      </li>
+      <li>
+        Betenkelig ytelse og robusthet
+      </li>
+      <li>
+        Vil bli bedre med tiden
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Google Go
+    </h2>
+    <ul>
+      <li>
+        Ligner mest på en enklere utgave av C
+      </li>
+      <li>
+        Man trenger ikke installere noe utover programmer du lager
+      </li>
+      <li>
+        Bedre støtte for å kjøre ting samtidig enn C
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Haskell, Erlang, Elixir, Lisp, Scala, Clojure, F#
+    </h2>
+    <ul>
+      <li>
+        Veldig avanserte språk
+      </li>
+      <li>
+        Veldig interessante om man er opptatt av sånt
+      </li>
+      <li>
+        Løser noen problemer veldig bra
+      </li>
+      <li>
+        Lite brukt, men det finnes noen hederlige unntak
+      </li>
+      <li>
+        Innovativt utviklermiljø
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>
+      Slutt
+    </h2>
+  </section>
+  <section>
+    <h2>
+      Oppgaver
+    </h2>
+    <ul>
+      <li>
+        Utvid kidsbook.rb med en 'Like' knapp
+      </li>
+      <li>
+        Pålogging med passord i tillegg til navn
+      </li>
+      <li>
+        Utveksling av innlegg mellom maskinene (kidsbook til kidsbook)
+      </li>
+    </ul>
   </section>
 </section>
 
