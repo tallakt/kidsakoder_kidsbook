@@ -7,6 +7,48 @@ set :bind, "0.0.0.0" # slik at vi åpner for tilgang fra andre maskiner
 
 SPILL = {:spillere => {}}
 
+BRETT = 
+  "###......................" +
+  "##......................." +
+  "........................." +
+  "........................." +
+  "...#####.###.........#..." +
+  ".....#######........##..." +
+  ".....#####.........##...." +
+  "......##..........###...." +
+  "..................###...." +
+  "..................####..." +
+  "..................#......" +
+  "###......................" +
+  "####....................." +
+  "###......................" +
+  "##............##....#...." +
+  "............####....###.." +
+  "............####....###.." +
+  "..###.........##....####." +
+  "..####........###...####." +
+  "....................###.." +
+  "....###.................." +
+  "....###.................." +
+  "........................." +
+  "..........###............" +
+  "..........###............"
+
+def initier_brett_tabell(brett)
+  resultat = {}
+  teller = 0
+  25.times do |y|
+    25.times do |x|
+      resultat[[x, y]] = brett[teller]
+      teller = teller + 1
+    end
+  end
+  resultat
+end
+
+BRETT_TABELL = initier_brett_tabell(BRETT)
+
+
 def lag_brett(spiller)
   andre = []
   if spiller
@@ -15,7 +57,7 @@ def lag_brett(spiller)
   brett = ""
   25.times do |y|
     25.times do |x|
-      tegn = " ."
+      tegn = " #{BRETT_TABELL[[x, y]]}"
 
       # Tegn andre spillere i nærheten
       andre.each do |annen|
@@ -65,6 +107,30 @@ def spillere_i_naerheten(navn, spillere)
   resultat
 end
 
+def flytt_spiller(spiller_navn, dx, dy)
+  spiller = SPILL[:spillere][spiller_navn]
+  if spiller
+    ny_x = spiller[:x] + dx
+    ny_y = spiller[:y] + dy
+    if ny_x < 0
+      ny_x = 0
+    end
+    if ny_y < 0
+      ny_y = 0
+    end
+    if ny_x >= 25
+      ny_x = 24
+    end
+    if ny_y >= 25
+      ny_y = 24
+    end
+    if BRETT_TABELL[[ny_x, ny_y]] == '.'
+      spiller[:x] = ny_x
+      spiller[:y] = ny_y
+    end
+  end
+end
+
 
 get '/' do
   navn = session[:navn]
@@ -89,58 +155,19 @@ get '/live' do
 end
 
 get '/opp' do
-  navn = session[:navn]
-  spiller = SPILL[:spillere][navn]
-  if spiller
-    spiller[:y] = spiller[:y] - 1
-    if spiller[:y] < 0
-      spiller[:y] = 0
-    end
-  end
+  flytt_spiller(session[:navn], 0, -1)
 end
 
 get '/ned' do
-  navn = session[:navn]
-  spiller = SPILL[:spillere][navn]
-  if spiller
-    spiller[:y] = spiller[:y] + 1
-    if spiller[:y] >= 25
-      spiller[:y] = 24
-    end
-  end
+  flytt_spiller(session[:navn], 0, 1)
 end
 
 get '/venstre' do
-  navn = session[:navn]
-  spiller = SPILL[:spillere][navn]
-  if spiller
-    spiller[:x] = spiller[:x] - 1
-    if spiller[:x] < 0
-      spiller[:x] = 0
-    end
-  end
+  flytt_spiller(session[:navn], -1, 0)
 end
 
 get '/hoyre' do
-  navn = session[:navn]
-  spiller = SPILL[:spillere][navn]
-  if spiller
-    spiller[:x] = spiller[:x] + 1
-    if spiller[:x] >= 25
-      spiller[:x] = 24
-    end
-  end
-end
-
-get '/hoyre' do
-  navn = session[:navn]
-  spiller = SPILL[:spillere][navn]
-  if spiller
-    spiller[:x] = spiller[:x] + 1
-    if spiller[:x] >= 25
-      spiller[:x] = 24
-    end
-  end
+  flytt_spiller(session[:navn], 1, 0)
 end
 
 get '/skyt' do

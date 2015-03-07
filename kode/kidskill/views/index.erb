@@ -18,13 +18,13 @@ Skrive navnet ditt for å starte KIDSKILL!!!
 <% end %>
 
 <div id="live">
-  <!-- oppdtaered automatisk av javascript -->
+  <!-- oppdateres automatisk av javascript -->
 </div>
 
 <script type="text/javascript">
   function reloadLive() {
     // oppdater #live hvert halve sekund
-    $("#live").load("/live", function() { setTimeout(reloadLive, 500); });
+    $("#live").load("/live", function() { setTimeout(reloadLive, 250); });
   }
 
   $(function() {
