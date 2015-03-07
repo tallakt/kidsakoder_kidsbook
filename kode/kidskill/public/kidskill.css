@@ -1,0 +1,11 @@
+body {
+  background-color: powderblue;
+}
+
+.innlegg-tekst {
+  margin-top: 50px;
+}
+
+.avsender {
+  color: steelblue;
+}

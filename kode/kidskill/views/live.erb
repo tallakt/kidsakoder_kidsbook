@@ -1,0 +1,13 @@
+<pre>
+<%= @brett %>
+</pre>
+<p>
+  <% @spillere.each do |navn, spiller_data| %>
+    <%= navn %>: <%= spiller_data[:liv] %><br/>
+  <% end %>
+</p>
+<pre>
+Session: <%= session[:navn] %>
+
+<%= @debug %>
+</pre>

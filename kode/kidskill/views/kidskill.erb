@@ -1,0 +1,31 @@
+<% unless session[:navn] %>
+<p>
+Skrive navnet ditt for å starte KIDSKILL!!!
+</p>
+
+<form method="POST" action="/behandle-start">
+  <p>
+  <input type="text" name="navn"></input>
+  </p>
+
+  <p>
+  <input type="submit" value="LETS GO!" />
+  </p>
+</form>
+<% end %>
+
+
+<div id="live">
+  <!-- oppdtaered automatisk av javascript -->
+</div>
+
+<script type="text/javascript">
+  function reloadLive() {
+    // oppdater #live hvert halve sekund
+    $("#live").load("/live", function() { setTimeout(reloadLive, 500); });
+  }
+
+  $(function() {
+      reloadLive();
+  });
+</script>

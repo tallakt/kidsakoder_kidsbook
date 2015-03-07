@@ -1,0 +1,52 @@
+<% unless @innlogget %>
+<p>
+Skrive navnet ditt for å starte KIDSKILL!!!
+</p>
+
+<form method="POST" action="/behandle-start">
+  <p>
+  <input type="text" name="navn"></input>
+  </p>
+
+  <p>
+  <input type="submit" value="LETS GO!" />
+  </p>
+</form>
+<% else %>
+
+<p>WASD for å flytte, P for å skyte</p>
+<% end %>
+
+<div id="live">
+  <!-- oppdtaered automatisk av javascript -->
+</div>
+
+<script type="text/javascript">
+  function reloadLive() {
+    // oppdater #live hvert halve sekund
+    $("#live").load("/live", function() { setTimeout(reloadLive, 500); });
+  }
+
+  $(function() {
+      reloadLive();
+  });
+
+
+  $("html").keydown(function(event) {
+      if (event.which == 80) { // p
+          $.get("/skyt");
+      }
+      if (event.which == 87) { // w
+          $.get("/opp");
+      }
+      if (event.which == 65) { // a
+          $.get("/venstre");
+      }
+      if (event.which == 83) { // s
+          $.get("/ned");
+      }
+      if (event.which == 68) { // d
+          $.get("/hoyre");
+      }
+  });
+</script>
