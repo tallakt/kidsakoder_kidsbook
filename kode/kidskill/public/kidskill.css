@@ -1,11 +1,23 @@
 body {
-  background-color: powderblue;
+	background-color: darkgray;
 }
 
 .innlegg-tekst {
-  margin-top: 50px;
+	margin-top: 50px;
 }
 
-.avsender {
-  color: steelblue;
+.kidskilled {
+	color: steelblue;
+}
+
+.column {
+	float: left;
+}
+
+#spillere {
+	width: 200px;
+}
+
+#highscores {
+	width: 200px;
 }

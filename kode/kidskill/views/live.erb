@@ -1,8 +1,19 @@
+<div id="brett" class="column">
 <pre>
 <%= @brett %>
 </pre>
-<p>
-  <% @spillere.each do |navn, spiller_data| %>
-    <%= navn %>: <%= spiller_data[:liv] %><br/>
-  <% end %>
-</p>
+</div>
+
+<div id="spillere" class="column">
+	<% @spillere.each do |navn, spiller_data| %>
+		<%= navn %>: <%= spiller_data[:liv] %>
+		<span class="kidskilled">[ <%= spiller_data[:kills] %>]</span><br/>
+	<% end %>
+</div>
+
+<div id="highscore" class="column">
+	<h2>Kids killed all time high</h2>
+	<% @highscores.each do |navn, score| %>
+	<%= navn %>: <%= score %><br/>
+	<% end %>
+</div>
